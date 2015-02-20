@@ -1,6 +1,8 @@
 # UltraHardcore: Reload
 This is a Minecraft mod with the purpose to make UltraHardcore-Mode Forge-compatible in 1.8
 
+Basiclly, this mod is trying following UHC rules from here: http://www.reddit.com/r/ultrahardcore/wiki/playerfaq
+
 The idea of this mod has various origin, including but not limited in:
 
 http://dev.bukkit.org/bukkit-plugins/ultrahardcore/
