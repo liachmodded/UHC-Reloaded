@@ -1,0 +1,17 @@
+[
+{
+  "modid": “UHCReload”,
+  "name": "UltraHardcore-Mode MOD Reload",
+  "version": "$version",
+  "mcversion": "$mcversion",
+  "description": “Forge Version UHC MOD!”,
+  "credits": "Code by 3TUSK”,
+  "logoFile": "",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [ “3tusk” ],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": []
+}
+]
