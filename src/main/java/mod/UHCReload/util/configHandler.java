@@ -12,10 +12,11 @@ public class configHandler{
 	public static boolean harderGlisteringMelon;
 	
 	public static boolean allowGoldenAppleRegen;
+	public static boolean allowUSHCCommand;
 	public static boolean openEnderPearlFallingDamage;
 	
 	private static final String CRAFT = "Crafting Configuration";
-	private static final String CUSTOM_RULES = "General UHC rules Configuration";
+	private static final String CUSTOM_RULES = "General UHC Rules Configuration";
 	
 	public static void init(File file){
 	Configuration config = new Configuration(file);
@@ -28,6 +29,7 @@ public class configHandler{
 	uncraftingDifficulty = config.getInt("UncraftingGoldenItems", CRAFT, 1, 0, 3, "Variable difficulty of uncrafting your golden tools or armors. The range is from 0 to 3.");
 	
 	allowGoldenAppleRegen = config.getBoolean("AllGoldenAppleEffect", CUSTOM_RULES, false, "Set true if you want the effect from golden apple. Default value is false.");
+	allowUSHCCommand = config.getBoolean("AllowUSHCModeCommand", CUSTOM_RULES, false, "USHC means UltraSuperHarcore, which equals to UHC+no day time. Set true if you want to try it.");
 	openEnderPearlFallingDamage = config.getBoolean("AllowEnderPeralDamage", CUSTOM_RULES, false, "Set true if you want ender peral to cause 2.5 heart falling damage as in vanilla.");
 	
 	config.save();

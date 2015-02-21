@@ -6,6 +6,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.storage.WorldInfo;
 
 public class CommandUHCMode extends CommandBase{
 
@@ -19,7 +20,7 @@ public class CommandUHCMode extends CommandBase{
 
 	@Override
 	public int getRequiredPermissionLevel(){
-		return 0;
+		return 2;
 	}
 	
     public boolean canCommandSenderUse(ICommandSender sender)
@@ -34,7 +35,6 @@ public class CommandUHCMode extends CommandBase{
 
 	@Override
 	public void execute(ICommandSender sender, String[] args) throws CommandException {
-		GameRules gamerules = MinecraftServer.getServer().worldServerForDimension(0).getGameRules();
 		int l = args.length;
 		
 		if (l > 2 || l < 1){
@@ -44,13 +44,25 @@ public class CommandUHCMode extends CommandBase{
 		if (l == 1){
 			String mode = args[0];
 			if (mode.equals("on")){
-				gamerules.setOrCreateGameRule("naturalRegeneration", "false");
+				for(int a = 0; a < MinecraftServer.getServer().worldServers.length; a++){
+					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
+					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
+					info.setHardcore(true);
+					gamerules.setOrCreateGameRule("naturalRegeneration", "false");
+				}	
 				sender.addChatMessage(new ChatComponentText("Successfully open UHC"));
+				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[] {});
 			}
 			
 			if (mode.equals("off")){
-				gamerules.setOrCreateGameRule("naturalRegeneration", "true");
+				for(int a = 0; a < MinecraftServer.getServer().worldServers.length; a++){
+					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
+					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
+					info.setHardcore(false);
+					gamerules.setOrCreateGameRule("naturalRegeneration", "true");
+				}	
 				sender.addChatMessage(new ChatComponentText("Successfully close UHC"));
+				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[] {});
 			}
 			
 			if (!mode.equals("on") && !mode.equals("off")){
