@@ -51,7 +51,7 @@ public class CommandUHCMode extends CommandBase{
 					gamerules.setOrCreateGameRule("naturalRegeneration", "false");
 				}	
 				sender.addChatMessage(new ChatComponentText("Successfully open UHC"));
-				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[] {});
+				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[] {});
 			}
 			
 			if (mode.equals("off")){
