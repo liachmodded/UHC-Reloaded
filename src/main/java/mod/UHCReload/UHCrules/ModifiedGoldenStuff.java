@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -52,8 +53,7 @@ public class ModifiedGoldenStuff {
 		EntityPlayer currentPlayer = (EntityPlayer)Event.entityPlayer;
 		if (!configHandler.allowGoldenAppleRegen){
 			if (Event.entityLiving instanceof EntityPlayerMP){
-				if (Event.item.getItem().equals(Items.golden_apple)
-						&& Event.item.getMetadata() == 0){
+				if (Event.item.getItem().equals(Items.golden_apple) && Event.item.getMetadata() == 0){
 					if (Event.item.getDisplayName() == "§6Golden Skull"){
 						currentPlayer.clearActivePotions();
 						currentPlayer.heal(8.0F);
@@ -61,7 +61,12 @@ public class ModifiedGoldenStuff {
 					currentPlayer.clearActivePotions();
 					currentPlayer.heal(4.0F);
 					}
-				} 
+				}
+			} else {
+				if (configHandler.AntiCheatMode && Event.item.getItem().equals(Items.golden_apple) && Event.item.getMetadata() == 1){
+					currentPlayer.clearActivePotions();
+					currentPlayer.addChatComponentMessage(new ChatComponentText("DO NOT CHEAT!!!"));
+				}
 			}
 		}
 	}

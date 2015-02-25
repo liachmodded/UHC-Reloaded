@@ -6,15 +6,19 @@ import net.minecraftforge.common.config.Configuration;
 
 public class configHandler{
 	
+	public static boolean AntiCheatMode;
+	
 	public static int uncraftingDifficulty;
 	public static boolean allowCraftingGoldenSkull;
 	public static boolean harderGoldenCarrot;
 	public static boolean harderGlisteringMelon;
 	
+	public static boolean allowEnchantedGoldenApple;
 	public static boolean allowGoldenAppleRegen;
 	public static boolean allowUSHCCommand;
 	public static boolean openEnderPearlFallingDamage;
 	
+	private static final String ANTI_CHEAT = "Anti-Cheating Mode Opition";
 	private static final String CRAFT = "Crafting Configuration";
 	private static final String CUSTOM_RULES = "General UHC Rules Configuration";
 	
@@ -23,6 +27,8 @@ public class configHandler{
 
 	config.load();
 
+	AntiCheatMode = config.getBoolean("AntiCheating", ANTI_CHEAT, true, "To prevent any kind of possible cheating way, set it to true. All rights reserved.");
+	
 	allowCraftingGoldenSkull = config.getBoolean("AllowCraftingGoldenSkull", CRAFT, true, "Set false if you don't want such a bleedy thing.");
 	harderGoldenCarrot = config.getBoolean("HarderGoldenCarrotRecipe", CRAFT, true, "This recipe will use 8 ingots rather than nuggets.");
 	harderGlisteringMelon = config.getBoolean("HarderGlistringMelonRecipe", CRAFT, true, "This recipe will use one gold BLOCK rather than nuggets. Crazy, isn't it?");

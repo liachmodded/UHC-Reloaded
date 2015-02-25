@@ -1,9 +1,10 @@
 package mod.UHCReload;
 
 /**
- * @author ThaumicTechTinker Urey.S.Knowledge(aka 3TUSK)
+ * @author ThaumicTechTinker Urey.S.Knowledge (a.k.a. 3TUSK)
  * This is a mod which brings the original UHC mode rules to 1.8 release
  * Forge Compatible, flexible configuration, and firing contribution :)
+ * Sort of meaningless, but I will insist on it, since there used to be an era!
  */
 
 import java.io.File;
@@ -12,6 +13,7 @@ import mod.UHCReload.UHCrules.CancalEnderPeralDamage;
 import mod.UHCReload.UHCrules.GoldenItemToGold;
 import mod.UHCReload.UHCrules.ModifiedGoldenStuff;
 import mod.UHCReload.UHCrules.EnforceNoGhastTear;
+import mod.UHCReload.command.CommandUHCHelp;
 import mod.UHCReload.command.CommandUHCMode;
 import mod.UHCReload.command.CommandUSHCMode;
 import mod.UHCReload.util.configHandler;
@@ -59,5 +61,6 @@ public class UHCReload {
 	public void serverStarting(FMLServerStartingEvent Event){
 		Event.registerServerCommand(new CommandUHCMode());
 		Event.registerServerCommand(new CommandUSHCMode());
+		Event.registerServerCommand(new CommandUHCHelp());
 	}
 }
