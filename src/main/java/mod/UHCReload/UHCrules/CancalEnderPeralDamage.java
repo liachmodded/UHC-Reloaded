@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CancalEnderPeralDamage {
 
-	
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onPlayerUseEnderPeral(EnderTeleportEvent Event){
 		if (Event.entity instanceof EntityPlayerMP){

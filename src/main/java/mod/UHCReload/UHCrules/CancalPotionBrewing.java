@@ -30,18 +30,4 @@ public class CancalPotionBrewing {
 			}
 		}
 	}
-	
-	/*
-	@SuppressWarnings("unused")
-	private boolean hasTargetItem(ItemStack[] stacks,Item item){
-		for (int a = 0; a < stacks.length; a++){
-			ItemStack obj = stacks[a];
-			if (obj.getItem().equals(item)){
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	*/
 }

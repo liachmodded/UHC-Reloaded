@@ -99,4 +99,20 @@ public class Misc {
 			}
 		}
 	}
+	
+	/**
+	 * to check whether certain stacks has target item. So far it's unused.
+	 * @param stacks range you'd like to check
+	 * @param item target item
+	 * @return true if get target item
+	 */
+	public boolean hasTargetItem(ItemStack[] stacks,Item item){
+		for (int a = 0; a < stacks.length; a++){
+			ItemStack obj = stacks[a];
+			if (obj.getItem().equals(item)){
+				return true;
+			}
+		}
+		return false;
+	}
 }

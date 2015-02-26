@@ -17,9 +17,8 @@ public class ModifiedGoldenStuff {
 
 	public static void regGoldenSkull(){
 		if (configHandler.allowCraftingGoldenSkull){
-			GameRegistry.addShapedRecipe(
-					Misc.getRenamedItemStack(Items.golden_apple, "§6Golden Skull", 1, 0), 
-					new Object[] {"GGG", "GSG", "GGG", 'G', Items.gold_ingot, 'S', new ItemStack(Items.skull, 1, 3)});
+			GameRegistry.addShapedRecipe(Misc.getRenamedItemStack(Items.golden_apple, "§6Golden Skull", 1, 0), 
+				new Object[] {"GGG", "GSG", "GGG", 'G', Items.gold_ingot, 'S', new ItemStack(Items.skull, 1, 3)});
 		}
 	}
 	
@@ -31,8 +30,7 @@ public class ModifiedGoldenStuff {
 	public static void harderGoldenCarrot(){
 		if (configHandler.harderGoldenCarrot){
 			Misc.removeCertainRecipe(new ItemStack(Items.golden_carrot));
-			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_carrot), 
-				new Object[] {"GGG", "GCG", "GGG", 'G', Items.gold_ingot, 'C', Items.carrot});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_carrot), new Object[] {"GGG", "GCG", "GGG", 'G', Items.gold_ingot, 'C', Items.carrot});
 		}
 	}
 	

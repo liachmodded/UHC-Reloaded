@@ -16,14 +16,17 @@ public class GoldenItemToGold {
 			break;
 		case(1):{
 			regEasyUncraftingRecipe();
+			System.out.print("[UHC:Reload]Set uncrafting mode to Easy.");
 			break;
 			}
 		case(2):{
 			regNormalUncraftingRecipe();
+			System.out.print("[UHC:Reload]Set uncrafting mode to Normal.");
 			break;
 		}
 		case(3):{
 			regHardUncraftingRecipe();
+			System.out.print("[UHC:Reload]Set uncrafting mode to Hard.");
 			break;
 		}
 		default:
@@ -51,6 +54,7 @@ public class GoldenItemToGold {
 		regPowerRailToGoldN();
 	}
 	
+	//WIP.
 	public static void regHardUncraftingRecipe(){
 		
 	}

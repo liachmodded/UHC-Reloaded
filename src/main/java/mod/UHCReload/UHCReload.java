@@ -1,7 +1,7 @@
 package mod.UHCReload;
 
 /**
- * @author ThaumicTechTinker Urey.S.Knowledge (a.k.a. 3TUSK)
+ * @author ThaumicTechTinker Urey.S.Knowledge (a.k.a. 3TUSK/3tusk)
  * This is a mod which brings the original UHC mode rules to 1.8 release
  * Forge Compatible, flexible configuration, and firing contribution :)
  * Sort of meaningless, but I will insist on it, since there used to be an era!

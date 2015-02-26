@@ -35,7 +35,7 @@ public class configHandler{
 	allowCraftingGoldenSkull = config.getBoolean("AllowCraftingGoldenSkull", CRAFT, true, "Set false if you don't want such a bleedy thing.");
 	harderGoldenCarrot = config.getBoolean("HarderGoldenCarrotRecipe", CRAFT, true, "This recipe will use 8 ingots rather than nuggets.");
 	harderGlisteringMelon = config.getBoolean("HarderGlistringMelonRecipe", CRAFT, true, "This recipe will use one gold BLOCK rather than nuggets. Crazy, isn't it?");
-	uncraftingDifficulty = config.getInt("UncraftingGoldenItems", CRAFT, 1, 0, 3, "Variable difficulty of uncrafting your golden tools or armors. The range is from 0 to 3.");
+	uncraftingDifficulty = config.getInt("UncraftingGoldenItems", CRAFT, 1, 0, 3, "Variable difficulty of uncrafting your golden tools or armors.");
 	
 	allowBrewingPotionLevelII = config.getBoolean("AllowBrewingLevelIIPotion", CUSTOM_RULES, false, "set true if you want level II potion.");
 	allowBrewingPotionRegen = config.getBoolean("AllowBrewingRegenerationPotion", CUSTOM_RULES, false, "set true if you want regeneration potion, maybe it's for speical loot.");
