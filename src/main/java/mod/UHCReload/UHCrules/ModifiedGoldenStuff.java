@@ -24,7 +24,8 @@ public class ModifiedGoldenStuff {
 	}
 	
 	public static void removeEnhancedGoldenApple(){
-		Misc.removeCertainRecipe(new ItemStack(Items.golden_apple, 1, 1));
+		if (!configHandler.allowEnchantedGoldenApple)
+			Misc.removeCertainRecipe(new ItemStack(Items.golden_apple, 1, 1));
 	}
 	
 	public static void harderGoldenCarrot(){

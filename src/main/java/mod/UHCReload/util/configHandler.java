@@ -13,6 +13,9 @@ public class configHandler{
 	public static boolean harderGoldenCarrot;
 	public static boolean harderGlisteringMelon;
 	
+	public static boolean allowBrewingPotionLevelII;
+	public static boolean allowBrewingPotionRegen;
+	public static boolean allowBrewingPotionSplash;
 	public static boolean allowEnchantedGoldenApple;
 	public static boolean allowGoldenAppleRegen;
 	public static boolean allowUSHCCommand;
@@ -34,6 +37,10 @@ public class configHandler{
 	harderGlisteringMelon = config.getBoolean("HarderGlistringMelonRecipe", CRAFT, true, "This recipe will use one gold BLOCK rather than nuggets. Crazy, isn't it?");
 	uncraftingDifficulty = config.getInt("UncraftingGoldenItems", CRAFT, 1, 0, 3, "Variable difficulty of uncrafting your golden tools or armors. The range is from 0 to 3.");
 	
+	allowBrewingPotionLevelII = config.getBoolean("AllowBrewingLevelIIPotion", CUSTOM_RULES, false, "set true if you want level II potion.");
+	allowBrewingPotionRegen = config.getBoolean("AllowBrewingRegenerationPotion", CUSTOM_RULES, false, "set true if you want regeneration potion, maybe it's for speical loot.");
+	allowBrewingPotionSplash = config.getBoolean("AllowBrewingSplashPotion", CUSTOM_RULES, false, "set true if you want splash potion.");
+	allowEnchantedGoldenApple = config.getBoolean("AllowCraftingEnchantedGoldenApple", CUSTOM_RULES, false, "set true if you want to allow player crafting enchanted golden apple.");
 	allowGoldenAppleRegen = config.getBoolean("AllGoldenAppleEffect", CUSTOM_RULES, false, "Set true if you want the effect from golden apple. Default value is false.");
 	allowUSHCCommand = config.getBoolean("AllowUSHCModeCommand", CUSTOM_RULES, false, "USHC means UltraSuperHarcore, which equals to UHC+no day time. Set true if you want to try it.");
 	openEnderPearlFallingDamage = config.getBoolean("AllowEnderPeralDamage", CUSTOM_RULES, false, "Set true if you want ender peral to cause 2.5 heart falling damage as in vanilla.");

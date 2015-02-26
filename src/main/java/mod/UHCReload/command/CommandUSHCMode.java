@@ -46,7 +46,7 @@ public class CommandUSHCMode extends CommandBase{
 		
 		if (l == 1){
 			String mode = args[0];
-			if (mode.equals("on")){
+			if (mode.equalsIgnoreCase("on")){
 				for(int a = 0; a < MinecraftServer.getServer().worldServers.length; a++){
 					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
 					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
@@ -59,7 +59,7 @@ public class CommandUSHCMode extends CommandBase{
 				notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: ON.", new Object[] {});
 			}
 			
-			if (mode.equals("off")){
+			if (mode.equalsIgnoreCase("off")){
 				for(int a = 0; a < MinecraftServer.getServer().worldServers.length; a++){
 					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
 					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
@@ -72,7 +72,7 @@ public class CommandUSHCMode extends CommandBase{
 				notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: OFF.", new Object[] {});
 			}
 			
-			if (!mode.equals("on") && !mode.equals("off")){
+			if (!mode.equalsIgnoreCase("on") && !mode.equalsIgnoreCase("off")){
 				sender.addChatMessage(new ChatComponentText("Wrong argument, please check!"));
 				sender.addChatMessage(new ChatComponentText("parameter: /uhcmode <on/off>"));
 			}

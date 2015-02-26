@@ -1,5 +1,6 @@
 package mod.UHCReload.UHCrules;
 
+import mod.UHCReload.util.configHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
@@ -13,15 +14,18 @@ public class CancalPotionBrewing {
 			ItemStack stack = Evt.getItem(a);
 			if (stack != null){
 				if (stack.getItem().equals(Items.ghast_tear)){
-					Evt.setCanceled(true);
+					if (!configHandler.allowBrewingPotionRegen)
+						Evt.setCanceled(true);
 				}
 				
 				if (stack.getItem().equals(Items.gunpowder)){
-					Evt.setCanceled(true);
+					if (!configHandler.allowBrewingPotionSplash)
+						Evt.setCanceled(true);
 				}
 				
 				if (stack.getItem().equals(Items.glowstone_dust)){
-					Evt.setCanceled(true);
+					if (!configHandler.allowBrewingPotionLevelII)
+						Evt.setCanceled(true);
 				}
 			}
 		}

@@ -30,8 +30,16 @@ public class CommandUHCHelp extends CommandBase{
 
 	@Override
 	public void execute(ICommandSender sender, String[] args) throws CommandException {
-		sender.addChatMessage(new ChatComponentText("Enter the following page to learn more!"));
-		sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
+		int a = args.length;
+		if (a == 1){
+			String arg = args[0];
+			if (arg.equalsIgnoreCase("banrule") || arg.equalsIgnoreCase("banguideline")){
+				sender.addChatMessage(new ChatComponentText("Enter the following page to learn more!"));
+				sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
+			} else {
+				sender.addChatMessage(new ChatComponentText("Enter the following page to learn more!"));
+				sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
+			}
+		}
 	}
-
 }
