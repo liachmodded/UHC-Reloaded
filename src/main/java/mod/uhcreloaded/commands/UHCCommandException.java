@@ -1,21 +1,21 @@
-package mod.UHCReload.command;
+package mod.uhcreloaded.commands;
 
 import net.minecraft.command.CommandException;
 
-public class UHCCommandException extends CommandException{
+public class UHCCommandException extends CommandException {
 
 	/**
 	 * Who can explain what is it for any way?! ---3tusk
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public UHCCommandException(String message, Object ... objects) {
+	public UHCCommandException(String message, Object... objects) {
 		super(message, objects);
 	}
-	
+
 	private final static String err = "Error: Invaild command/arugment!";
-	
-	public UHCCommandException(){
+
+	public UHCCommandException() {
 		this(err, new Object[0]);
 	}
 
