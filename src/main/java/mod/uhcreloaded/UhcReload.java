@@ -9,9 +9,9 @@ package mod.uhcreloaded;
 
 import java.io.File;
 
-import mod.uhcreloaded.commands.CommandUHCHelp;
-import mod.uhcreloaded.commands.CommandUHCMode;
-import mod.uhcreloaded.commands.CommandUSHCMode;
+import mod.uhcreloaded.commands.CommandUhcHelp;
+import mod.uhcreloaded.commands.CommandUhcMode;
+import mod.uhcreloaded.commands.CommandUshcMode;
 import mod.uhcreloaded.rules.CancalEnderPeralDamage;
 import mod.uhcreloaded.rules.EnforceNoGhastTear;
 import mod.uhcreloaded.rules.GoldenItemToGold;
@@ -27,10 +27,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = "UHCReload", name = "UltraHardcore-Mode: Reload", version = "Aplha 0.0.1")
-public class UHCReload {
+public class UhcReload {
 
 	@Instance("UHCReload")
-	public static UHCReload instance;
+	public static UhcReload instance;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent Event) {
@@ -60,8 +60,8 @@ public class UHCReload {
 
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent Event) {
-		Event.registerServerCommand(new CommandUHCMode());
-		Event.registerServerCommand(new CommandUSHCMode());
-		Event.registerServerCommand(new CommandUHCHelp());
+		Event.registerServerCommand(new CommandUhcMode());
+		Event.registerServerCommand(new CommandUshcMode());
+		Event.registerServerCommand(new CommandUhcHelp());
 	}
 }

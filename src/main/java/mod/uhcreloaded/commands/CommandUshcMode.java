@@ -1,5 +1,6 @@
 package mod.uhcreloaded.commands;
 
+import mod.uhcreloaded.util.ConfigHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -8,10 +9,12 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.storage.WorldInfo;
 
-public class CommandUHCMode extends CommandBase {
+public class CommandUshcMode extends CommandBase {
 
-	private static final String NAME = "uhcmode";
-	private static final String USAGE = "/uhcmode <on/off>";
+	private static final String NAME = "ushcmode";
+	private static final String USAGE = "/ushcmode <on/off> (Note: USHC means UHC+noDaylightCycle=true)";
+	private static final long NIGHT_TIME = 16000;
+	private static final long DAY_TIME = 0;
 
 	@Override
 	public String getName() {
@@ -24,7 +27,7 @@ public class CommandUHCMode extends CommandBase {
 	}
 
 	public boolean canCommandSenderUse(ICommandSender sender) {
-		return true;
+		return ConfigHandler.allowUSHCCommand;
 	}
 
 	@Override
@@ -38,7 +41,7 @@ public class CommandUHCMode extends CommandBase {
 		int l = args.length;
 
 		if (l > 2 || l < 1) {
-			throw new UHCCommandException();
+			throw new UhcCommandException();
 		}
 
 		if (l == 1) {
@@ -52,11 +55,15 @@ public class CommandUHCMode extends CommandBase {
 					info.setHardcore(true);
 					gamerules.setOrCreateGameRule("naturalRegeneration",
 							"false");
+					gamerules.setOrCreateGameRule("doDaylightCycle", "false");
+					MinecraftServer.getServer().worldServers[a]
+							.setWorldTime(NIGHT_TIME);
 				}
 				sender.addChatMessage(new ChatComponentText(
-						"Successfully open UHC"));
+						"Successfully open USHC"));
 				notifyOperators(sender, this,
-						"[UHCReload]UltraHardcore mode: ON.", new Object[] {});
+						"[UHCReload]UltraSuperHardcore mode: ON.",
+						new Object[] {});
 			}
 
 			if (mode.equalsIgnoreCase("off")) {
@@ -68,11 +75,15 @@ public class CommandUHCMode extends CommandBase {
 					info.setHardcore(false);
 					gamerules
 							.setOrCreateGameRule("naturalRegeneration", "true");
+					gamerules.setOrCreateGameRule("doDaylightCycle", "true");
+					MinecraftServer.getServer().worldServers[a]
+							.setWorldTime(DAY_TIME);
 				}
 				sender.addChatMessage(new ChatComponentText(
-						"Successfully close UHC"));
+						"Successfully close USHC"));
 				notifyOperators(sender, this,
-						"[UHCReload]UltraHardcore mode: OFF.", new Object[] {});
+						"[UHCReload]UltraSuperHardcore mode: OFF.",
+						new Object[] {});
 			}
 
 			if (!mode.equalsIgnoreCase("on") && !mode.equalsIgnoreCase("off")) {

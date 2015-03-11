@@ -5,7 +5,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
-public class CommandUHCHelp extends CommandBase {
+public class CommandUhcHelp extends CommandBase {
 
 	@Override
 	public String getName() {
