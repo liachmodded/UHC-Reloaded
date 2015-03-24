@@ -75,9 +75,7 @@ public class ModifiedGoldenStuff {
 						&& Event.item.getItem().equals(Items.golden_apple)
 						&& Event.item.getMetadata() == 1) {
 					currentPlayer.clearActivePotions();
-					currentPlayer
-							.addChatComponentMessage(new ChatComponentText(
-									"DO NOT CHEAT!!!"));
+					currentPlayer.addChatComponentMessage(new ChatComponentText("DO NOT CHEAT!!!"));
 				}
 			}
 		}

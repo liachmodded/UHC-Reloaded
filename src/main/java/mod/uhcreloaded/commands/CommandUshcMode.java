@@ -36,8 +36,11 @@ public class CommandUshcMode extends CommandBase {
 	}
 
 	@Override
-	public void execute(ICommandSender sender, String[] args)
-			throws CommandException {
+	public void execute(ICommandSender sender, String[] args) throws CommandException {
+		if (ConfigHandler.allowUSHCCommand == false){
+			throw new UhcCommandException();
+		}
+		
 		int l = args.length;
 
 		if (l > 2 || l < 1) {
@@ -48,49 +51,33 @@ public class CommandUshcMode extends CommandBase {
 			String mode = args[0];
 			if (mode.equalsIgnoreCase("on")) {
 				for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-					WorldInfo info = MinecraftServer.getServer().worldServers[a]
-							.getWorldInfo();
-					GameRules gamerules = MinecraftServer.getServer().worldServers[a]
-							.getGameRules();
+					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
+					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
 					info.setHardcore(true);
-					gamerules.setOrCreateGameRule("naturalRegeneration",
-							"false");
+					gamerules.setOrCreateGameRule("naturalRegeneration","false");
 					gamerules.setOrCreateGameRule("doDaylightCycle", "false");
-					MinecraftServer.getServer().worldServers[a]
-							.setWorldTime(NIGHT_TIME);
+					MinecraftServer.getServer().worldServers[a].setWorldTime(NIGHT_TIME);
 				}
-				sender.addChatMessage(new ChatComponentText(
-						"Successfully open USHC"));
-				notifyOperators(sender, this,
-						"[UHCReload]UltraSuperHardcore mode: ON.",
-						new Object[] {});
+				sender.addChatMessage(new ChatComponentText("Successfully open USHC"));
+				notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: ON.", new Object[] {});
 			}
 
 			if (mode.equalsIgnoreCase("off")) {
 				for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-					WorldInfo info = MinecraftServer.getServer().worldServers[a]
-							.getWorldInfo();
-					GameRules gamerules = MinecraftServer.getServer().worldServers[a]
-							.getGameRules();
+					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
+					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
 					info.setHardcore(false);
-					gamerules
-							.setOrCreateGameRule("naturalRegeneration", "true");
+					gamerules.setOrCreateGameRule("naturalRegeneration", "true");
 					gamerules.setOrCreateGameRule("doDaylightCycle", "true");
-					MinecraftServer.getServer().worldServers[a]
-							.setWorldTime(DAY_TIME);
+					MinecraftServer.getServer().worldServers[a].setWorldTime(DAY_TIME);
 				}
-				sender.addChatMessage(new ChatComponentText(
-						"Successfully close USHC"));
-				notifyOperators(sender, this,
-						"[UHCReload]UltraSuperHardcore mode: OFF.",
-						new Object[] {});
+				sender.addChatMessage(new ChatComponentText("Successfully close USHC"));
+				notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: OFF.", new Object[] {});
 			}
 
 			if (!mode.equalsIgnoreCase("on") && !mode.equalsIgnoreCase("off")) {
-				sender.addChatMessage(new ChatComponentText(
-						"Wrong argument, please check!"));
-				sender.addChatMessage(new ChatComponentText(
-						"parameter: /uhcmode <on/off>"));
+				sender.addChatMessage(new ChatComponentText("Wrong argument, please check!"));
+				sender.addChatMessage(new ChatComponentText("parameter: /uhcmode <on/off>"));
 			}
 		}
 
