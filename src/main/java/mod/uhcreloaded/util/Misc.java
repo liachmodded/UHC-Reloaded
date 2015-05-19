@@ -13,29 +13,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 
 public class Misc {
-
-	/**
-	 * Get a new ItemStack with custom name!
-	 * 
-	 * @param itemIn
-	 *            item type you want
-	 * @param name
-	 *            custom name you want
-	 * @param amount
-	 *            amount of item in this stack
-	 * @param meta
-	 *            meta-data of a item, keep zero if not available
-	 * @return A certain ItemStack with a certain name
-	 * @author 3tusk
-	 */
-	public static ItemStack getRenamedItemStack(Item itemIn, String name,
-			int amount, int meta) {
-		ItemStack input = new ItemStack(itemIn, amount, meta);
-		input.setStackDisplayName(name);
-
-		return input;
-	}
-
+	
 	/**
 	 * Warning: User own their risk!
 	 * 
@@ -95,7 +73,7 @@ public class Misc {
 	 *            the item whose recipe you want to remove
 	 * @author 3tusk
 	 */
-	public static void removeCertainRecipe(ItemStack item) {
+	public static void removeRecipe(ItemStack item) {
 		CraftingManager craft = CraftingManager.getInstance();
 
 		@SuppressWarnings("rawtypes")

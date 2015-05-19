@@ -15,7 +15,7 @@ import mod.uhcreloaded.commands.CommandUshcMode;
 import mod.uhcreloaded.rules.CancalEnderPeralDamage;
 import mod.uhcreloaded.rules.EnforceNoGhastTear;
 import mod.uhcreloaded.rules.GoldenItemToGold;
-import mod.uhcreloaded.rules.ModifiedGoldenStuff;
+import mod.uhcreloaded.rules.ModedGoldenStuff;
 import mod.uhcreloaded.util.ConfigHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -34,24 +34,23 @@ public class UhcReload {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent Event) {
-		File cfgFile = new File(Event.getModConfigurationDirectory(),
-				"UHCReload.cfg");
+		File cfgFile = new File(Event.getModConfigurationDirectory(), "UHCReload.cfg");
 		ConfigHandler.init(cfgFile);
 	}
 
 	@EventHandler
 	public void Init(FMLInitializationEvent Event) {
 		MinecraftForge.EVENT_BUS.register(new EnforceNoGhastTear());
-		MinecraftForge.EVENT_BUS.register(new ModifiedGoldenStuff());
+		MinecraftForge.EVENT_BUS.register(new ModedGoldenStuff());
 		MinecraftForge.EVENT_BUS.register(new CancalEnderPeralDamage());
 
 		GoldenItemToGold.regUncraftingGoldenToolsAndArmor();
 
-		ModifiedGoldenStuff.regGoldenSkull();
+		ModedGoldenStuff.regGoldenSkull();
 
-		ModifiedGoldenStuff.removeEnhancedGoldenApple();
-		ModifiedGoldenStuff.harderGoldenCarrot();
-		ModifiedGoldenStuff.harderGlisteringMelon();
+		ModedGoldenStuff.removeEnhancedGoldenApple();
+		ModedGoldenStuff.harderGoldenCarrot();
+		ModedGoldenStuff.harderGlisteringMelon();
 	}
 
 	@EventHandler

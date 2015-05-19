@@ -13,34 +13,37 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.uhcreloaded.util.Misc;
 import mod.uhcreloaded.util.ConfigHandler;
 
-public class ModifiedGoldenStuff {
+public class ModedGoldenStuff {
 
 	public static void regGoldenSkull() {
 		if (ConfigHandler.allowCraftingGoldenSkull) {
-			GameRegistry.addShapedRecipe(Misc.getRenamedItemStack(
-					Items.golden_apple, "§6Golden Skull", 1, 0), new Object[] {
-					"GGG", "GSG", "GGG", 'G', Items.gold_ingot, 'S',
-					new ItemStack(Items.skull, 1, 3) });
+			GameRegistry.addShapedRecipe(
+					new ItemStack(Items.golden_apple, 1, 0).setStackDisplayName("§6Golden Skull"), 
+					new Object[] {
+						"GGG", 
+						"GSG", 
+						"GGG", 
+						'G', Items.gold_ingot, 
+						'S', new ItemStack(Items.skull, 1, 3) });
 		}
 	}
 
 	public static void removeEnhancedGoldenApple() {
 		if (!ConfigHandler.allowEnchantedGoldenApple)
-			Misc.removeCertainRecipe(new ItemStack(Items.golden_apple, 1, 1));
+			Misc.removeRecipe(new ItemStack(Items.golden_apple, 1, 1));
 	}
 
 	public static void harderGoldenCarrot() {
 		if (ConfigHandler.harderGoldenCarrot) {
-			Misc.removeCertainRecipe(new ItemStack(Items.golden_carrot));
+			Misc.removeRecipe(new ItemStack(Items.golden_carrot));
 			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_carrot),
-					new Object[] { "GGG", "GCG", "GGG", 'G', Items.gold_ingot,
-							'C', Items.carrot });
+					new Object[] { "GGG", "GCG", "GGG", 'G', Items.gold_ingot, 'C', Items.carrot });
 		}
 	}
 
 	public static void harderGlisteringMelon() {
 		if (ConfigHandler.harderGlisteringMelon) {
-			Misc.removeCertainRecipe(new ItemStack(Items.speckled_melon));
+			Misc.removeRecipe(new ItemStack(Items.speckled_melon));
 			GameRegistry.addShapelessRecipe(
 					new ItemStack(Items.speckled_melon), new Object[] {
 							Items.melon, Blocks.gold_block });
