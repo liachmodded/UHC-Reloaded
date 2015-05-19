@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.uhcreloaded.util.Misc;
 import mod.uhcreloaded.util.ConfigHandler;
 
-public class ModedGoldenStuff {
+public class ModdedGoldenStuff {
 
 	public static void regGoldenSkull() {
 		if (ConfigHandler.allowCraftingGoldenSkull) {

@@ -1,0 +1,15 @@
+commands.uhcreload.help1=Enter the following page to learn more!
+
+commands.uhcreload.uhc.on=Successfully open UHC mode
+commands.uhcreload.uhc.on.op=[UHCReload]UltraHardcore mode: ON.
+commands.uhcreload.uhc.off=Successfully close UHC mode
+commands.uhcreload.uhc.off.op=[UHCReload]UltraHardcore mode: OFF.
+
+commands.uhcreload.ushc.on=Successfully open USHC
+commands.uhcreload.ushc.on.op=[UHCReload]UltraSuperHardcore mode: ON.
+commands.uhcreload.ushc.off=Successfully close USHC
+commands.uhcreload.ushc.off.op=[UHCReload]UltraSuperHardcore mode: OFF.
+
+commands.uhcreload.error.args=Error: Invalid arguments, please check!
+commands.uhcreload.error.disabled=Error: This function is disabled now, open it in config file!
+commands.uhcreload.error.unknown=Error:Unknown errors... please report to the mod author!

@@ -6,6 +6,7 @@ package mod.uhcreloaded;
  * Forge Compatible, flexible configuration, and firing contribution :)
  * Sort of meaningless, but I will insist on it, since there used to be an era!
  */
+import static mod.uhcreloaded.util.Misc.*;
 
 import java.io.File;
 
@@ -15,18 +16,17 @@ import mod.uhcreloaded.commands.CommandUshcMode;
 import mod.uhcreloaded.rules.CancalEnderPeralDamage;
 import mod.uhcreloaded.rules.EnforceNoGhastTear;
 import mod.uhcreloaded.rules.GoldenItemToGold;
-import mod.uhcreloaded.rules.ModedGoldenStuff;
+import mod.uhcreloaded.rules.ModdedGoldenStuff;
 import mod.uhcreloaded.util.ConfigHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = "UHCReload", name = "UltraHardcore-Mode: Reload", version = "Aplha 0.0.1")
+@Mod(modid = MODID, name = NAME, version = VERSION)
 public class UhcReload {
 
 	@Instance("UHCReload")
@@ -41,20 +41,16 @@ public class UhcReload {
 	@EventHandler
 	public void Init(FMLInitializationEvent Event) {
 		MinecraftForge.EVENT_BUS.register(new EnforceNoGhastTear());
-		MinecraftForge.EVENT_BUS.register(new ModedGoldenStuff());
+		MinecraftForge.EVENT_BUS.register(new ModdedGoldenStuff());
 		MinecraftForge.EVENT_BUS.register(new CancalEnderPeralDamage());
 
 		GoldenItemToGold.regUncraftingGoldenToolsAndArmor();
 
-		ModedGoldenStuff.regGoldenSkull();
+		ModdedGoldenStuff.regGoldenSkull();
 
-		ModedGoldenStuff.removeEnhancedGoldenApple();
-		ModedGoldenStuff.harderGoldenCarrot();
-		ModedGoldenStuff.harderGlisteringMelon();
-	}
-
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent Event) {
+		ModdedGoldenStuff.removeEnhancedGoldenApple();
+		ModdedGoldenStuff.harderGoldenCarrot();
+		ModdedGoldenStuff.harderGlisteringMelon();
 	}
 
 	@EventHandler

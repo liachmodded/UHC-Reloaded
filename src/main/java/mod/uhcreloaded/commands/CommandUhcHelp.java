@@ -1,5 +1,7 @@
 package mod.uhcreloaded.commands;
 
+import static mod.uhcreloaded.util.Misc.translate;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -28,23 +30,19 @@ public class CommandUhcHelp extends CommandBase {
 	}
 
 	@Override
-	public void execute(ICommandSender sender, String[] args)
-			throws CommandException {
+	public void execute(ICommandSender sender, String[] args) throws CommandException {
 		int a = args.length;
 		if (a == 1) {
 			String arg = args[0];
-			if (arg.equalsIgnoreCase("banrule")
-					|| arg.equalsIgnoreCase("banguideline")) {
-				sender.addChatMessage(new ChatComponentText(
-						"Enter the following page to learn more!"));
-				sender.addChatMessage(new ChatComponentText(
-						"http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
+			if (arg.equalsIgnoreCase("banrule") || arg.equalsIgnoreCase("banguideline")) {
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.help1")));
+				sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
 			} else {
-				sender.addChatMessage(new ChatComponentText(
-						"Enter the following page to learn more!"));
-				sender.addChatMessage(new ChatComponentText(
-						"http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.help1")));
+				sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
 			}
 		}
+		
+		throw new UhcCommandException(translate("commands.uhcreload.error.unknown"));
 	}
 }

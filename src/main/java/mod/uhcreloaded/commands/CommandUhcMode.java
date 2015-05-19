@@ -1,5 +1,6 @@
 package mod.uhcreloaded.commands;
 
+import static mod.uhcreloaded.util.Misc.translate;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -33,56 +34,35 @@ public class CommandUhcMode extends CommandBase {
 	}
 
 	@Override
-	public void execute(ICommandSender sender, String[] args)
-			throws CommandException {
+	public void execute(ICommandSender sender, String[] args) throws CommandException {
 		int l = args.length;
-
-		if (l > 2 || l < 1) {
-			throw new UhcCommandException();
-		}
 
 		if (l == 1) {
 			String mode = args[0];
 			if (mode.equalsIgnoreCase("on")) {
 				for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-					WorldInfo info = MinecraftServer.getServer().worldServers[a]
-							.getWorldInfo();
-					GameRules gamerules = MinecraftServer.getServer().worldServers[a]
-							.getGameRules();
+					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
+					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
 					info.setHardcore(true);
-					gamerules.setOrCreateGameRule("naturalRegeneration",
-							"false");
+					gamerules.setOrCreateGameRule("naturalRegeneration", "false");
 				}
-				sender.addChatMessage(new ChatComponentText(
-						"Successfully open UHC"));
-				notifyOperators(sender, this,
-						"[UHCReload]UltraHardcore mode: ON.", new Object[] {});
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.uhc.on")));
+				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[] {});
 			}
 
 			if (mode.equalsIgnoreCase("off")) {
 				for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-					WorldInfo info = MinecraftServer.getServer().worldServers[a]
-							.getWorldInfo();
-					GameRules gamerules = MinecraftServer.getServer().worldServers[a]
-							.getGameRules();
+					WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
+					GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
 					info.setHardcore(false);
-					gamerules
-							.setOrCreateGameRule("naturalRegeneration", "true");
+					gamerules.setOrCreateGameRule("naturalRegeneration", "true");
 				}
-				sender.addChatMessage(new ChatComponentText(
-						"Successfully close UHC"));
-				notifyOperators(sender, this,
-						"[UHCReload]UltraHardcore mode: OFF.", new Object[] {});
-			}
-
-			if (!mode.equalsIgnoreCase("on") && !mode.equalsIgnoreCase("off")) {
-				sender.addChatMessage(new ChatComponentText(
-						"Wrong argument, please check!"));
-				sender.addChatMessage(new ChatComponentText(
-						"parameter: /uhcmode <on/off>"));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.uhc.off")));
+				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[] {});
 			}
 		}
-
+		
+		throw new UhcCommandException(translate("commands.uhcreload.error.args"));
 	}
 
 }
