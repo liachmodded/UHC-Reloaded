@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class EnforceNoGhastTear {
 
 	private boolean isGhastTear;
+	private int tearAmount;
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onGhastDropsTears(EntityItemPickupEvent Evt) {
@@ -18,6 +19,7 @@ public class EnforceNoGhastTear {
 			if (Evt.item.getEntityItem().getItem().equals(Items.ghast_tear)) {
 				Evt.setCanceled(true);
 				isGhastTear = true;
+				tearAmount = Evt.item.getEntityItem().stackSize;
 				Evt.item.setDead();
 			} else {
 				isGhastTear = false;
@@ -25,12 +27,11 @@ public class EnforceNoGhastTear {
 
 			if (isGhastTear) {
 				for (int a = 0; a < 1; a++) {
-					EntityItem entityItem = Evt.entityPlayer
-							.dropPlayerItemWithRandomChoice(new ItemStack(
-									Items.gold_ingot,
-									Evt.item.getEntityItem().stackSize), false);
-					entityItem.setNoPickupDelay();
-					entityItem.setOwner(Evt.entityPlayer.getName());
+					if (tearAmount > 0){
+						EntityItem entityItem = Evt.entityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.gold_ingot, tearAmount), false);
+						entityItem.setNoPickupDelay();
+						entityItem.setOwner(Evt.entityPlayer.getName());
+					}
 				}
 			}
 		}
