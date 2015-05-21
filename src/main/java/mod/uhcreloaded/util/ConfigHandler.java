@@ -44,7 +44,7 @@ public class ConfigHandler {
 		allowEnchantedGoldenApple = config.getBoolean("AllowCraftingEnchantedGoldenApple", CUSTOM_RULES, false, "set true if you want to allow player crafting enchanted golden apple.");
 		allowGhastTear = config.getBoolean("AllowGhastDropGhastTear", CUSTOM_RULES, false, "If you want ghast tear to brew regeneration potion, set it true, which is NOT recommended.");
 		allowGoldenAppleRegen = config.getBoolean("AllGoldenAppleEffect", CUSTOM_RULES, false, "Set true if you want the effect from golden apple. Default value is false.");
-		allowUSHCCommand = config.getBoolean("AllowUSHCModeCommand", CUSTOM_RULES, false, "USHC means UltraSuperHarcore, which equals to UHC+no day time. Set true if you want to try it.");
+		allowUSHCCommand = config.getBoolean("AllowUSHCModeCommand", CUSTOM_RULES, false, "USHC means UltraSuperHardcore, which is equivalent to UHC plus no sunlight plus time stop. Set true if you want to try it.");
 		openEnderPearlFallingDamage = config.getBoolean("AllowEnderPeralDamage", CUSTOM_RULES, false, "Set true if you want ender peral to cause 2.5 heart falling damage as in vanilla.");
 
 		config.save();
