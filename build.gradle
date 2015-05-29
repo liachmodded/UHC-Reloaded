@@ -18,7 +18,7 @@ buildscript {
 apply plugin: 'forge'
 
 version = "Alpha-rv1"
-group= "mod.UHCReload" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group= "mod.uhcreloaded" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "UltraHardcoreReload"
 
 minecraft {

@@ -45,7 +45,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = MODID, name = NAME, version = VERSION)
 public class UhcReload {
 
-	@Instance("UHCReload")
+	@Instance(MODID)
 	public static UhcReload instance;
 
 	@EventHandler

@@ -29,7 +29,7 @@ public class Misc {
 	
 	public static final String MODID = "UHCReloaded";
 	public static final String NAME = "UltraHardcore-Mode: Reloaded";
-	public static final String VERSION = "Aplha 0.0.2";
+	public static final String VERSION = "Alpha 0.0.2";
 	
 	public static String translate(String tag){
 		return StatCollector.translateToLocal(tag);
