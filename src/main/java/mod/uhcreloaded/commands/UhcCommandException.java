@@ -26,4 +26,7 @@ public class UhcCommandException extends CommandException {
 		super(message, new Object[0]);
 	}
 
+	public UhcCommandException(String message, Object... args) {
+		super(message, args);
+	}
 }

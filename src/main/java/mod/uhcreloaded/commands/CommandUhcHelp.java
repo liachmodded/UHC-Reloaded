@@ -25,9 +25,12 @@ import net.minecraft.util.ChatComponentText;
 
 public class CommandUhcHelp extends CommandBase {
 
+	private static final String NAME = "uhchelp";
+	private static final String USAGE = "/uhchelp <banrule/banguideline>";
+
 	@Override
 	public String getName() {
-		return "uhchelp";
+		return NAME;
 	}
 
 	@Override
@@ -42,7 +45,7 @@ public class CommandUhcHelp extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
-		return "/uhchelp";
+		return USAGE;
 	}
 
 	@Override
