@@ -1,15 +1,22 @@
 commands.uhcreload.help1=Enter the following page to learn more!
 
-commands.uhcreload.uhc.on=Successfully turned on UHC mode
-commands.uhcreload.uhc.on.op=[UHCReload]UltraHardcore mode: ON.
-commands.uhcreload.uhc.off=Successfully turned off UHC mode
-commands.uhcreload.uhc.off.op=[UHCReload]UltraHardcore mode: OFF.
+commands.uhcreloaded.uhc.on=Successfully turned on UHC mode
+commands.uhcreloaded.uhc.on.op=[UHC-Reloaded]UltraHardcore mode: ON.
+commands.uhcreloaded.uhc.off=Successfully turned off UHC mode
+commands.uhcreloaded.uhc.off.op=[UHC-Reloaded]UltraHardcore mode: OFF.
 
-commands.uhcreload.ushc.on=Successfully turned on USHC
-commands.uhcreload.ushc.on.op=[UHCReload]UltraSuperHardcore mode: ON.
-commands.uhcreload.ushc.off=Successfully turned off USHC
-commands.uhcreload.ushc.off.op=[UHCReload]UltraSuperHardcore mode: OFF.
+commands.uhcreloaded.ushc.on=Successfully turned on USHC
+commands.uhcreloaded.ushc.on.op=[UHC-Reloaded]UltraSuperHardcore mode: ON.
+commands.uhcreloaded.ushc.off=Successfully turned off USHC
+commands.uhcreloaded.ushc.off.op=[UHC-Reloaded]UltraSuperHardcore mode: OFF.
 
-commands.uhcreload.error.args=Error: Invalid arguments, please check!
-commands.uhcreload.error.disabled=Error: This function is disabled now, open it in config file!
-commands.uhcreload.error.unknown=Error: Unknown errors... please report to the mod author!
+commands.uhcreloaded.error.args=Error: Invalid arguments, please check!
+commands.uhcreloaded.error.disabled=Error: This function is disabled now, open it in config file!
+commands.uhcreloaded.error.unknown=Error: Unknown errors... please report to the mod author!
+
+item.uhcreloaded.skullapple.name=Golden Skull
+item.uhcreloaded.ownedskull.name=Golden Skull of %s
+
+tooltip.uhcreloaded.skull=It's said that eating a skull of a fallen foe will strength your blood.
+
+mod.uhcreloaded.name=[UHC-Reloaded]

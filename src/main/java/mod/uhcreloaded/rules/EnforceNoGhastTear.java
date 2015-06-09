@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class EnforceNoGhastTear {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onGhastDropsTears(LivingDropsEvent event) {
-		if ((!ConfigHandler.allowGhastTear) && (event.entityLiving instanceof EntityGhast)) {
+		if (event.entityLiving instanceof EntityGhast) {
 			for (EntityItem item : event.drops) {
 				if (item.getEntityItem().getItem() == Items.ghast_tear) {
 					event.entity.dropItem(Items.gold_ingot, item.getEntityItem().stackSize);
