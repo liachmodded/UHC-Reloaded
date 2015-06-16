@@ -22,6 +22,7 @@ import mod.uhcreloaded.util.BasicRecipe;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -33,10 +34,24 @@ import java.util.ArrayList;
  * @author liach
  */
 public class GoldenSkull {
+    /**
+     * The recipe for the golden skull.
+     */
     public static class SkullRecipe extends BasicRecipe {
+        /**
+         * The name of the recipe.
+         * @return The name of the recipe.
+         */
+        @Override
         public String getRecipeName() {
             return "golden_skull";
         }
+
+        /**
+         * The checking method.
+         * @param grid The crafting grid
+         * @return The result of the recipe. Returns {@code null} if not matching.
+         */
         @Override
         public ItemStack getCraftingResult(InventoryCrafting grid) {
             ItemStack outputHead = new ItemStack(Items.skull);
@@ -57,20 +72,21 @@ public class GoldenSkull {
                 }
             }
             ArrayList<String> lore = new ArrayList<String>();
-            lore.add(translate("tooltip.uhcreload.skull"));
+            lore.add(translate("tooltip.uhcreloaded.skull"));
             outputHead = appendToolTip(outputHead, lore);
             if (!getOwnerFromSkull(outputHead).isEmpty()) {
                 outputHead.setStackDisplayName(translate(
-                                EnumChatFormatting.GOLD + "item.uhcreload.ownedskull.name",
+                                EnumChatFormatting.GOLD + "item.uhcreloaded.ownedskull.name",
                                 getOwnerFromSkull(outputHead)
                 ));
             } else {
                 outputHead.setStackDisplayName(translate(
-                        EnumChatFormatting.GOLD + "item.uhcreload.skullapple.name"
+                        EnumChatFormatting.GOLD + "item.uhcreloaded.skullapple.name"
                 ));
             }
-            outputHead.setItem(Items.golden_apple);
-            outputHead.setItemDamage(1);
+            NBTTagCompound tag = outputHead.getTagCompound();
+            tag.setInteger("golden_skull", 1);
+            outputHead.setTagCompound(tag);
             return outputHead;
         }
     }
