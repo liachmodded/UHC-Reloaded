@@ -72,7 +72,7 @@ public class GoldenSkull {
                 }
             }
             ArrayList<String> lore = new ArrayList<String>();
-            lore.add(translate("tooltip.uhcreloaded.skull"));
+            lore.add(EnumChatFormatting.ITALIC + translate("tooltip.uhcreloaded.skull"));
             outputHead = appendToolTip(outputHead, lore);
             if (!getOwnerFromSkull(outputHead).isEmpty()) {
                 outputHead.setStackDisplayName(translate(
