@@ -42,7 +42,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = MODID, name = NAME, version = VERSION)
+@Mod(modid = MODID, name = NAME, version = VERSION, acceptableRemoteVersions = "*")
 public class UhcReload {
 
 	@Instance(MODID)
