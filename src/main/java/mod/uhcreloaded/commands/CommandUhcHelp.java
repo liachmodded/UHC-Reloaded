@@ -50,18 +50,18 @@ public class CommandUhcHelp extends CommandBase {
 
 	@Override
 	public void execute(ICommandSender sender, String[] args) throws CommandException {
-		int a = args.length;
-		if (a == 1) {
+		int len = args.length;
+		if (len == 1) {
 			String arg = args[0];
 			if (arg.equalsIgnoreCase("banrule") || arg.equalsIgnoreCase("banguideline")) {
-				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.help1")));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.help1")));
 				sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
 			} else {
-				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.help1")));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.help1")));
 				sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
 			}
 		}
 		
-		throw new UhcCommandException(translate("commands.uhcreload.error.unknown"));
+		throw new UhcCommandException(translate("commands.uhcreloaded.error.unknown"));
 	}
 }

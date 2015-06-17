@@ -33,30 +33,56 @@ import net.minecraftforge.oredict.RecipeSorter;
  * @author liach
  */
 public abstract class BasicRecipe implements IRecipe {
+    /**
+     * The method for registering the recipe and the sorting.
+     */
     public void registerRecipe() {
         CraftingManager.getInstance().addRecipe(this);
         RecipeSorter.register(MODID + ":" + getRecipeName(), getClass(), SHAPED, "after:minecraft:shaped before:minecraft:shapeless");
     }
 
+    /**
+     * Check method.
+     * @param grid The crafting grid
+     * @param worldIn The world in
+     * @return Whether this recipe could be used
+     */
     @Override
     public boolean matches(InventoryCrafting grid, World worldIn) {
         return getCraftingResult(grid) != null;
     }
 
+    /**
+     * 3*3 Recipes.
+     * @return Recipe size
+     */
     @Override
     public int getRecipeSize() {
         return 9;
     }
 
+    /**
+     * Actually useless.
+     * @return {@code null}
+     */
     @Override
     public ItemStack getRecipeOutput() {
         return null;
     }
 
+    /**
+     * Let forge do it.
+     * @param grid The crafting grid
+     * @return The default process result by forge
+     */
     @Override
     public ItemStack[] getRemainingItems(InventoryCrafting grid) {
         return ForgeHooks.defaultRecipeGetRemainingItems(grid);
     }
 
+    /**
+     * The name of the recipe. Used in forge sorting.
+     * @return The name of the recipe
+     */
     public abstract String getRecipeName();
 }
