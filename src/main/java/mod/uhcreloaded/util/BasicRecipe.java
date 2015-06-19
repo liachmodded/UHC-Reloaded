@@ -38,7 +38,7 @@ public abstract class BasicRecipe implements IRecipe {
      */
     public void registerRecipe() {
         CraftingManager.getInstance().addRecipe(this);
-        RecipeSorter.register(MODID + ":" + getRecipeName(), getClass(), SHAPED, "after:minecraft:shaped before:minecraft:shapeless");
+        RecipeSorter.register(MODID + ":" + getClass().getName(), getClass(), SHAPED, "after:minecraft:shaped before:minecraft:shapeless");
     }
 
     /**
@@ -79,10 +79,4 @@ public abstract class BasicRecipe implements IRecipe {
     public ItemStack[] getRemainingItems(InventoryCrafting grid) {
         return ForgeHooks.defaultRecipeGetRemainingItems(grid);
     }
-
-    /**
-     * The name of the recipe. Used in forge sorting.
-     * @return The name of the recipe
-     */
-    public abstract String getRecipeName();
 }

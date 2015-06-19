@@ -22,6 +22,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+/**
+ * Will be replaced by the brewing registry system.
+ */
 public class CancelPotionBrewing {
 
 	@SubscribeEvent

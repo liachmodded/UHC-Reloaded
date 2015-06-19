@@ -32,19 +32,6 @@ import mod.uhcreloaded.util.ConfigHandler;
 
 public class ModdedGoldenStuff {
 
-	public static void regGoldenSkull() {
-		if (ConfigHandler.allowCraftingGoldenSkull) {
-			GameRegistry.addShapedRecipe(
-					new ItemStack(Items.golden_apple, 1, 0).setStackDisplayName("§6Golden Skull"), 
-					new Object[] {
-						"GGG", 
-						"GSG", 
-						"GGG", 
-						'G', Items.gold_ingot, 
-						'S', new ItemStack(Items.skull, 1, 3) });
-		}
-	}
-
 	public static void removeEnhancedGoldenApple() {
 		if (!ConfigHandler.allowEnchantedGoldenApple)
 			Misc.removeRecipe(new ItemStack(Items.golden_apple, 1, 1));
@@ -75,14 +62,14 @@ public class ModdedGoldenStuff {
 				false);
 	}
 
-	@SubscribeEvent
+	//@SubscribeEvent TODO: Remove this!!!
 	public void onPlayerEatGoldenApple(PlayerUseItemEvent.Finish e) {
 		EntityPlayer currentPlayer = e.entityPlayer;
 		if (!ConfigHandler.allowGoldenAppleRegen) {
 				if (e.item.getItem().equals(Items.golden_apple)
 						&& e.item.getMetadata() == 0) {
 					if (e.item.getDisplayName().equals(EnumChatFormatting.ITALIC.toString()
-							+ EnumChatFormatting.GOLD + "Golden Skull")) {
+							+ EnumChatFormatting.GOLD + "Golden Skull")) { // Could be hacked
 						currentPlayer.clearActivePotions();
 						currentPlayer.heal(8.0F);
 					} else {
@@ -91,7 +78,7 @@ public class ModdedGoldenStuff {
 					}
 				}
 			 else {
-				if (ConfigHandler.AntiCheatMode
+				if (ConfigHandler.antiCheatMode
 						&& e.item.getItem().equals(Items.golden_apple)
 						&& e.item.getMetadata() == 1) {
 					currentPlayer.clearActivePotions();

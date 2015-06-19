@@ -16,7 +16,6 @@
  */
 package mod.uhcreloaded.rules;
 
-import mod.uhcreloaded.util.ConfigHandler;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -24,8 +23,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class CancelEnderPearlDamage {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
-	public void onPlayerUseEnderPearl(EnderTeleportEvent Event) {
-		if (!ConfigHandler.openEnderPearlFallingDamage && Event.attackDamage > 0.0F)
-			Event.attackDamage = 0.0F;
+	public void onPlayerUseEnderPearl(EnderTeleportEvent event) {
+		if (event.attackDamage > 0.0F)
+			event.attackDamage = 0.0F;
 	}
 }

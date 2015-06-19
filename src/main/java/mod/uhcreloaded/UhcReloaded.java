@@ -22,6 +22,7 @@ package mod.uhcreloaded;
  * Forge Compatible, flexible configuration, and firing contribution :)
  * Sort of meaningless, but I will insist on it, since there used to be an era!
  */
+import static mod.uhcreloaded.util.ConfigHandler.*;
 import static mod.uhcreloaded.util.Misc.*;
 
 import java.io.File;
@@ -35,7 +36,6 @@ import mod.uhcreloaded.rules.EnforceNoGhastTear;
 import mod.uhcreloaded.rules.GoldenItemToGold;
 import mod.uhcreloaded.rules.GoldenSkull;
 import mod.uhcreloaded.rules.ModdedGoldenStuff;
-import mod.uhcreloaded.util.ConfigHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -56,17 +56,18 @@ public class UhcReloaded {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		File cfgFile = new File(event.getModConfigurationDirectory(), MODID + ".cfg");
-		ConfigHandler.init(cfgFile);
+		initConfig(cfgFile);
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		if (ConfigHandler.allowGhastTear) registerBus(new EnforceNoGhastTear());
-		registerBus(new ModdedGoldenStuff());
-		registerBus(new CancelEnderPearlDamage());
-		registerBus(new CancelPotionBrewing());
+		if (!allowGhastTear) registerBus(new EnforceNoGhastTear());
+		if (playerDropSkull) registerBus(new ModdedGoldenStuff());
+		if (!openEnderPearlFallingDamage) registerBus(new CancelEnderPearlDamage());
+        registerBus(new CancelPotionBrewing());
 
-		new GoldenSkull.SkullRecipe().registerRecipe();
+		registerBus(new GoldenSkull());
+		if (allowCraftingGoldenSkull) new GoldenSkull.SkullRecipe().registerRecipe();
 
 		GoldenItemToGold.regUncraftingGoldenToolsAndArmor();
 

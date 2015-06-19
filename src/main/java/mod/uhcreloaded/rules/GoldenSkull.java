@@ -18,12 +18,18 @@ package mod.uhcreloaded.rules;
 
 import static mod.uhcreloaded.util.Misc.*;
 
+import mod.uhcreloaded.UhcReloaded;
 import mod.uhcreloaded.util.BasicRecipe;
+import mod.uhcreloaded.util.ConfigHandler;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
@@ -34,18 +40,28 @@ import java.util.ArrayList;
  * @author liach
  */
 public class GoldenSkull {
+
+    @SubscribeEvent
+    public void eatApple(PlayerUseItemEvent.Start event) {
+        if (event.item.getItem() != Items.golden_apple)
+            return;
+        if (ConfigHandler.antiCheatMode && event.item.getItemDamage() == 1) {
+            event.entityPlayer.addChatMessage(new ChatComponentText(translate("message.uhcreloaded.apple.enchanted")));
+            event.setCanceled(true);
+            return;
+        }
+        if (!event.item.hasTagCompound()) return;
+        NBTTagCompound tag = event.item.getTagCompound();
+        if (tag.getInteger("golden_skull") == 1) {
+            event.entityPlayer.addPotionEffect(new PotionEffect(
+                    6, 1, ConfigHandler.healAmountSkull - 4
+            ));
+        }
+    }
     /**
      * The recipe for the golden skull.
      */
     public static class SkullRecipe extends BasicRecipe {
-        /**
-         * The name of the recipe.
-         * @return The name of the recipe.
-         */
-        @Override
-        public String getRecipeName() {
-            return "golden_skull";
-        }
 
         /**
          * The checking method.
@@ -54,8 +70,8 @@ public class GoldenSkull {
          */
         @Override
         public ItemStack getCraftingResult(InventoryCrafting grid) {
-            ItemStack outputHead = new ItemStack(Items.skull);
-            outputHead.setItemDamage(3);
+            ItemStack outputHead = new ItemStack(Items.golden_apple);
+            outputHead.setItemDamage(0);
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (grid.getStackInRowAndColumn(i, j) == null)
