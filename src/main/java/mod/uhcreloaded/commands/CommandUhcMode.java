@@ -62,7 +62,7 @@ public class CommandUhcMode extends CommandBase {
 					info.setHardcore(true);
 					gamerules.setOrCreateGameRule("naturalRegeneration", "false");
 				}
-				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.uhc.on")));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.uhc.on")));
 				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[] {});
 			}
 
@@ -73,12 +73,12 @@ public class CommandUhcMode extends CommandBase {
 					info.setHardcore(false);
 					gamerules.setOrCreateGameRule("naturalRegeneration", "true");
 				}
-				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.uhc.off")));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.uhc.off")));
 				notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[] {});
 			}
 		}
 		
-		throw new UhcCommandException(translate("commands.uhcreload.error.args"));
+		throw new UhcCommandException(translate("commands.uhcreloaded.error.args"));
 	}
 
 }

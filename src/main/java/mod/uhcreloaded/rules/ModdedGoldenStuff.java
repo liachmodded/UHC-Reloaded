@@ -22,6 +22,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -30,19 +31,6 @@ import mod.uhcreloaded.util.Misc;
 import mod.uhcreloaded.util.ConfigHandler;
 
 public class ModdedGoldenStuff {
-
-	public static void regGoldenSkull() {
-		if (ConfigHandler.allowCraftingGoldenSkull) {
-			GameRegistry.addShapedRecipe(
-					new ItemStack(Items.golden_apple, 1, 0).setStackDisplayName("§6Golden Skull"), 
-					new Object[] {
-						"GGG", 
-						"GSG", 
-						"GGG", 
-						'G', Items.gold_ingot, 
-						'S', new ItemStack(Items.skull, 1, 3) });
-		}
-	}
 
 	public static void removeEnhancedGoldenApple() {
 		if (!ConfigHandler.allowEnchantedGoldenApple)
@@ -66,22 +54,22 @@ public class ModdedGoldenStuff {
 		}
 	}
 
-	// allow player drops their skull, to crafting golden skull
+	/** Make the player drop a skull. */
 	@SubscribeEvent
-	public void onPlayerDeath(PlayerDropsEvent Event) {
-		Event.entityPlayer.dropItem(
-				Misc.getSkullWithOwner(Event.entityPlayer.getName()), true,
-				true);
+	public void onPlayerDeath(PlayerDropsEvent e) {
+		e.entityPlayer.dropItem(
+				Misc.getSkullFromOwner(e.entityPlayer.getGameProfile()), true,
+				false);
 	}
 
-	@SubscribeEvent
-	public void onPlayerEatGoldenApple(PlayerUseItemEvent.Finish Event) {
-		EntityPlayer currentPlayer = (EntityPlayer) Event.entityPlayer;
+	//@SubscribeEvent TODO: Remove this!!!
+	public void onPlayerEatGoldenApple(PlayerUseItemEvent.Finish e) {
+		EntityPlayer currentPlayer = e.entityPlayer;
 		if (!ConfigHandler.allowGoldenAppleRegen) {
-			if (Event.entityLiving instanceof EntityPlayerMP) {
-				if (Event.item.getItem().equals(Items.golden_apple)
-						&& Event.item.getMetadata() == 0) {
-					if (Event.item.getDisplayName() == "§6Golden Skull") {
+				if (e.item.getItem().equals(Items.golden_apple)
+						&& e.item.getMetadata() == 0) {
+					if (e.item.getDisplayName().equals(EnumChatFormatting.ITALIC.toString()
+							+ EnumChatFormatting.GOLD + "Golden Skull")) { // Could be hacked
 						currentPlayer.clearActivePotions();
 						currentPlayer.heal(8.0F);
 					} else {
@@ -89,10 +77,10 @@ public class ModdedGoldenStuff {
 						currentPlayer.heal(4.0F);
 					}
 				}
-			} else {
-				if (ConfigHandler.AntiCheatMode
-						&& Event.item.getItem().equals(Items.golden_apple)
-						&& Event.item.getMetadata() == 1) {
+			 else {
+				if (ConfigHandler.antiCheatMode
+						&& e.item.getItem().equals(Items.golden_apple)
+						&& e.item.getMetadata() == 1) {
 					currentPlayer.clearActivePotions();
 					currentPlayer.addChatComponentMessage(new ChatComponentText("DO NOT CHEAT!!!"));
 				}

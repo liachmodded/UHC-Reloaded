@@ -56,7 +56,7 @@ public class CommandUshcMode extends CommandBase {
 	@Override
 	public void execute(ICommandSender sender, String[] args) throws CommandException {
 		if (ConfigHandler.allowUSHCCommand == false){
-			throw new UhcCommandException(translate("commands.uhcreload.error.disabled"));
+			throw new UhcCommandException(translate("commands.uhcreloaded.error.disabled"));
 		}
 		
 		int l = args.length;
@@ -73,7 +73,7 @@ public class CommandUshcMode extends CommandBase {
 					gamerules.setOrCreateGameRule("doDaylightCycle", "false");
 					MinecraftServer.getServer().worldServers[a].setWorldTime(NIGHT_TIME);
 				}
-				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.ushc.on")));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.ushc.on")));
 				notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: ON.", new Object[] {});
 			}
 
@@ -86,11 +86,11 @@ public class CommandUshcMode extends CommandBase {
 					gamerules.setOrCreateGameRule("doDaylightCycle", "true");
 					MinecraftServer.getServer().worldServers[a].setWorldTime(DAY_TIME);
 				}
-				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreload.ushc.off")));
+				sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.ushc.off")));
 				notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: OFF.", new Object[] {});
 			}
 
-			throw new UhcCommandException(translate("commands.uhcreload.error.args"));
+			throw new UhcCommandException(translate("commands.uhcreloaded.error.args"));
 		}
 
 	}

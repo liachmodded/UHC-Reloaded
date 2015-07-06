@@ -22,6 +22,7 @@ package mod.uhcreloaded;
  * Forge Compatible, flexible configuration, and firing contribution :)
  * Sort of meaningless, but I will insist on it, since there used to be an era!
  */
+import static mod.uhcreloaded.util.ConfigHandler.*;
 import static mod.uhcreloaded.util.Misc.*;
 
 import java.io.File;
@@ -29,40 +30,46 @@ import java.io.File;
 import mod.uhcreloaded.commands.CommandUhcHelp;
 import mod.uhcreloaded.commands.CommandUhcMode;
 import mod.uhcreloaded.commands.CommandUshcMode;
-import mod.uhcreloaded.rules.CancalEnderPeralDamage;
+import mod.uhcreloaded.rules.CancelEnderPearlDamage;
+import mod.uhcreloaded.rules.CancelPotionBrewing;
 import mod.uhcreloaded.rules.EnforceNoGhastTear;
 import mod.uhcreloaded.rules.GoldenItemToGold;
+import mod.uhcreloaded.rules.GoldenSkull;
 import mod.uhcreloaded.rules.ModdedGoldenStuff;
-import mod.uhcreloaded.util.ConfigHandler;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-@Mod(modid = MODID, name = NAME, version = VERSION, acceptableRemoteVersions = "*")
-public class UhcReload {
+@Mod(modid = MODID, name = NAME, version = VERSION)
+public class UhcReloaded {
 
 	@Instance(MODID)
-	public static UhcReload instance;
+	public static UhcReloaded instance;
+
+	public static final Logger LOG = LogManager.getLogger(MODID);
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent Event) {
-		File cfgFile = new File(Event.getModConfigurationDirectory(), "UHCReload.cfg");
-		ConfigHandler.init(cfgFile);
+	public void preInit(FMLPreInitializationEvent event) {
+		File cfgFile = new File(event.getModConfigurationDirectory(), MODID + ".cfg");
+		initConfig(cfgFile);
 	}
 
 	@EventHandler
-	public void Init(FMLInitializationEvent Event) {
-		MinecraftForge.EVENT_BUS.register(new EnforceNoGhastTear());
-		MinecraftForge.EVENT_BUS.register(new ModdedGoldenStuff());
-		MinecraftForge.EVENT_BUS.register(new CancalEnderPeralDamage());
+	public void postInit(FMLPostInitializationEvent event) {
+		if (!allowGhastTear) registerBus(new EnforceNoGhastTear());
+		if (playerDropSkull) registerBus(new ModdedGoldenStuff());
+		if (!openEnderPearlFallingDamage) registerBus(new CancelEnderPearlDamage());
+        registerBus(new CancelPotionBrewing());
+
+		registerBus(new GoldenSkull());
+		if (allowCraftingGoldenSkull) new GoldenSkull.SkullRecipe().registerRecipe();
 
 		GoldenItemToGold.regUncraftingGoldenToolsAndArmor();
-
-		ModdedGoldenStuff.regGoldenSkull();
 
 		ModdedGoldenStuff.removeEnhancedGoldenApple();
 		ModdedGoldenStuff.harderGoldenCarrot();
@@ -70,9 +77,9 @@ public class UhcReload {
 	}
 
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent Event) {
-		Event.registerServerCommand(new CommandUhcMode());
-		Event.registerServerCommand(new CommandUshcMode());
-		Event.registerServerCommand(new CommandUhcHelp());
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandUhcMode());
+		event.registerServerCommand(new CommandUshcMode());
+		event.registerServerCommand(new CommandUhcHelp());
 	}
 }
