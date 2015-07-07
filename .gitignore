@@ -47,16 +47,9 @@ eclipse/
 private/
 push/
 run/
-src/ic2
 out/
 
 /gradle.properties
-
-CREDITS-fml.txt
-LICENSE-fml.txt
-MinecraftForge-Credits.txt
-MinecraftForge-License.txt
-README.txt
 
 .classpath
 .project
@@ -64,3 +57,4 @@ README.txt
 *.iml
 *.ipr
 *.iws
+gradle-app.setting
