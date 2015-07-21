@@ -53,13 +53,13 @@ public class ConfigHandler {
 				"To prevent any kind of possible cheating way, set it to true. All rights reserved.");
 		
 		allowCraftingGoldenSkull = config.getBoolean("AllowCraftingGoldenSkull", CRAFT, true,
-				"Set false if you don't want such a bleedy thing.");
+				"Set false if you don't want such a bloody thing.");
 		healAmountSkull = config.getInt("HealAmountSkull", CRAFT, 8, 4, 127,
 				"The health that a golden skull restores. Limited by potion levels.");
 
 		harderGoldenCarrot = config.getBoolean("HarderGoldenCarrotRecipe", CRAFT, true,
 				"This recipe will use 8 ingots rather than nuggets.");
-		harderGlisteringMelon = config.getBoolean("HarderGlistringMelonRecipe", CRAFT, true,
+		harderGlisteringMelon = config.getBoolean("HarderGlisteringMelonRecipe", CRAFT, true,
 				"This recipe will use one gold BLOCK rather than nuggets. Crazy, isn't it?");
 		uncraftingDifficulty = config.getInt("UncraftingGoldenItems", CRAFT, 1, 0, 3,
 				"Variable difficulty of uncrafting your golden tools or armors.");
@@ -67,7 +67,7 @@ public class ConfigHandler {
 		allowBrewingPotionLevelII = config.getBoolean("AllowBrewingLevelIIPotion", CUSTOM_RULES, false,
 				"set true if you want level II potion.");
 		allowBrewingPotionRegen = config.getBoolean("AllowBrewingRegenerationPotion", CUSTOM_RULES, false,
-				"set true if you want regeneration potion, maybe it's for speical loot.");
+				"set true if you want regeneration potion, maybe it's for special loot.");
 		allowBrewingPotionSplash = config.getBoolean("AllowBrewingSplashPotion", CUSTOM_RULES, false,
 				"set true if you want splash potion.");
 		allowEnchantedGoldenApple = config.getBoolean("AllowCraftingEnchantedGoldenApple", CUSTOM_RULES, false,
@@ -79,8 +79,8 @@ public class ConfigHandler {
 		allowUSHCCommand = config.getBoolean("AllowUSHCModeCommand", CUSTOM_RULES, false,
 				"USHC means UltraSuperHardcore, which is equivalent to UHC plus no sunlight plus time stop. "
 						+ "Set true if you want to try it.");
-		openEnderPearlFallingDamage = config.getBoolean("AllowEnderPeralDamage", CUSTOM_RULES, false,
-				"Set true if you want ender peral to cause 2.5 heart falling damage as in vanilla.");
+		openEnderPearlFallingDamage = config.getBoolean("AllowEnderPearlDamage", CUSTOM_RULES, false,
+				"Set true if you want ender pearl to cause 2.5 heart falling damage as in vanilla.");
 		playerDropSkull = config.getBoolean("PlayerDropSkull", CUSTOM_RULES, true,
 				"Set to false if you don't want excess skull or some other mod drops it.");
 
