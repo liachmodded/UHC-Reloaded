@@ -20,7 +20,7 @@ apply plugin: 'checkstyle'
 
 version = "Alpha-rv1"
 group= "mod.uhcreloaded"
-archivesBaseName = "UltraHardcoreReload"
+archivesBaseName = project.name
 
 minecraft {
     version = "1.8-11.14.3.1446"
@@ -28,13 +28,32 @@ minecraft {
     mappings = "snapshot_nodoc_20141130"
 }
 
+repositories {
+    maven {
+        name = "sk89q"
+        url = "http://maven.sk89q.com/repo/"
+    }
+    maven {
+        name = "sponge"
+        url = "http://repo.spongepowered.org/maven/"
+    }
+}
+
 dependencies {
+    compile "com.forgeessentials:forgeessentials:1.8.3:dev"
     checkstyle 'com.puppycrawl.tools:checkstyle:6.7'
 }
 
-checkstyle { 
-    toolVersion = "6.7" 
-} 
+checkstyle {
+    toolVersion = "6.7"
+    configProperties = [
+            "name"  : project.name,
+            "author": "3TUSK",
+            "url"   : "https://github.com/3TUSK/UHC-Reloaded",
+            "year"  : "2015"
+    ]
+    configFile = file("checkstyle.xml")
+}
 
 sourceSets.main {
     java {
