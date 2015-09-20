@@ -16,10 +16,24 @@
  */
 package mod.uhcreloaded.fecompat;
 
+import com.forgeessentials.api.APIRegistry;
+import com.forgeessentials.core.moduleLauncher.FEModule;
+import mod.uhcreloaded.UhcReloaded;
+import mod.uhcreloaded.util.Misc;
+
 /**
  * Created by liach on 9/13/2015.
  *
  * @author liach
  */
+@FEModule(name = Misc.MODID, parentMod = UhcReloaded.class)
 public class UhcFeModule {
+
+    @FEModule.Instance
+    public UhcFeModule instance;
+
+    public UhcFeModule() {
+        instance = this;
+        APIRegistry.getFEEventBus().register(this);
+    }
 }
