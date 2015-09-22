@@ -40,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    //compile 'com.forgeessentials:forgeessentials:1.8.3-SNAPSHOT'
+    compile 'com.forgeessentials:forgeessentials:1.8.3-SNAPSHOT'
     checkstyle 'com.puppycrawl.tools:checkstyle:6.7'
 }
 
