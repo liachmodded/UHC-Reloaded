@@ -34,6 +34,5 @@ public class UhcFeModule {
 
     public UhcFeModule() {
         instance = this;
-        APIRegistry.getFEEventBus().register(this);
     }
 }
