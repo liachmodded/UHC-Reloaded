@@ -1,4 +1,6 @@
 # UltraHardcore: Reload
+[![Build Status](https://drone.io/github.com/3TUSK/UHC-Reloaded/status.png)](https://drone.io/github.com/3TUSK/UHC-Reloaded/latest)
+
 This is a Minecraft mod with the purpose to make UltraHardcore-Mode Forge-compatible in 1.8
 
 Basically, this mod is trying following UHC rules from here: http://www.reddit.com/r/ultrahardcore/wiki/playerfaq
