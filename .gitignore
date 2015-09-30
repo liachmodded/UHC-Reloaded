@@ -5,13 +5,7 @@
 
 bin
 
-gradle
-
-gradlew
-
 .gradlew
-
-*.bat
 
 eclipse
 
@@ -19,20 +13,6 @@ eclipse
 
 #MacOS X
 .DS_Store
-
-.gradle/2.0/taskArtifacts/cache.properties
-
-.gradle/2.0/taskArtifacts/cache.properties.lock
-
-.gradle/2.0/taskArtifacts/fileHashes.bin
-
-.gradle/2.0/taskArtifacts/fileSnapshots.bin
-
-.gradle/2.0/taskArtifacts/outputFileStates.bin
-
-.gradle/2.0/taskArtifacts/taskArtifacts.bin
-
-.gradle/gradle.log
 
 .settings/org.eclipse.jdt.core.prefs
 
@@ -49,7 +29,6 @@ push/
 run/
 out/
 
-/gradle.properties
 
 .classpath
 .project

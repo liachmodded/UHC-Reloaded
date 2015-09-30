@@ -71,6 +71,10 @@ idea {
     } 
 }
 
+task wrapper(type: Wrapper) {
+	gradleVersion = "2.7"
+}
+
 processResources
 {
     inputs.property "version", project.version
