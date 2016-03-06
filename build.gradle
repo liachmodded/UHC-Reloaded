@@ -18,8 +18,8 @@ apply plugin: 'checkstyle'
 version = "Alpha-rv1"
 group= "mod.uhcreloaded"
 archivesBaseName = project.name
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 minecraft {
     version = "1.8-11.14.3.1515"
@@ -29,54 +29,45 @@ minecraft {
 
 repositories {
     maven {
-        name = "sk89q"
-        url = "http://maven.sk89q.com/repo/"
-    }
-    maven {
         name = "sponge"
         url = "http://repo.spongepowered.org/maven/"
     }
 }
 
 dependencies {
-    compile "com.forgeessentials:forgeessentials:1.8.3-SNAPSHOT:dev"
-    compile "org.spongepowered:spongeapi:2.1-SNAPSHOT"
     checkstyle "com.puppycrawl.tools:checkstyle:6.7"
 }
 
 checkstyle {
     toolVersion = "6.7"
     configProperties = [
-            "name"  : project.name,
-            "author": "3TUSK",
-            "url"   : "https://github.com/3TUSK/UHC-Reloaded",
-            "year"  : "2015"
+            "name"        : project.name,
+            "organization": "liachmodded",
+            "url"         : "https://github.com/liachmodded/UHC-Reloaded",
+            "year"        : "2016"
     ]
     configFile = file("checkstyle.xml")
 }
 
-sourceSets.main {
-    java {
-        srcDir 'src/main/java'
-    } 
-	
-	resources {
-        srcDir 'src/main/resources'
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        } 
+	    
+	    resources {
+            srcDir 'src/main/resources'
+        }
     }
 }
 
-idea { 
-    module {
-        inheritOutputDirs = true 
-    } 
-}
+idea.module.inheritOutputDirs = true 
 
 task wrapper(type: Wrapper) {
-	gradleVersion = "2.7"
+	gradleVersion = "2.11"
 }
 
-processResources
-{
+processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
