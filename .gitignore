@@ -1,21 +1,12 @@
-
 .classpath
-
 .project
-
 bin
-
 .gradlew
-
 eclipse
-
 *.txt
-
 #MacOS X
 .DS_Store
-
 .settings/org.eclipse.jdt.core.prefs
-
 .gradle/
 .idea/
 .nb-gradle/
@@ -28,12 +19,8 @@ private/
 push/
 run/
 out/
-
-
-.classpath
-.project
-
 *.iml
 *.ipr
 *.iws
 gradle-app.setting
+classes/

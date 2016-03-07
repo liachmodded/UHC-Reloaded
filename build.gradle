@@ -1,82 +1,121 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+plugins {
+    id "net.minecrell.licenser" version "0.1.3"
+}
+
+allprojects {
+    group = 'mod.uhcreloaded'
+    version = '0.1-SNAPSHOT'
+    //archivesBaseName = project.name
+    version = project.version
+    
+    defaultTasks 'licenseFormat', 'clean', 'build'
+
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    sourceCompatibility = '1.6'
+    targetCompatibility = '1.6'
+
+    configurations {
+        provided
+        shade
+    }
+
+    sourceSets {
+        main {
+            compileClasspath += configurations.provided
         }
     }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.0-SNAPSHOT'
+
+    eclipse {
+        classpath {
+            plusConfigurations += [configurations.provided]
+        }
+    }
+
+    idea {
+        module {
+            scopes.PROVIDED.plus += [configurations.provided]
+            inheritOutputDirs = true 
+        }
+    }
+
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+    
+    javadoc.classpath = sourceSets.main.compileClasspath
+
+    repositories {
+        mavenCentral()
+    }
+    
+    apply plugin: 'checkstyle'
+    
+    checkstyle {
+        toolVersion = "6.7"
+        configProperties = [
+                "name"        : project.name,
+                "organization": "liachmodded",
+                "url"         : "https://github.com/liachmodded/UHC-Reloaded",
+                "year"        : "2016"
+        ]
+        configFile = file("checkstyle.xml")
+    }
+    
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: 'javadoc') {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+    
+    artifacts {
+	    archives sourcesJar
+	    archives javadocJar
+	}
+
+    apply plugin: 'maven'
+    apply plugin: 'net.minecrell.licenser'
+
+    license {
+        header rootProject.file('LICENSE')
+        include '**/*.java'
+
+        style {
+            java = 'BLOCK_COMMENT'
+        }
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'checkstyle'
+subprojects {
+    dependencies {
+        provided rootProject
+    }
 
-version = "Alpha-rv1"
-group= "mod.uhcreloaded"
-archivesBaseName = project.name
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+    jar {
+        from rootProject.sourceSets.main.output
+    }
 
-minecraft {
-    version = "1.8-11.14.3.1515"
-    runDir = "run"
-    mappings = "snapshot_20141130"
-}
+    sourcesJar {
+        from rootProject.sourceSets.main.allSource
+    }
 
-repositories {
-    maven {
-        name = "sponge"
-        url = "http://repo.spongepowered.org/maven/"
+    javadoc {
+        source rootProject.sourceSets.main.java
     }
 }
 
 dependencies {
-    checkstyle "com.puppycrawl.tools:checkstyle:6.7"
+    provided 'com.google.guava:guava:17.0'
+    provided 'com.google.code.gson:gson:2.2.4'
+    provided 'ninja.leaping.configurate:configurate-hocon:3.1.1'
 }
-
-checkstyle {
-    toolVersion = "6.7"
-    configProperties = [
-            "name"        : project.name,
-            "organization": "liachmodded",
-            "url"         : "https://github.com/liachmodded/UHC-Reloaded",
-            "year"        : "2016"
-    ]
-    configFile = file("checkstyle.xml")
-}
-
-sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        } 
-	    
-	    resources {
-            srcDir 'src/main/resources'
-        }
-    }
-}
-
-idea.module.inheritOutputDirs = true 
 
 task wrapper(type: Wrapper) {
-	gradleVersion = "2.11"
-}
-
-processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        expand 'version': project.version, 'mcversion': project.minecraft.version
-    }
-        
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
+    gradleVersion = '2.11'
 }
