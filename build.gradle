@@ -2,6 +2,8 @@ plugins {
     id "net.minecrell.licenser" version "0.1.3"
 }
 
+Project basis = project
+
 allprojects {
     group = 'mod.uhcreloaded'
     version = '0.1-SNAPSHOT'
@@ -54,14 +56,16 @@ allprojects {
     apply plugin: 'checkstyle'
     
     checkstyle {
-        toolVersion = "6.7"
+        toolVersion = "6.16.1"
         configProperties = [
                 "name"        : project.name,
                 "organization": "liachmodded",
                 "url"         : "https://github.com/liachmodded/UHC-Reloaded",
-                "year"        : "2016"
+                "year"        : "2016",
+                "severity"    : 'warning',
+                "suppressions": basis.file("checkstyle-suppressions.xml")
         ]
-        configFile = file("checkstyle.xml")
+        configFile = basis.file("checkstyle.xml")
     }
     
     task sourcesJar(type: Jar) {
