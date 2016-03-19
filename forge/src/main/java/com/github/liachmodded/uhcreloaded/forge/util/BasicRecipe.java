@@ -23,9 +23,9 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.util;
+package com.github.liachmodded.uhcreloaded.forge.util;
 
-import static mod.uhcreloaded.util.Misc.MODID;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.MODID;
 import static net.minecraftforge.oredict.RecipeSorter.Category.SHAPED;
 
 import net.minecraft.inventory.InventoryCrafting;
@@ -69,15 +69,6 @@ public abstract class BasicRecipe implements IRecipe {
     @Override
     public int getRecipeSize() {
         return 9;
-    }
-
-    /**
-     * Actually useless.
-     * @return {@code null}
-     */
-    @Override
-    public ItemStack getRecipeOutput() {
-        return null;
     }
 
     /**

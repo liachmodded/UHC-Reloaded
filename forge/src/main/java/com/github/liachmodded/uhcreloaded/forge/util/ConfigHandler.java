@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.util;
+package com.github.liachmodded.uhcreloaded.forge.util;
 
 import net.minecraftforge.common.config.Configuration;
 

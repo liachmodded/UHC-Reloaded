@@ -23,12 +23,12 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.rules;
+package com.github.liachmodded.uhcreloaded.forge.rules;
 
-import static mod.uhcreloaded.util.Misc.translate;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.translate;
 
-import mod.uhcreloaded.UhcReloaded;
-import mod.uhcreloaded.util.ConfigHandler;
+import com.github.liachmodded.uhcreloaded.forge.UhcReloaded;
+import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

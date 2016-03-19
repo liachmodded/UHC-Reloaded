@@ -23,14 +23,14 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.rules;
+package com.github.liachmodded.uhcreloaded.forge.rules;
 
-import static mod.uhcreloaded.util.Misc.appendToolTip;
-import static mod.uhcreloaded.util.Misc.getOwnerFromSkull;
-import static mod.uhcreloaded.util.Misc.translate;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.appendToolTip;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.getOwnerFromSkull;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.translate;
 
-import mod.uhcreloaded.util.BasicRecipe;
-import mod.uhcreloaded.util.ConfigHandler;
+import com.github.liachmodded.uhcreloaded.forge.util.BasicRecipe;
+import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
@@ -51,7 +51,11 @@ import java.util.ArrayList;
  *
  * @author liach
  */
-public class GoldenSkull {
+public final class GoldenSkull {
+
+    public static final GoldenSkull INSTANCE = new GoldenSkull();
+
+    private GoldenSkull() {}
 
     @SubscribeEvent
     public void eatApple(LivingEntityUseItemEvent.Start event) {
@@ -80,6 +84,10 @@ public class GoldenSkull {
      * The recipe for the golden skull.
      */
     public static class SkullRecipe extends BasicRecipe {
+
+        public static final SkullRecipe INSTANCE = new SkullRecipe();
+
+        private SkullRecipe() {}
 
         /**
          * The checking method.
@@ -122,9 +130,22 @@ public class GoldenSkull {
                 ));
             }
             NBTTagCompound tag = outputHead.getTagCompound();
-            tag.setInteger("golden_skull", 1);
+            tag.setByte("golden_skull", (byte) 1);
             outputHead.setTagCompound(tag);
             return outputHead;
+        }
+
+        /**
+         * For easy recipe disabling.
+         *
+         * @return
+         */
+        @Override
+        public ItemStack getRecipeOutput() {
+            ItemStack ret = new ItemStack(Items.golden_apple);
+            NBTTagCompound tag = ret.getTagCompound();
+            tag.setByte("golden_skull", (byte) 1);
+            return new ItemStack(Items.golden_apple);
         }
     }
 }

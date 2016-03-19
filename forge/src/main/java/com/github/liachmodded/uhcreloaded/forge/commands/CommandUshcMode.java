@@ -23,11 +23,11 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.commands;
+package com.github.liachmodded.uhcreloaded.forge.commands;
 
-import static mod.uhcreloaded.util.Misc.translate;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.translate;
 
-import mod.uhcreloaded.util.ConfigHandler;
+import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

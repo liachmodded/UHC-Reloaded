@@ -23,19 +23,14 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.commands;
+package com.github.liachmodded.uhcreloaded.sponge;
 
-import net.minecraft.command.CommandException;
+public final class References {
 
-public class UhcCommandException extends CommandException {
+    public static final String PLUGIN_ID = "com.github.liachmodded.uhcreloaded";
+    public static final String NAME = "UltraHardcore-Mode: Reloaded";
+    public static final String DESCRIPTION = "%description%";
 
-    private static final long serialVersionUID = 1L;
-
-    public UhcCommandException(String message) {
-        super(message, new Object[0]);
-    }
-
-    public UhcCommandException(String message, Object... args) {
-        super(message, args);
+    private References() {
     }
 }

@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.rules;
+package com.github.liachmodded.uhcreloaded.forge.rules;
 
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;

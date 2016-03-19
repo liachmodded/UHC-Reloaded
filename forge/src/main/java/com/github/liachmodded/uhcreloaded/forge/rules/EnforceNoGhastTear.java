@@ -23,40 +23,24 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.rules;
+package com.github.liachmodded.uhcreloaded.forge.rules;
 
-import mod.uhcreloaded.util.ConfigHandler;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.brewing.PotionBrewEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-/**
- * Will be replaced by the brewing registry system.
- */
-public class CancelPotionBrewing {
+public class EnforceNoGhastTear {
 
-    @SubscribeEvent
-    public void CancelCertainPotionBrewing(PotionBrewEvent.Pre evt) {
-        for (int i = 0; i < evt.getLength(); i++) {
-            ItemStack stack = evt.getItem(i);
-            if (stack != null) {
-                if (stack.getItem().equals(Items.ghast_tear)) {
-                    if (!ConfigHandler.allowBrewingPotionRegen) {
-                        evt.setCanceled(true);
-                    }
-                }
-
-                if (stack.getItem().equals(Items.gunpowder)) {
-                    if (!ConfigHandler.allowBrewingPotionSplash) {
-                        evt.setCanceled(true);
-                    }
-                }
-
-                if (stack.getItem().equals(Items.glowstone_dust)) {
-                    if (!ConfigHandler.allowBrewingPotionLevelII) {
-                        evt.setCanceled(true);
-                    }
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void onGhastDropsTears(LivingDropsEvent event) {
+        if (event.entityLiving instanceof EntityGhast) {
+            for (EntityItem item : event.drops) {
+                if (item.getEntityItem().getItem() == Items.ghast_tear) {
+                    event.entity.dropItem(Items.gold_ingot, item.getEntityItem().stackSize);
+                    item.setDead();
                 }
             }
         }

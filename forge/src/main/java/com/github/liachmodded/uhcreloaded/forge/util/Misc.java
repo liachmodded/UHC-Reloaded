@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.util;
+package com.github.liachmodded.uhcreloaded.forge.util;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.init.Items;

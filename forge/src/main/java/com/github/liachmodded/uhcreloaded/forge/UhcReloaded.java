@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded;
+package com.github.liachmodded.uhcreloaded.forge;
 
 /**
  * @author ThaumicTechTinker Urey.S.Knowledge (a.k.a. 3TUSK/3tusk)
@@ -32,25 +32,25 @@ package mod.uhcreloaded;
  * Sort of meaningless, but I will insist on it, since there used to be an era!
  */
 
-import static mod.uhcreloaded.util.ConfigHandler.allowCraftingGoldenSkull;
-import static mod.uhcreloaded.util.ConfigHandler.allowGhastTear;
-import static mod.uhcreloaded.util.ConfigHandler.initConfig;
-import static mod.uhcreloaded.util.ConfigHandler.openEnderPearlFallingDamage;
-import static mod.uhcreloaded.util.ConfigHandler.playerDropSkull;
-import static mod.uhcreloaded.util.Misc.MODID;
-import static mod.uhcreloaded.util.Misc.NAME;
-import static mod.uhcreloaded.util.Misc.VERSION;
-import static mod.uhcreloaded.util.Misc.registerBus;
+import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.allowCraftingGoldenSkull;
+import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.allowGhastTear;
+import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.initConfig;
+import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.openEnderPearlFallingDamage;
+import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.playerDropSkull;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.MODID;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.NAME;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.VERSION;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.registerBus;
 
-import mod.uhcreloaded.commands.CommandUhcHelp;
-import mod.uhcreloaded.commands.CommandUhcMode;
-import mod.uhcreloaded.commands.CommandUshcMode;
-import mod.uhcreloaded.rules.CancelEnderPearlDamage;
-import mod.uhcreloaded.rules.CancelPotionBrewing;
-import mod.uhcreloaded.rules.EnforceNoGhastTear;
-import mod.uhcreloaded.rules.GoldenItemToGold;
-import mod.uhcreloaded.rules.GoldenSkull;
-import mod.uhcreloaded.rules.ModdedGoldenStuff;
+import com.github.liachmodded.uhcreloaded.forge.commands.CommandUhcHelp;
+import com.github.liachmodded.uhcreloaded.forge.commands.CommandUhcMode;
+import com.github.liachmodded.uhcreloaded.forge.rules.GoldenSkull;
+import com.github.liachmodded.uhcreloaded.forge.commands.CommandUshcMode;
+import com.github.liachmodded.uhcreloaded.forge.rules.CancelEnderPearlDamage;
+import com.github.liachmodded.uhcreloaded.forge.rules.CancelPotionBrewing;
+import com.github.liachmodded.uhcreloaded.forge.rules.EnforceNoGhastTear;
+import com.github.liachmodded.uhcreloaded.forge.rules.GoldenItemToGold;
+import com.github.liachmodded.uhcreloaded.forge.rules.ModdedGoldenStuff;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -88,9 +88,9 @@ public class UhcReloaded {
         }
         registerBus(new CancelPotionBrewing());
 
-        registerBus(new GoldenSkull());
+        registerBus(GoldenSkull.INSTANCE);
         if (allowCraftingGoldenSkull) {
-            new GoldenSkull.SkullRecipe().registerRecipe();
+            GoldenSkull.SkullRecipe.INSTANCE.registerRecipe();
         }
 
         GoldenItemToGold.regUncraftingGoldenToolsAndArmor();

@@ -23,26 +23,19 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.rules;
+package com.github.liachmodded.uhcreloaded.forge.commands;
 
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.init.Items;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.command.CommandException;
 
-public class EnforceNoGhastTear {
+public class UhcCommandException extends CommandException {
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onGhastDropsTears(LivingDropsEvent event) {
-        if (event.entityLiving instanceof EntityGhast) {
-            for (EntityItem item : event.drops) {
-                if (item.getEntityItem().getItem() == Items.ghast_tear) {
-                    event.entity.dropItem(Items.gold_ingot, item.getEntityItem().stackSize);
-                    item.setDead();
-                }
-            }
-        }
+    private static final long serialVersionUID = 1L;
+
+    public UhcCommandException(String message) {
+        super(message, new Object[0]);
+    }
+
+    public UhcCommandException(String message, Object... args) {
+        super(message, args);
     }
 }

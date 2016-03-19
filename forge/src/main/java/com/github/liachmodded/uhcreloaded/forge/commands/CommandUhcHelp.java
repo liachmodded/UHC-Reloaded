@@ -23,22 +23,20 @@
  * THE SOFTWARE.
  */
 
-package mod.uhcreloaded.commands;
+package com.github.liachmodded.uhcreloaded.forge.commands;
 
-import static mod.uhcreloaded.util.Misc.translate;
+import static com.github.liachmodded.uhcreloaded.forge.util.Misc.translate;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.storage.WorldInfo;
 
-public class CommandUhcMode extends CommandBase {
+public class CommandUhcHelp extends CommandBase {
 
-    private static final String NAME = "uhcmode";
-    private static final String USAGE = "/uhcmode <on/off>";
+    private static final String NAME = "uhchelp";
+    private static final String USAGE = "/uhchelp <banrule/banguideline>";
 
     @Override
     public String getCommandName() {
@@ -47,7 +45,12 @@ public class CommandUhcMode extends CommandBase {
 
     @Override
     public int getRequiredPermissionLevel() {
-        return 2;
+        return 0;
+    }
+
+    @Override
+    public boolean checkPermission(MinecraftServer mcServer, ICommandSender sender) {
+        return true;
     }
 
     @Override
@@ -57,34 +60,18 @@ public class CommandUhcMode extends CommandBase {
 
     @Override
     public void execute(MinecraftServer mcServer, ICommandSender sender, String[] args) throws CommandException {
-        int l = args.length;
-
-        if (l == 1) {
-            String mode = args[0];
-            if (mode.equalsIgnoreCase("on")) {
-                for (int a = 0; a < mcServer.worldServers.length; a++) {
-                    WorldInfo info = mcServer.worldServers[a].getWorldInfo();
-                    GameRules gamerules = mcServer.worldServers[a].getGameRules();
-                    info.setHardcore(true);
-                    gamerules.setOrCreateGameRule("naturalRegeneration", "false");
-                }
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.on")));
-                notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[]{});
-            }
-
-            if (mode.equalsIgnoreCase("off")) {
-                for (int a = 0; a < mcServer.worldServers.length; a++) {
-                    WorldInfo info = mcServer.worldServers[a].getWorldInfo();
-                    GameRules gamerules = mcServer.worldServers[a].getGameRules();
-                    info.setHardcore(false);
-                    gamerules.setOrCreateGameRule("naturalRegeneration", "true");
-                }
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.off")));
-                notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[]{});
+        int len = args.length;
+        if (len == 1) {
+            String arg = args[0];
+            if (arg.equalsIgnoreCase("banrule") || arg.equalsIgnoreCase("banguideline")) {
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
+                sender.addChatMessage(new TextComponentString("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
+            } else {
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
+                sender.addChatMessage(new TextComponentString("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
             }
         }
 
-        throw new UhcCommandException(translate("commands.uhcreloaded.error.args"));
+        throw new UhcCommandException(translate("commands.uhcreloaded.error.unknown"));
     }
-
 }
