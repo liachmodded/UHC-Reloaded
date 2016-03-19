@@ -30,7 +30,8 @@ import static mod.uhcreloaded.util.Misc.translate;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.TextComponentString;
 
 public class CommandUhcHelp extends CommandBase {
 
@@ -48,7 +49,7 @@ public class CommandUhcHelp extends CommandBase {
     }
 
     @Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+    public boolean checkPermission(MinecraftServer mcServer, ICommandSender sender) {
         return true;
     }
 
@@ -58,16 +59,16 @@ public class CommandUhcHelp extends CommandBase {
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer mcServer, ICommandSender sender, String[] args) throws CommandException {
         int len = args.length;
         if (len == 1) {
             String arg = args[0];
             if (arg.equalsIgnoreCase("banrule") || arg.equalsIgnoreCase("banguideline")) {
-                sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.help1")));
-                sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
+                sender.addChatMessage(new TextComponentString("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
             } else {
-                sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.help1")));
-                sender.addChatMessage(new ChatComponentText("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
+                sender.addChatMessage(new TextComponentString("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
             }
         }
 

@@ -31,14 +31,16 @@ import static mod.uhcreloaded.util.Misc.translate;
 
 import mod.uhcreloaded.util.BasicRecipe;
 import mod.uhcreloaded.util.ConfigHandler;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -52,12 +54,14 @@ import java.util.ArrayList;
 public class GoldenSkull {
 
     @SubscribeEvent
-    public void eatApple(PlayerUseItemEvent.Start event) {
-        if (event.item.getItem() != Items.golden_apple) {
+    public void eatApple(LivingEntityUseItemEvent.Start event) {
+        if (event.item.getItem() != Items.golden_apple || !(event.entity instanceof EntityPlayer)) {
             return;
         }
+        
+        EntityPlayer player = (EntityPlayer) event.entity;
         if (ConfigHandler.antiCheatMode && event.item.getItemDamage() == 1) {
-            event.entityPlayer.addChatMessage(new ChatComponentText(translate("message.uhcreloaded.apple.enchanted")));
+            player.addChatMessage(new TextComponentString(translate("message.uhcreloaded.apple.enchanted")));
             event.setCanceled(true);
             return;
         }
@@ -66,8 +70,8 @@ public class GoldenSkull {
         }
         NBTTagCompound tag = event.item.getTagCompound();
         if (tag.getInteger("golden_skull") == 1) {
-            event.entityPlayer.addPotionEffect(new PotionEffect(
-                    6, 1, ConfigHandler.healAmountSkull - 4
+            player.addPotionEffect(new PotionEffect(
+                    Potion.getPotionById(6), 1, ConfigHandler.healAmountSkull - 4
             ));
         }
     }
@@ -105,16 +109,16 @@ public class GoldenSkull {
                 }
             }
             ArrayList<String> lore = new ArrayList<String>();
-            lore.add(EnumChatFormatting.ITALIC + translate("tooltip.uhcreloaded.skull"));
+            lore.add(TextFormatting.ITALIC + translate("tooltip.uhcreloaded.skull"));
             outputHead = appendToolTip(outputHead, lore);
             if (!getOwnerFromSkull(outputHead).isEmpty()) {
                 outputHead.setStackDisplayName(translate(
-                        EnumChatFormatting.GOLD + "item.uhcreloaded.ownedskull.name",
+                        TextFormatting.GOLD + "item.uhcreloaded.ownedskull.name",
                         getOwnerFromSkull(outputHead)
                 ));
             } else {
                 outputHead.setStackDisplayName(translate(
-                        EnumChatFormatting.GOLD + "item.uhcreloaded.skullapple.name"
+                        TextFormatting.GOLD + "item.uhcreloaded.skullapple.name"
                 ));
             }
             NBTTagCompound tag = outputHead.getTagCompound();

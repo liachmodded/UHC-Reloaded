@@ -35,24 +35,25 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.Constants.NBT;
 
 import java.util.List;
 
 public class Misc {
 
-    public static final String MODID = "UHCReloaded";
+    public static final String MODID = "uhcreloaded";
     public static final String NAME = "UltraHardcore-Mode: Reloaded";
-    public static final String VERSION = "Alpha 0.0.2";
+    public static final String VERSION = "0.1-SNAPSHOT";
 
     public static String translate(String tag) {
-        return StatCollector.translateToLocal(tag);
+        return I18n.translateToLocal(tag);
     }
 
     public static String translate(String tag, Object... format) {
-        return StatCollector.translateToLocalFormatted(tag, format);
+        return I18n.translateToLocalFormatted(tag, format);
     }
 
     /**
@@ -83,12 +84,12 @@ public class Misc {
         if (!skull.hasTagCompound()) {
             return "";
         }
-        if (skull.getTagCompound().hasKey("SkullOwner", 8)) {
+        if (skull.getTagCompound().hasKey("SkullOwner", NBT.TAG_STRING)) {
             return skull.getTagCompound().getString("SkullOwner");
         }
-        if (skull.getTagCompound().hasKey("SkullOwner", 10)) {
+        if (skull.getTagCompound().hasKey("SkullOwner", NBT.TAG_COMPOUND)) {
             NBTTagCompound tag = skull.getTagCompound().getCompoundTag("SkullOwner");
-            if (tag.hasKey("Name", 8)) {
+            if (tag.hasKey("Name", NBT.TAG_STRING)) {
                 return tag.getString("Name");
             }
         }
@@ -106,9 +107,9 @@ public class Misc {
         NBTTagCompound tag = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
         boolean needAppend = false;
         NBTTagCompound tag1;
-        if (tag.hasKey("display", 10)) {
+        if (tag.hasKey("display", NBT.TAG_COMPOUND)) {
             tag1 = tag.getCompoundTag("display");
-            if (tag.hasKey("Lore", 9)) {
+            if (tag.hasKey("Lore", NBT.TAG_LIST)) {
                 needAppend = true;
             }
         } else {
@@ -119,7 +120,7 @@ public class Misc {
             tag1.setTag("Lore", new NBTTagList());
         }
         for (String s : tooltip) {
-            tag1.getTagList("Lore", 8).appendTag(new NBTTagString(EnumChatFormatting.RESET + s));
+            tag1.getTagList("Lore", NBT.TAG_LIST).appendTag(new NBTTagString(TextFormatting.RESET + s));
         }
         tag.setTag("display", tag1);
         ItemStack output = stack.copy();
@@ -147,7 +148,4 @@ public class Misc {
         MinecraftForge.EVENT_BUS.register(obj);
     }
 
-    public static void unregisterBus(Object obj) {
-        MinecraftForge.EVENT_BUS.unregister(obj);
-    }
 }

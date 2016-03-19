@@ -3,22 +3,29 @@ targetCompatibility = '1.8'
 
 repositories {
     maven {
-      name 'Sponge maven repo'
-      url 'http://repo.spongepowered.org/maven'
+        name 'Sponge maven repo'
+        url 'http://repo.spongepowered.org/maven'
     }
     maven {
-      name = 'minecrell-releases'
-      url = 'http://repo.minecrell.net/releases'
+        name = 'minecrell-releases'
+        url = 'http://repo.minecrell.net/releases'
     }
 }
 
 dependencies {
-    compile "org.spongepowered:spongeapi:3.1.0-SNAPSHOT"
-    shade 'net.minecrell.mcstats:statslite-sponge:0.2.1'
+    compile "org.spongepowered:spongeapi:4.1.0-SNAPSHOT"
+    shadow 'net.minecrell.mcstats:statslite-sponge:0.2.2'
 }
 
-jar {
-    from configurations.shade.collect {
-        it.isDirectory() ? it : zipTree(it) 
-    }
+tasks.getByPath(':sponge:jar').enabled = false
+
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+task pluginJar(type: ShadowJar) {
+    classifier = ''
+    configurations = [rootProject.configurations.shadow]
+}
+
+artifacts {
+    archives pluginJar
 }

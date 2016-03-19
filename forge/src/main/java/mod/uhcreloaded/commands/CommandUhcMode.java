@@ -31,7 +31,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.storage.WorldInfo;
 
@@ -50,40 +50,36 @@ public class CommandUhcMode extends CommandBase {
         return 2;
     }
 
-    public boolean canCommandSenderUse(ICommandSender sender) {
-        return true;
-    }
-
     @Override
     public String getCommandUsage(ICommandSender sender) {
         return USAGE;
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer mcServer, ICommandSender sender, String[] args) throws CommandException {
         int l = args.length;
 
         if (l == 1) {
             String mode = args[0];
             if (mode.equalsIgnoreCase("on")) {
-                for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-                    WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
-                    GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
+                for (int a = 0; a < mcServer.worldServers.length; a++) {
+                    WorldInfo info = mcServer.worldServers[a].getWorldInfo();
+                    GameRules gamerules = mcServer.worldServers[a].getGameRules();
                     info.setHardcore(true);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "false");
                 }
-                sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.uhc.on")));
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.on")));
                 notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[]{});
             }
 
             if (mode.equalsIgnoreCase("off")) {
-                for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-                    WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
-                    GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
+                for (int a = 0; a < mcServer.worldServers.length; a++) {
+                    WorldInfo info = mcServer.worldServers[a].getWorldInfo();
+                    GameRules gamerules = mcServer.worldServers[a].getGameRules();
                     info.setHardcore(false);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "true");
                 }
-                sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.uhc.off")));
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.off")));
                 notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[]{});
             }
         }

@@ -32,7 +32,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.storage.WorldInfo;
 
@@ -53,18 +53,14 @@ public class CommandUshcMode extends CommandBase {
         return 2;
     }
 
-    public boolean canCommandSenderUse(ICommandSender sender) {
-        return ConfigHandler.allowUSHCCommand;
-    }
-
     @Override
     public String getCommandUsage(ICommandSender sender) {
         return USAGE;
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-        if (ConfigHandler.allowUSHCCommand == false) {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+        if (!ConfigHandler.allowUSHCCommand) {
             throw new UhcCommandException(translate("commands.uhcreloaded.error.disabled"));
         }
 
@@ -74,28 +70,28 @@ public class CommandUshcMode extends CommandBase {
             String mode = args[0];
 
             if (mode.equalsIgnoreCase("on")) {
-                for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-                    WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
-                    GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
+                for (int a = 0; a < server.worldServers.length; a++) {
+                    WorldInfo info = server.worldServers[a].getWorldInfo();
+                    GameRules gamerules = server.worldServers[a].getGameRules();
                     info.setHardcore(true);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "false");
                     gamerules.setOrCreateGameRule("doDaylightCycle", "false");
-                    MinecraftServer.getServer().worldServers[a].setWorldTime(NIGHT_TIME);
+                    server.worldServers[a].setWorldTime(NIGHT_TIME);
                 }
-                sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.ushc.on")));
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.on")));
                 notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: ON.", new Object[]{});
             }
 
             if (mode.equalsIgnoreCase("off")) {
-                for (int a = 0; a < MinecraftServer.getServer().worldServers.length; a++) {
-                    WorldInfo info = MinecraftServer.getServer().worldServers[a].getWorldInfo();
-                    GameRules gamerules = MinecraftServer.getServer().worldServers[a].getGameRules();
+                for (int a = 0; a < server.worldServers.length; a++) {
+                    WorldInfo info = server.worldServers[a].getWorldInfo();
+                    GameRules gamerules = server.worldServers[a].getGameRules();
                     info.setHardcore(false);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "true");
                     gamerules.setOrCreateGameRule("doDaylightCycle", "true");
-                    MinecraftServer.getServer().worldServers[a].setWorldTime(DAY_TIME);
+                    server.worldServers[a].setWorldTime(DAY_TIME);
                 }
-                sender.addChatMessage(new ChatComponentText(translate("commands.uhcreloaded.ushc.off")));
+                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.off")));
                 notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: OFF.", new Object[]{});
             }
 

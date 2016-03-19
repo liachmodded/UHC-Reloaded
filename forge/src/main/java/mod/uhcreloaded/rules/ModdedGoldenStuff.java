@@ -27,14 +27,10 @@ package mod.uhcreloaded.rules;
 
 import mod.uhcreloaded.util.ConfigHandler;
 import mod.uhcreloaded.util.Misc;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -71,28 +67,4 @@ public class ModdedGoldenStuff {
                 false);
     }
 
-    //@SubscribeEvent TODO: Remove this!!!
-    public void onPlayerEatGoldenApple(PlayerUseItemEvent.Finish e) {
-        EntityPlayer currentPlayer = e.entityPlayer;
-        if (!ConfigHandler.allowGoldenAppleRegen) {
-            if (e.item.getItem().equals(Items.golden_apple)
-                    && e.item.getMetadata() == 0) {
-                if (e.item.getDisplayName().equals(EnumChatFormatting.ITALIC.toString()
-                        + EnumChatFormatting.GOLD + "Golden Skull")) { // Could be hacked
-                    currentPlayer.clearActivePotions();
-                    currentPlayer.heal(8.0F);
-                } else {
-                    currentPlayer.clearActivePotions();
-                    currentPlayer.heal(4.0F);
-                }
-            } else {
-                if (ConfigHandler.antiCheatMode
-                        && e.item.getItem().equals(Items.golden_apple)
-                        && e.item.getMetadata() == 1) {
-                    currentPlayer.clearActivePotions();
-                    currentPlayer.addChatComponentMessage(new ChatComponentText("DO NOT CHEAT!!!"));
-                }
-            }
-        }
-    }
 }
