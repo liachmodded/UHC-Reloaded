@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package com.github.liachmodded.uhcreloaded.forge.rules;
+package com.github.liachmodded.uhcreloaded.forge.rule;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGhast;

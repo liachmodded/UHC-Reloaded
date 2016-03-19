@@ -23,18 +23,42 @@
  * THE SOFTWARE.
  */
 
-package com.github.liachmodded.uhcreloaded.forge.rules;
+package com.github.liachmodded.uhcreloaded.forge.rule;
 
-import net.minecraftforge.event.entity.living.EnderTeleportEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class CancelEnderPearlDamage {
+/**
+ * Will be replaced by the brewing registry system.
+ */
+public class CancelPotionBrewing {
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onPlayerUseEnderPearl(EnderTeleportEvent event) {
-        if (event.attackDamage > 0.0F) {
-            event.attackDamage = 0.0F;
+    @SubscribeEvent
+    public void cancelCertainPotionBrewing(PotionBrewEvent.Pre evt) {
+        for (int i = 0; i < evt.getLength(); i++) {
+            ItemStack stack = evt.getItem(i);
+            if (stack != null) {
+                if (stack.getItem().equals(Items.ghast_tear)) {
+                    if (!ConfigHandler.allowBrewingPotionRegen) {
+                        evt.setCanceled(true);
+                    }
+                }
+
+                if (stack.getItem().equals(Items.gunpowder)) {
+                    if (!ConfigHandler.allowBrewingPotionSplash) {
+                        evt.setCanceled(true);
+                    }
+                }
+
+                if (stack.getItem().equals(Items.glowstone_dust)) {
+                    if (!ConfigHandler.allowBrewingPotionLevelII) {
+                        evt.setCanceled(true);
+                    }
+                }
+            }
         }
     }
 }

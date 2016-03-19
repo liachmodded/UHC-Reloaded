@@ -27,7 +27,7 @@ package com.github.liachmodded.uhcreloaded.forge;
 
 /**
  * @author ThaumicTechTinker Urey.S.Knowledge (a.k.a. 3TUSK/3tusk)
- * This is a mod which brings the original UHC mode rules to 1.8 release
+ * This is a mod which brings the original UHC mode rule to 1.8 release
  * Forge Compatible, flexible configuration, and firing contribution :)
  * Sort of meaningless, but I will insist on it, since there used to be an era!
  */
@@ -44,13 +44,13 @@ import static com.github.liachmodded.uhcreloaded.forge.util.Misc.registerBus;
 
 import com.github.liachmodded.uhcreloaded.forge.commands.CommandUhcHelp;
 import com.github.liachmodded.uhcreloaded.forge.commands.CommandUhcMode;
-import com.github.liachmodded.uhcreloaded.forge.rules.GoldenSkull;
+import com.github.liachmodded.uhcreloaded.forge.rule.GoldenSkull;
 import com.github.liachmodded.uhcreloaded.forge.commands.CommandUshcMode;
-import com.github.liachmodded.uhcreloaded.forge.rules.CancelEnderPearlDamage;
-import com.github.liachmodded.uhcreloaded.forge.rules.CancelPotionBrewing;
-import com.github.liachmodded.uhcreloaded.forge.rules.EnforceNoGhastTear;
-import com.github.liachmodded.uhcreloaded.forge.rules.GoldenItemToGold;
-import com.github.liachmodded.uhcreloaded.forge.rules.ModdedGoldenStuff;
+import com.github.liachmodded.uhcreloaded.forge.rule.CancelEnderPearlDamage;
+import com.github.liachmodded.uhcreloaded.forge.rule.CancelPotionBrewing;
+import com.github.liachmodded.uhcreloaded.forge.rule.EnforceNoGhastTear;
+import com.github.liachmodded.uhcreloaded.forge.rule.GoldenItemToGold;
+import com.github.liachmodded.uhcreloaded.forge.rule.ModdedGoldenStuff;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;

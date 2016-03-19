@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package com.github.liachmodded.uhcreloaded.forge.rules;
+package com.github.liachmodded.uhcreloaded.forge.rule;
 
 import static com.github.liachmodded.uhcreloaded.forge.util.Misc.appendToolTip;
 import static com.github.liachmodded.uhcreloaded.forge.util.Misc.getOwnerFromSkull;

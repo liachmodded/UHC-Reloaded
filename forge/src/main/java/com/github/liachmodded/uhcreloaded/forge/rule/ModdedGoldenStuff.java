@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package com.github.liachmodded.uhcreloaded.forge.rules;
+package com.github.liachmodded.uhcreloaded.forge.rule;
 
 import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
 import com.github.liachmodded.uhcreloaded.forge.util.Misc;
