@@ -44,12 +44,12 @@ import static com.github.liachmodded.uhcreloaded.forge.util.Misc.registerBus;
 
 import com.github.liachmodded.uhcreloaded.forge.commands.CommandUhcHelp;
 import com.github.liachmodded.uhcreloaded.forge.commands.CommandUhcMode;
-import com.github.liachmodded.uhcreloaded.forge.rule.GoldenSkull;
 import com.github.liachmodded.uhcreloaded.forge.commands.CommandUshcMode;
 import com.github.liachmodded.uhcreloaded.forge.rule.CancelEnderPearlDamage;
 import com.github.liachmodded.uhcreloaded.forge.rule.CancelPotionBrewing;
 import com.github.liachmodded.uhcreloaded.forge.rule.EnforceNoGhastTear;
 import com.github.liachmodded.uhcreloaded.forge.rule.GoldenItemToGold;
+import com.github.liachmodded.uhcreloaded.forge.rule.GoldenSkull;
 import com.github.liachmodded.uhcreloaded.forge.rule.ModdedGoldenStuff;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

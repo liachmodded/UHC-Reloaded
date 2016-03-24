@@ -46,6 +46,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 
+import javax.annotation.Nullable;
+
 /**
  * Skull.
  *
@@ -55,14 +57,15 @@ public final class GoldenSkull {
 
     public static final GoldenSkull INSTANCE = new GoldenSkull();
 
-    private GoldenSkull() {}
+    private GoldenSkull() {
+    }
 
     @SubscribeEvent
     public void eatApple(LivingEntityUseItemEvent.Start event) {
         if (event.item.getItem() != Items.golden_apple || !(event.entity instanceof EntityPlayer)) {
             return;
         }
-        
+
         EntityPlayer player = (EntityPlayer) event.entity;
         if (ConfigHandler.antiCheatMode && event.item.getItemDamage() == 1) {
             player.addChatMessage(new TextComponentString(translate("message.uhcreloaded.apple.enchanted")));
@@ -87,17 +90,24 @@ public final class GoldenSkull {
 
         public static final SkullRecipe INSTANCE = new SkullRecipe();
 
-        private SkullRecipe() {}
+        private final ItemStack sample;
+
+        private SkullRecipe() {
+            this.sample = new ItemStack(Items.golden_apple);
+            NBTTagCompound tag = this.sample.getTagCompound();
+            tag.setByte("golden_skull", (byte) 1);
+        }
 
         /**
          * The checking method.
+         *
          * @param grid The crafting grid
-         * @return The result of the recipe. Returns {@code null} if not matching.
+         * @return The result of the recipe, or {@code null} if no matching.
          */
         @Override
+        @Nullable
         public ItemStack getCraftingResult(InventoryCrafting grid) {
-            ItemStack outputHead = new ItemStack(Items.golden_apple);
-            outputHead.setItemDamage(0);
+            ItemStack outputHead = this.sample.copy();
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (grid.getStackInRowAndColumn(i, j) == null) {
@@ -129,23 +139,17 @@ public final class GoldenSkull {
                         TextFormatting.GOLD + "item.uhcreloaded.skullapple.name"
                 ));
             }
-            NBTTagCompound tag = outputHead.getTagCompound();
-            tag.setByte("golden_skull", (byte) 1);
-            outputHead.setTagCompound(tag);
             return outputHead;
         }
 
         /**
          * For easy recipe disabling.
          *
-         * @return
+         * @return The sample head
          */
         @Override
         public ItemStack getRecipeOutput() {
-            ItemStack ret = new ItemStack(Items.golden_apple);
-            NBTTagCompound tag = ret.getTagCompound();
-            tag.setByte("golden_skull", (byte) 1);
-            return new ItemStack(Items.golden_apple);
+            return this.sample;
         }
     }
 }

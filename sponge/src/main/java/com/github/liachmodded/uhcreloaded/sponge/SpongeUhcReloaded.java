@@ -31,7 +31,8 @@ import org.spongepowered.api.plugin.Plugin;
 @Plugin(id = References.PLUGIN_ID,
         name = References.NAME,
         authors = {"liach", "3TUSK"},
-        description = References.DESCRIPTION
+        description = References.DESCRIPTION,
+        version = References.VERSION
 )
 public final class SpongeUhcReloaded {
 
