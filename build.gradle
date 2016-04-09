@@ -19,8 +19,8 @@ allprojects {
 
     group = 'mod.uhcreloaded'
     version = '0.1-SNAPSHOT'
-    //archivesBaseName = project.name
-    version = project.version
+    archivesBaseName = rootProject.name + '-' + project.name
+    //version = project.version
     
     defaultTasks 'licenseFormat', 'clean', 'build'
 

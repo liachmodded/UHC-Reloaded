@@ -1,3 +1,7 @@
+plugins {
+    id "org.spongepowered.plugin" version "0.5.1"
+}
+
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
@@ -12,18 +16,21 @@ repositories {
     }
 }
 
+apply plugin: "org.spongepowered.plugin"
+
 dependencies {
     compile "org.spongepowered:spongeapi:4.1.0-SNAPSHOT"
     shadow 'net.minecrell.mcstats:statslite-sponge:0.2.2'
 }
 
-tasks.getByPath(':sponge:jar').enabled = false
+//tasks.getByPath(':sponge:jar').enabled = false
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 task pluginJar(type: ShadowJar) {
-    classifier = ''
-    configurations = [rootProject.configurations.shadow]
+    classifier = 'plugins'
+    configurations = [configurations.shadow]
+    from sourceSets.main.output
 }
 
 artifacts {
