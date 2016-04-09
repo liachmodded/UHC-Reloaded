@@ -15,9 +15,9 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 minecraft {
-    version = "1.9-12.16.0.1804-1.9"
+    version = project.forgeVersion
     runDir = "run"
-    mappings = "snapshot_20160323"
+    mappings = project.mappings
 }
 
 build.dependsOn setupCiWorkspace

@@ -19,7 +19,7 @@ repositories {
 apply plugin: "org.spongepowered.plugin"
 
 dependencies {
-    compile "org.spongepowered:spongeapi:4.1.0-SNAPSHOT"
+    compile "org.spongepowered:spongeapi:${project.apiVersion}"
     shadow 'net.minecrell.mcstats:statslite-sponge:0.2.2'
 }
 
