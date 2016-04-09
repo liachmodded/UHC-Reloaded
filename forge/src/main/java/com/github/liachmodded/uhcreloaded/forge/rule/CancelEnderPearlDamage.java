@@ -33,8 +33,8 @@ public class CancelEnderPearlDamage {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onPlayerUseEnderPearl(EnderTeleportEvent event) {
-        if (event.attackDamage > 0.0F) {
-            event.attackDamage = 0.0F;
+        if (event.getAttackDamage() > 0.0F) {
+            event.setAttackDamage(0.0F);
         }
     }
 }

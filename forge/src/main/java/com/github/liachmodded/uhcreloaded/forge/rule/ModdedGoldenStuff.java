@@ -62,8 +62,8 @@ public class ModdedGoldenStuff {
     /** Make the player drop a skull. */
     @SubscribeEvent
     public void onPlayerDeath(PlayerDropsEvent e) {
-        e.entityPlayer.dropItem(
-                Misc.getSkullFromOwner(e.entityPlayer.getGameProfile()), true,
+        e.getEntityPlayer().dropItem(
+                Misc.getSkullFromOwner(e.getEntityPlayer().getGameProfile()), true,
                 false);
     }
 

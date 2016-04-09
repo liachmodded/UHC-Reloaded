@@ -36,10 +36,10 @@ public class EnforceNoGhastTear {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onGhastDropsTears(LivingDropsEvent event) {
-        if (event.entityLiving instanceof EntityGhast) {
-            for (EntityItem item : event.drops) {
+        if (event.getEntityLiving() instanceof EntityGhast) {
+            for (EntityItem item : event.getDrops()) {
                 if (item.getEntityItem().getItem() == Items.ghast_tear) {
-                    event.entity.dropItem(Items.gold_ingot, item.getEntityItem().stackSize);
+                    event.getEntityLiving().dropItem(Items.gold_ingot, item.getEntityItem().stackSize);
                     item.setDead();
                 }
             }

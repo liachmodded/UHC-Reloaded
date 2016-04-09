@@ -69,7 +69,7 @@ public class CommandUhcMode extends CommandBase {
                     gamerules.setOrCreateGameRule("naturalRegeneration", "false");
                 }
                 sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.on")));
-                notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[]{});
+                notifyCommandListener(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[]{});
             }
 
             if (mode.equalsIgnoreCase("off")) {
@@ -80,7 +80,7 @@ public class CommandUhcMode extends CommandBase {
                     gamerules.setOrCreateGameRule("naturalRegeneration", "true");
                 }
                 sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.off")));
-                notifyOperators(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[]{});
+                notifyCommandListener(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[]{});
             }
         }
 

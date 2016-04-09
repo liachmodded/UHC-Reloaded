@@ -79,7 +79,7 @@ public class CommandUshcMode extends CommandBase {
                     server.worldServers[a].setWorldTime(NIGHT_TIME);
                 }
                 sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.on")));
-                notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: ON.", new Object[]{});
+                notifyCommandListener(sender, this, "[UHCReload]UltraSuperHardcore mode: ON.", new Object[]{});
             }
 
             if (mode.equalsIgnoreCase("off")) {
@@ -92,7 +92,7 @@ public class CommandUshcMode extends CommandBase {
                     server.worldServers[a].setWorldTime(DAY_TIME);
                 }
                 sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.off")));
-                notifyOperators(sender, this, "[UHCReload]UltraSuperHardcore mode: OFF.", new Object[]{});
+                notifyCommandListener(sender, this, "[UHCReload]UltraSuperHardcore mode: OFF.", new Object[]{});
             }
 
             throw new UhcCommandException(translate("commands.uhcreloaded.error.args"));

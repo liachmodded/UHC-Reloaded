@@ -62,21 +62,21 @@ public final class GoldenSkull {
 
     @SubscribeEvent
     public void eatApple(LivingEntityUseItemEvent.Start event) {
-        if (event.item.getItem() != Items.golden_apple || !(event.entity instanceof EntityPlayer)) {
+        if (event.getItem().getItem() != Items.golden_apple || !(event.getEntityLiving() instanceof EntityPlayer)) {
             return;
         }
 
-        EntityPlayer player = (EntityPlayer) event.entity;
-        if (ConfigHandler.antiCheatMode && event.item.getItemDamage() == 1) {
+        EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+        if (ConfigHandler.antiCheatMode && event.getItem().getItemDamage() == 1) {
             player.addChatMessage(new TextComponentString(translate("message.uhcreloaded.apple.enchanted")));
             event.setCanceled(true);
             return;
         }
-        if (!event.item.hasTagCompound()) {
+        if (!event.getItem().hasTagCompound()) {
             return;
         }
-        NBTTagCompound tag = event.item.getTagCompound();
-        if (tag.getInteger("golden_skull") == 1) {
+        NBTTagCompound tag = event.getItem().getTagCompound();
+        if (tag.getByte("golden_skull") == 1) {
             player.addPotionEffect(new PotionEffect(
                     Potion.getPotionById(6), 1, ConfigHandler.healAmountSkull - 4
             ));
