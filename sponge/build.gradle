@@ -20,19 +20,24 @@ apply plugin: "org.spongepowered.plugin"
 
 dependencies {
     compile "org.spongepowered:spongeapi:${project.apiVersion}"
-    shadow 'net.minecrell.mcstats:statslite-sponge:0.2.2'
+    compile 'net.minecrell.mcstats:statslite-sponge:0.2.2'
 }
 
-//tasks.getByPath(':sponge:jar').enabled = false
+sponge.plugin.id = "com.github.liachmodded.uhcreloaded.sponge"
+tasks.getByPath(':sponge:jar').enabled = false
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-task pluginJar(type: ShadowJar) {
-    classifier = 'plugins'
-    configurations = [configurations.shadow]
+shadowJar {
+//task pluginJar(type: ShadowJar) {
+    classifier = ''
+    dependencies {
+        include(dependency('net.minecrell.mcstats:statslite-sponge:0.2.2'))
+    }
     from sourceSets.main.output
 }
 
 artifacts {
-    archives pluginJar
+    archives shadowJar
+    //archives pluginJar
 }

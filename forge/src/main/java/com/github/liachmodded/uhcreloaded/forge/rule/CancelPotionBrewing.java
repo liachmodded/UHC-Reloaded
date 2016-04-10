@@ -41,19 +41,19 @@ public class CancelPotionBrewing {
         for (int i = 0; i < evt.getLength(); i++) {
             ItemStack stack = evt.getItem(i);
             if (stack != null) {
-                if (stack.getItem().equals(Items.ghast_tear)) {
+                if (stack.getItem().equals(Items.GHAST_TEAR)) {
                     if (!ConfigHandler.allowBrewingPotionRegen) {
                         evt.setCanceled(true);
                     }
                 }
 
-                if (stack.getItem().equals(Items.gunpowder)) {
+                if (stack.getItem().equals(Items.GUNPOWDER)) {
                     if (!ConfigHandler.allowBrewingPotionSplash) {
                         evt.setCanceled(true);
                     }
                 }
 
-                if (stack.getItem().equals(Items.glowstone_dust)) {
+                if (stack.getItem().equals(Items.GLOWSTONE_DUST)) {
                     if (!ConfigHandler.allowBrewingPotionLevelII) {
                         evt.setCanceled(true);
                     }

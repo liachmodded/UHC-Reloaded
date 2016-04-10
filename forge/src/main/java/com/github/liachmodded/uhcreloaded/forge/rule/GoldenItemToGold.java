@@ -100,91 +100,91 @@ public class GoldenItemToGold {
     }
 
     public static void regGoldenToolsToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 3), new Object[]{Items.golden_axe});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 2), new Object[]{Items.golden_hoe});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 3), new Object[]{Items.golden_pickaxe});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 1), new Object[]{Items.golden_shovel});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 2), new Object[]{Items.golden_sword});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 3), new Object[]{Items.GOLDEN_AXE});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 2), new Object[]{Items.GOLDEN_HOE});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 3), new Object[]{Items.GOLDEN_PICKAXE});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 1), new Object[]{Items.GOLDEN_SHOVEL});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 2), new Object[]{Items.GOLDEN_SWORD});
     }
 
     public static void regGoldenArmorsToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 5), new Object[]{Items.golden_helmet});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 8), new Object[]{Items.golden_chestplate});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 7), new Object[]{Items.golden_leggings});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 4), new Object[]{Items.golden_boots});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 6), new Object[]{Items.golden_horse_armor});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 5), new Object[]{Items.GOLDEN_HELMET});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 8), new Object[]{Items.GOLDEN_CHESTPLATE});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 7), new Object[]{Items.GOLDEN_LEGGINGS});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 4), new Object[]{Items.GOLDEN_BOOTS});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 6), new Object[]{Items.GOLDEN_HORSE_ARMOR});
     }
 
     public static void regClockToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 4), new Object[]{Items.clock});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 4), new Object[]{Items.CLOCK});
     }
 
     public static void regPressurePlateToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 2), new Object[]{Blocks.light_weighted_pressure_plate});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 2), new Object[]{Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE});
     }
 
     public static void regPowerRailToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.gold_ingot, 1), new Object[]{Blocks.golden_rail});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 1), new Object[]{Blocks.GOLDEN_RAIL});
     }
 
     public static void regGoldenToolsToGoldN() {
-        GameRegistry.addSmelting(Items.golden_axe, new ItemStack(Items.gold_ingot, 3), 3.0F);
-        GameRegistry.addSmelting(Items.golden_hoe, new ItemStack(Items.gold_ingot, 2), 2.0F);
-        GameRegistry.addSmelting(Items.golden_pickaxe, new ItemStack(Items.gold_ingot, 3), 3.0F);
-        GameRegistry.addSmelting(Items.golden_shovel, new ItemStack(Items.gold_ingot, 1), 1.0F);
-        GameRegistry.addSmelting(Items.golden_sword, new ItemStack(Items.gold_ingot, 2), 2.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_AXE, new ItemStack(Items.GOLD_INGOT, 3), 3.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_HOE, new ItemStack(Items.GOLD_INGOT, 2), 2.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_PICKAXE, new ItemStack(Items.GOLD_INGOT, 3), 3.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_SHOVEL, new ItemStack(Items.GOLD_INGOT, 1), 1.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_SWORD, new ItemStack(Items.GOLD_INGOT, 2), 2.0F);
     }
 
     public static void regGoldenArmorsToGoldN() {
-        GameRegistry.addSmelting(Items.golden_helmet, new ItemStack(Items.gold_ingot, 5), 2.5F);
-        GameRegistry.addSmelting(Items.golden_chestplate, new ItemStack(Items.gold_ingot, 8), 4.0F);
-        GameRegistry.addSmelting(Items.golden_leggings, new ItemStack(Items.gold_ingot, 7), 3.5F);
-        GameRegistry.addSmelting(Items.golden_boots, new ItemStack(Items.gold_ingot, 4), 2.0F);
-        GameRegistry.addSmelting(Items.golden_horse_armor, new ItemStack(Items.gold_ingot, 6), 3.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_HELMET, new ItemStack(Items.GOLD_INGOT, 5), 2.5F);
+        GameRegistry.addSmelting(Items.GOLDEN_CHESTPLATE, new ItemStack(Items.GOLD_INGOT, 8), 4.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_LEGGINGS, new ItemStack(Items.GOLD_INGOT, 7), 3.5F);
+        GameRegistry.addSmelting(Items.GOLDEN_BOOTS, new ItemStack(Items.GOLD_INGOT, 4), 2.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_HORSE_ARMOR, new ItemStack(Items.GOLD_INGOT, 6), 3.0F);
     }
 
     public static void regClockToGoldN() {
-        GameRegistry.addSmelting(Items.clock, new ItemStack(Items.gold_ingot, 4), 2.0F);
+        GameRegistry.addSmelting(Items.CLOCK, new ItemStack(Items.GOLD_INGOT, 4), 2.0F);
     }
 
     public static void regPressurePlateToGoldN() {
-        GameRegistry.addSmelting(Blocks.light_weighted_pressure_plate, new ItemStack(Items.gold_ingot, 2), 1.0F);
+        GameRegistry.addSmelting(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE, new ItemStack(Items.GOLD_INGOT, 2), 1.0F);
     }
 
     public static void regPowerRailToGoldN() {
-        GameRegistry.addSmelting(Blocks.golden_rail, new ItemStack(Items.gold_ingot, 1), 0.15F);
+        GameRegistry.addSmelting(Blocks.GOLDEN_RAIL, new ItemStack(Items.GOLD_INGOT, 1), 0.15F);
     }
 
     public static void regGoldenToolsToGoldH() {
-        GameRegistry.addSmelting(Items.golden_axe, new ItemStack(Items.gold_ingot, 2), 3.0F);
-        GameRegistry.addSmelting(Items.golden_hoe, new ItemStack(Items.gold_ingot, 1), 2.0F);
-        GameRegistry.addSmelting(Items.golden_pickaxe, new ItemStack(Items.gold_ingot, 2), 3.0F);
-        GameRegistry.addSmelting(Items.golden_shovel, new ItemStack(Items.gold_nugget, 5), 1.0F);
-        GameRegistry.addSmelting(Items.golden_sword, new ItemStack(Items.gold_ingot, 1), 2.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_AXE, new ItemStack(Items.GOLD_INGOT, 2), 3.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_HOE, new ItemStack(Items.GOLD_INGOT, 1), 2.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_PICKAXE, new ItemStack(Items.GOLD_INGOT, 2), 3.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_SHOVEL, new ItemStack(Items.GOLD_NUGGET, 5), 1.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_SWORD, new ItemStack(Items.GOLD_INGOT, 1), 2.0F);
     }
 
     public static void regGoldenArmorsToGoldH() {
-        GameRegistry.addSmelting(Items.golden_helmet, new ItemStack(Items.gold_ingot, 2), 2.5F);
-        GameRegistry.addSmelting(Items.golden_chestplate, new ItemStack(Items.gold_ingot, 4), 4.0F);
-        GameRegistry.addSmelting(Items.golden_leggings, new ItemStack(Items.gold_ingot, 3), 3.5F);
-        GameRegistry.addSmelting(Items.golden_boots, new ItemStack(Items.gold_ingot, 2), 2.0F);
-        GameRegistry.addSmelting(Items.golden_horse_armor, new ItemStack(Items.gold_ingot, 3), 3.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_HELMET, new ItemStack(Items.GOLD_INGOT, 2), 2.5F);
+        GameRegistry.addSmelting(Items.GOLDEN_CHESTPLATE, new ItemStack(Items.GOLD_INGOT, 4), 4.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_LEGGINGS, new ItemStack(Items.GOLD_INGOT, 3), 3.5F);
+        GameRegistry.addSmelting(Items.GOLDEN_BOOTS, new ItemStack(Items.GOLD_INGOT, 2), 2.0F);
+        GameRegistry.addSmelting(Items.GOLDEN_HORSE_ARMOR, new ItemStack(Items.GOLD_INGOT, 3), 3.0F);
     }
 
     public static void regClockToGoldH() {
-        GameRegistry.addSmelting(Items.clock, new ItemStack(Items.gold_ingot, 2), 2.0F);
+        GameRegistry.addSmelting(Items.CLOCK, new ItemStack(Items.GOLD_INGOT, 2), 2.0F);
     }
 
     public static void regPressurePlateToGoldH() {
-        GameRegistry.addSmelting(Blocks.light_weighted_pressure_plate, new ItemStack(Items.gold_ingot, 1), 1.0F);
+        GameRegistry.addSmelting(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE, new ItemStack(Items.GOLD_INGOT, 1), 1.0F);
     }
 
     public static void regPowerRailToGoldH() {
-        GameRegistry.addSmelting(Blocks.golden_rail, new ItemStack(Items.gold_nugget, 5), 0.15F);
+        GameRegistry.addSmelting(Blocks.GOLDEN_RAIL, new ItemStack(Items.GOLD_NUGGET, 5), 0.15F);
     }
 
     /** Called only when Railcraft mod is installed.*/
     public static void regRailcraftPowerRailToGold() {
-        GameRegistry.addSmelting(Blocks.golden_rail, new ItemStack(Items.gold_nugget, 2), 0.1F);
+        GameRegistry.addSmelting(Blocks.GOLDEN_RAIL, new ItemStack(Items.GOLD_NUGGET, 2), 0.1F);
     }
 }

@@ -62,7 +62,7 @@ public final class GoldenSkull {
 
     @SubscribeEvent
     public void eatApple(LivingEntityUseItemEvent.Start event) {
-        if (event.getItem().getItem() != Items.golden_apple || !(event.getEntityLiving() instanceof EntityPlayer)) {
+        if (event.getItem().getItem() != Items.GOLDEN_APPLE || !(event.getEntityLiving() instanceof EntityPlayer)) {
             return;
         }
 
@@ -93,7 +93,7 @@ public final class GoldenSkull {
         private final ItemStack sample;
 
         private SkullRecipe() {
-            this.sample = new ItemStack(Items.golden_apple);
+            this.sample = new ItemStack(Items.GOLDEN_APPLE);
             NBTTagCompound tag = this.sample.getTagCompound();
             tag.setByte("golden_skull", (byte) 1);
         }
@@ -115,12 +115,12 @@ public final class GoldenSkull {
                     }
                     ItemStack stack = grid.getStackInRowAndColumn(i, j);
                     if (i == 1 && j == 1) {
-                        if (stack.getItem() != Items.skull || stack.getItemDamage() != 3) {
+                        if (stack.getItem() != Items.SKULL || stack.getItemDamage() != 3) {
                             return null;
                         }
                         outputHead.setTagCompound(stack.getTagCompound());
                     } else {
-                        if (!OreDictionary.itemMatches(stack, new ItemStack(Items.gold_ingot), false)) {
+                        if (!OreDictionary.itemMatches(stack, new ItemStack(Items.GOLD_INGOT), false)) {
                             return null;
                         }
                     }

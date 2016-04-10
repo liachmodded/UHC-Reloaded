@@ -44,8 +44,8 @@ import java.util.List;
 
 public class Misc {
 
-    public static final String MODID = "uhcreloaded";
-    public static final String NAME = "UltraHardcore-Mode: Reloaded";
+    public static final String MODID = "com.github.liachmodded.uhcreloaded.forge";
+    public static final String NAME = "UltraHardcore:Reloaded";
     public static final String VERSION = "0.1-SNAPSHOT";
 
     public static String translate(String tag) {
@@ -63,7 +63,7 @@ public class Misc {
      * @return The stack of skull with one item inside
      */
     public static ItemStack getSkullFromOwner(GameProfile owner) {
-        ItemStack skull = new ItemStack(Items.skull, 1, 3);
+        ItemStack skull = new ItemStack(Items.SKULL, 1, 3);
 
         NBTTagCompound tag = skull.getSubCompound("SkullOwner", true);
         NBTUtil.writeGameProfile(tag, owner);
@@ -78,7 +78,7 @@ public class Misc {
      * @return The name of player, empty if invalid
      */
     public static String getOwnerFromSkull(ItemStack skull) {
-        if (skull.getItem() != Items.skull) {
+        if (skull.getItem() != Items.SKULL) {
             return "";
         }
         if (!skull.hasTagCompound()) {

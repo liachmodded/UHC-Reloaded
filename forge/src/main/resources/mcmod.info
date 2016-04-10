@@ -1,15 +1,15 @@
 [
 {
-  "modid": “UHCReload”,
-  "name": "UltraHardcore-Mode MOD Reload",
+  "modid": "uhcreloaded",
+  "name": "UltraHardcore:Reloaded",
   "version": "$version",
   "mcversion": "$mcversion",
-  "description": “A Forge-compatible UltraHardcore MOD!”,
-  "credits": "Code by 3TUSK”,
+  "description": "A Forge-compatible UltraHardcore MOD!",
+  "credits": "3TUSK, liach",
   "logoFile": "",
   "url": "",
   "updateUrl": "",
-  "authorList": [ “3tusk” ],
+  "authorList": [ "3tusk", "liach" ],
   "parent":"",
   "screenshots": [],
   "dependencies": []

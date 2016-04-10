@@ -17,8 +17,8 @@ commands.uhcreloaded.error.unknown=Error: Unknown errors... please report to the
 item.uhcreloaded.skullapple.name=Golden Skull
 item.uhcreloaded.ownedskull.name=Golden Skull of %s
 
-message.uhcreloaded.apple.enchanted=Eating enchanted golden apple not allowed!
+message.uhcreloaded.apple.enchanted=Eating enchanted golden apple is not allowed!
 
-mod.uhcreloaded.name=UHC-Reloaded
+mod.uhcreloaded.name=UltraHardcore:Reloaded
 
 tooltip.uhcreloaded.skull=It's said that eating a skull of a fallen foe will strength your blood.

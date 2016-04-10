@@ -38,24 +38,24 @@ public class ModdedGoldenStuff {
 
     public static void removeEnhancedGoldenApple() {
         if (!ConfigHandler.allowEnchantedGoldenApple) {
-            Misc.removeRecipe(new ItemStack(Items.golden_apple, 1, 1));
+            Misc.removeRecipe(new ItemStack(Items.GOLDEN_APPLE, 1, 1));
         }
     }
 
     public static void harderGoldenCarrot() {
         if (ConfigHandler.harderGoldenCarrot) {
-            Misc.removeRecipe(new ItemStack(Items.golden_carrot));
-            GameRegistry.addShapedRecipe(new ItemStack(Items.golden_carrot),
-                    "GGG", "GCG", "GGG", 'G', Items.gold_ingot, 'C', Items.carrot);
+            Misc.removeRecipe(new ItemStack(Items.GOLDEN_CARROT));
+            GameRegistry.addShapedRecipe(new ItemStack(Items.GOLDEN_CARROT),
+                    "GGG", "GCG", "GGG", 'G', Items.GOLD_INGOT, 'C', Items.CARROT);
         }
     }
 
     public static void harderGlisteringMelon() {
         if (ConfigHandler.harderGlisteringMelon) {
-            Misc.removeRecipe(new ItemStack(Items.speckled_melon));
+            Misc.removeRecipe(new ItemStack(Items.SPECKLED_MELON));
             GameRegistry.addShapelessRecipe(
-                    new ItemStack(Items.speckled_melon),
-                    Items.melon, Blocks.gold_block);
+                    new ItemStack(Items.SPECKLED_MELON),
+                    Items.MELON, Blocks.GOLD_BLOCK);
         }
     }
 

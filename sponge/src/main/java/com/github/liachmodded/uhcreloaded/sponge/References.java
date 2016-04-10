@@ -27,8 +27,8 @@ package com.github.liachmodded.uhcreloaded.sponge;
 
 public final class References {
 
-    public static final String PLUGIN_ID = "com.github.liachmodded.uhcreloaded";
-    public static final String NAME = "UltraHardcore-Mode: Reloaded";
+    public static final String PLUGIN_ID = "com.github.liachmodded.uhcreloaded.sponge";
+    public static final String NAME = "UltraHardcore:Reloaded";
     public static final String DESCRIPTION = "%description%";
     public static final String VERSION = "0.1-SNAPSHOT";
 

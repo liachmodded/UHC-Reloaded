@@ -38,8 +38,8 @@ public class EnforceNoGhastTear {
     public void onGhastDropsTears(LivingDropsEvent event) {
         if (event.getEntityLiving() instanceof EntityGhast) {
             for (EntityItem item : event.getDrops()) {
-                if (item.getEntityItem().getItem() == Items.ghast_tear) {
-                    event.getEntityLiving().dropItem(Items.gold_ingot, item.getEntityItem().stackSize);
+                if (item.getEntityItem().getItem() == Items.GHAST_TEAR) {
+                    event.getEntityLiving().dropItem(Items.GOLD_INGOT, item.getEntityItem().stackSize);
                     item.setDead();
                 }
             }

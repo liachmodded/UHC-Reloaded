@@ -18,6 +18,7 @@ minecraft {
     version = project.forgeVersion
     runDir = "run"
     mappings = project.mappings
+    makeObfSourceJar = false
 }
 
 build.dependsOn setupCiWorkspace
