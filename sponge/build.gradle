@@ -1,5 +1,6 @@
 plugins {
     id "org.spongepowered.plugin" version "0.5.1"
+    id "net.ellune.blossom" version "1.0.1"
 }
 
 sourceCompatibility = '1.8'
@@ -26,7 +27,11 @@ dependencies {
 sponge.plugin.id = "com.github.liachmodded.uhcreloaded.sponge"
 tasks.getByPath(':sponge:jar').enabled = false
 
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+blossom {
+    //replaceToken '%description%', project.description, 'src/main/java/com/github/liachmodded/U.java'
+}
+
+//import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 shadowJar {
 //task pluginJar(type: ShadowJar) {

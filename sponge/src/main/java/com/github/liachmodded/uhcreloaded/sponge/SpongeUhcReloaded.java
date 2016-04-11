@@ -26,6 +26,10 @@
 package com.github.liachmodded.uhcreloaded.sponge;
 
 import com.google.inject.Inject;
+import net.minecrell.mcstats.SpongeStatsLite;
+import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.state.GameInitializationEvent;
+import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.plugin.Plugin;
 
 @Plugin(id = References.PLUGIN_ID,
@@ -39,8 +43,24 @@ public final class SpongeUhcReloaded {
     private static SpongeUhcReloaded instance;
 
     @Inject
+    private SpongeStatsLite statsLite;
+
+    @Inject
     private SpongeUhcReloaded() {
         instance = this;
+    }
+
+    public static SpongeUhcReloaded getInstance() {
+        return instance;
+    }
+
+    @Listener
+    public void onPreInit(GamePreInitializationEvent e) {
+        this.statsLite.start();
+    }
+
+    @Listener
+    public void onInit(GameInitializationEvent e) {
     }
 
 }
