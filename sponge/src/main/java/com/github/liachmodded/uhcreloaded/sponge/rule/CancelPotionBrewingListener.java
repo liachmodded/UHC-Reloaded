@@ -1,7 +1,7 @@
 /*
- * This file is part of UHC-Reloaded, licensed under MIT License (MIT).
+ * The MIT License (MIT)
  *
- * Copyright (c) 2015 liachmodded <http://github.com/liachmodded>
+ * Copyright (c) liachmodded <https://github.com/liachmodded>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.github.liachmodded.uhcreloaded.sponge.rule;
 
 import org.spongepowered.api.data.key.Keys;
