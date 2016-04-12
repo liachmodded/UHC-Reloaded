@@ -19,30 +19,34 @@ repositories {
 
 apply plugin: "org.spongepowered.plugin"
 
+configurations {
+    ship
+    compile.extendsFrom ship
+}
+
 dependencies {
     compile "org.spongepowered:spongeapi:${project.apiVersion}"
-    compile 'net.minecrell.mcstats:statslite-sponge:0.2.2'
+    ship 'net.minecrell.mcstats:statslite-sponge:0.2.2'
 }
 
-sponge.plugin.id = "com.github.liachmodded.uhcreloaded.sponge"
-tasks.getByPath(':sponge:jar').enabled = false
+sponge.plugin.id = project.id
+//tasks.getByPath(':sponge:jar').enabled = false
 
 blossom {
-    //replaceToken '%description%', project.description, 'src/main/java/com/github/liachmodded/U.java'
+    replaceToken '%id%', id, 'src/main/java/com/github/liachmodded/uhcreloaded/sponge/References.java'
+    replaceToken '%description%', description, 'src/main/java/com/github/liachmodded/uhcreloaded/sponge/References.java'
+    replaceToken '%version%', version, 'src/main/java/com/github/liachmodded/uhcreloaded/sponge/References.java'
 }
 
-//import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
-shadowJar {
-//task pluginJar(type: ShadowJar) {
-    classifier = ''
-    dependencies {
-        include(dependency('net.minecrell.mcstats:statslite-sponge:0.2.2'))
-    }
+task pluginJar(type: ShadowJar) {
+    classifier = 'all'
+    configurations = [configurations.ship]
     from sourceSets.main.output
 }
 
 artifacts {
-    archives shadowJar
-    //archives pluginJar
+    //archives shadowJar
+    archives pluginJar
 }

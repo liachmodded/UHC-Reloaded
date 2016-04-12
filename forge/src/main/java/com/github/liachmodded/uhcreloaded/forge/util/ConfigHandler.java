@@ -49,6 +49,7 @@ public class ConfigHandler {
     public static boolean allowUSHCCommand;
     public static boolean openEnderPearlFallingDamage;
     public static boolean playerDropSkull;
+    public static boolean easierSkeleton;
 
     public static void initConfig(File file) {
         Configuration config = new Configuration(file);
@@ -89,6 +90,8 @@ public class ConfigHandler {
                 "Set true if you want ender pearl to cause 2.5 heart falling damage as in vanilla.");
         playerDropSkull = config.getBoolean("PlayerDropSkull", CUSTOM_RULES, true,
                 "Set to false if you don't want excess skull or some other mod drops it.");
+        easierSkeleton = config.getBoolean("EasierSkeleton", CUSTOM_RULES, false,
+                "Set to true if you want stupid old skeleton AIs.");
 
         config.save();
     }

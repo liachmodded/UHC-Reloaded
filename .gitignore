@@ -24,3 +24,4 @@ out/
 *.iws
 gradle-app.setting
 classes/
+*.hprof

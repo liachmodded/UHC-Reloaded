@@ -25,11 +25,17 @@
 
 package com.github.liachmodded.uhcreloaded.sponge;
 
+import com.github.liachmodded.uhcreloaded.sponge.rule.CancelPotionBrewingListener;
+import com.github.liachmodded.uhcreloaded.sponge.rule.GhastTearToGoldListener;
+import com.github.liachmodded.uhcreloaded.sponge.rule.GoldenAppleRecipeRemover;
 import com.google.inject.Inject;
-import net.minecrell.mcstats.SpongeStatsLite;
+import org.spongepowered.api.Game;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.Order;
+import org.spongepowered.api.event.block.tileentity.BrewingEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
+import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.plugin.Plugin;
 
 @Plugin(id = References.PLUGIN_ID,
@@ -42,8 +48,10 @@ public final class SpongeUhcReloaded {
 
     private static SpongeUhcReloaded instance;
 
+    //@Inject
+    //private SpongeStatsLite statsLite;
     @Inject
-    private SpongeStatsLite statsLite;
+    private Game game;
 
     @Inject
     private SpongeUhcReloaded() {
@@ -56,11 +64,18 @@ public final class SpongeUhcReloaded {
 
     @Listener
     public void onPreInit(GamePreInitializationEvent e) {
-        this.statsLite.start();
+        //this.statsLite.start();
     }
 
     @Listener
-    public void onInit(GameInitializationEvent e) {
+    public void onInit(GameInitializationEvent evt) {
+        this.game.getEventManager().registerListener(this, DropItemEvent.Pre.class, Order.FIRST, GhastTearToGoldListener.INSTANCE);
+        this.game.getEventManager().registerListener(this, BrewingEvent.Start.class, Order.FIRST, CancelPotionBrewingListener.INSTANCE);
+        try {
+            GoldenAppleRecipeRemover.INSTANCE.accept(this.game.getRegistry().getRecipeRegistry());
+        } catch (UnsupportedOperationException e) {
+            // Default...
+        }
     }
 
 }

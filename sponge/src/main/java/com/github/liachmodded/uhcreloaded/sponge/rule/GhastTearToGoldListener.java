@@ -25,8 +25,7 @@
 
 package com.github.liachmodded.uhcreloaded.sponge.rule;
 
-import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
+import org.spongepowered.api.event.EventListener;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -37,19 +36,19 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by liach on 4/3/2016.
+ * A Ghast tear handler.
  *
  * @author liach
  */
-public final class GhastTearToGold {
+public final class GhastTearToGoldListener implements EventListener<DropItemEvent.Pre> {
 
-    private static final GhastTearToGold INSTANCE = new GhastTearToGold();
+    public static final GhastTearToGoldListener INSTANCE = new GhastTearToGoldListener();
 
-    private GhastTearToGold() {
+    private GhastTearToGoldListener() {
     }
 
-    @Listener
-    public void onItemSpawn(DropItemEvent.Pre e) {
+    @Override
+    public void handle(DropItemEvent.Pre e) throws Exception {
         List<ItemStackSnapshot> itemStackSnapshots = new ArrayList<>();
         Iterator<ItemStackSnapshot> itr = e.getDroppedItems().iterator();
         while (itr.hasNext()) {

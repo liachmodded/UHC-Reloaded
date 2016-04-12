@@ -17,7 +17,7 @@ allprojects {
     apply plugin: "net.minecrell.licenser"
     apply plugin: "com.github.johnrengelman.shadow"
 
-    group = 'mod.uhcreloaded'
+    group = 'com.github.liachmodded.uhcreloaded'
     version = '0.1-SNAPSHOT'
     archivesBaseName = rootProject.name + '-' + project.name
     //version = project.version
@@ -29,7 +29,7 @@ allprojects {
 
     configurations {
         provided
-        compile.extendsFrom configurations.shadow
+        compile.extendsFrom shadow
     }
 
     sourceSets {
@@ -123,5 +123,3 @@ dependencies {
 
 task setup(type: DefaultTask, dependsOn: 'forge:setupDecompWorkspace') {
 }
-
-tasks.getByPath(':setup').dependsOn(tasks.getByPath(':sponge:assemble'))

@@ -34,6 +34,7 @@ package com.github.liachmodded.uhcreloaded.forge;
 
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.allowCraftingGoldenSkull;
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.allowGhastTear;
+import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.easierSkeleton;
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.initConfig;
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.openEnderPearlFallingDamage;
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.playerDropSkull;
@@ -47,6 +48,7 @@ import com.github.liachmodded.uhcreloaded.forge.commands.CommandUhcMode;
 import com.github.liachmodded.uhcreloaded.forge.commands.CommandUshcMode;
 import com.github.liachmodded.uhcreloaded.forge.rule.CancelEnderPearlDamage;
 import com.github.liachmodded.uhcreloaded.forge.rule.CancelPotionBrewing;
+import com.github.liachmodded.uhcreloaded.forge.rule.EasierSkeleton;
 import com.github.liachmodded.uhcreloaded.forge.rule.EnforceNoGhastTear;
 import com.github.liachmodded.uhcreloaded.forge.rule.GoldenItemToGold;
 import com.github.liachmodded.uhcreloaded.forge.rule.GoldenSkull;
@@ -91,6 +93,10 @@ public class UhcReloaded {
         registerBus(GoldenSkull.INSTANCE);
         if (allowCraftingGoldenSkull) {
             GoldenSkull.SkullRecipe.INSTANCE.registerRecipe();
+        }
+
+        if (easierSkeleton) {
+            registerBus(new EasierSkeleton());
         }
 
         GoldenItemToGold.regUncraftingGoldenToolsAndArmor();

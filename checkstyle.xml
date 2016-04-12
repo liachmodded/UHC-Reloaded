@@ -92,8 +92,6 @@
         <module name="ModifierOrder"/>
         <module name="EmptyLineSeparator">
             <property name="allowNoEmptyLineBetweenFields" value="true"/>
-
-            <!-- TODO: This is disabled for package because the Gradle License plugin doesn't create a new line after the license header, do we want to enable this? -->
             <property name="tokens" value="IMPORT, CLASS_DEF, ENUM_DEF, INTERFACE_DEF, CTOR_DEF, METHOD_DEF, STATIC_INIT, INSTANCE_INIT, VARIABLE_DEF"/>
 
         </module>
