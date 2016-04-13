@@ -41,12 +41,17 @@ blossom {
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 task pluginJar(type: ShadowJar) {
-    classifier = 'all'
+    classifier = 'plugin'
+    configurations = [configurations.ship]
+    from sourceSets.main.output
+}
+
+shadowJar {
     configurations = [configurations.ship]
     from sourceSets.main.output
 }
 
 artifacts {
-    //archives shadowJar
+    archives shadowJar
     archives pluginJar
 }

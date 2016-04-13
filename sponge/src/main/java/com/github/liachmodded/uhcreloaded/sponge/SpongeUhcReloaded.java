@@ -29,6 +29,7 @@ import com.github.liachmodded.uhcreloaded.sponge.rule.CancelPotionBrewingListene
 import com.github.liachmodded.uhcreloaded.sponge.rule.GhastTearToGoldListener;
 import com.github.liachmodded.uhcreloaded.sponge.rule.GoldenAppleRecipeRemover;
 import com.google.inject.Inject;
+import net.minecrell.mcstats.SpongeStatsLite;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
@@ -48,8 +49,8 @@ public final class SpongeUhcReloaded {
 
     private static SpongeUhcReloaded instance;
 
-    //@Inject
-    //private SpongeStatsLite statsLite;
+    @Inject
+    private SpongeStatsLite statsLite;
     @Inject
     private Game game;
 
@@ -64,7 +65,7 @@ public final class SpongeUhcReloaded {
 
     @Listener
     public void onPreInit(GamePreInitializationEvent e) {
-        //this.statsLite.start();
+        this.statsLite.start();
     }
 
     @Listener
