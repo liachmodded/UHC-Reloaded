@@ -47,7 +47,7 @@ task pluginJar(type: ShadowJar) {
 }
 
 shadowJar {
-    configurations = [configurations.ship]
+    configurations = [project.configurations.ship]
     from sourceSets.main.output
 }
 
