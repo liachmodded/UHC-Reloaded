@@ -36,6 +36,8 @@ import org.spongepowered.api.item.ItemTypes;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.Nonnull;
+
 /**
  * An event handler which cancels certain potion brewing.
  */
@@ -47,18 +49,20 @@ public final class CancelPotionBrewingListener implements EventListener<BrewingE
     }
 
     @Override
-    public void handle(BrewingEvent.Start event) throws Exception {
+    public void handle(@Nonnull BrewingEvent.Start event) throws Exception {
         event.filter(stack -> {
             if (stack.supports(Keys.IS_SPLASH_POTION)) {
-                return false;
+                Optional<Boolean> splashPotion = stack.get(Keys.IS_SPLASH_POTION);
+                if (splashPotion.isPresent() && splashPotion.get()) {
+                    return false;
+                }
             }
             if (stack.supports(Keys.POTION_EFFECTS)) {
                 Optional<List<PotionEffect>> optPotions = stack.get(Keys.POTION_EFFECTS);
                 if (!optPotions.isPresent()) {
                     return true;
                 }
-                List<PotionEffect> potions = optPotions.get();
-                for (PotionEffect effect : potions) {
+                for (PotionEffect effect : optPotions.get()) {
                     if (effect.getType() == PotionEffectTypes.REGENERATION) {
                         return false;
                     }
@@ -69,18 +73,6 @@ public final class CancelPotionBrewingListener implements EventListener<BrewingE
             }
             return true;
         });
-        ItemType type = event.getIngredient().getType();
-        if (type == ItemTypes.GHAST_TEAR) {
-            event.setCancelled(true);
-            return;
-        }
-        if (type == ItemTypes.GLOWSTONE_DUST) {
-            event.setCancelled(true);
-            return;
-        }
-        if (type == ItemTypes.GUNPOWDER) {
-            event.setCancelled(true);
-        }
     }
 
 }

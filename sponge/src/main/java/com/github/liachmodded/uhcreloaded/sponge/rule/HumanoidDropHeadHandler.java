@@ -25,6 +25,7 @@
 
 package com.github.liachmodded.uhcreloaded.sponge.rule;
 
+import javafx.event.EventHandler;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.type.SkullTypes;
 import org.spongepowered.api.entity.Entity;
@@ -35,6 +36,7 @@ import org.spongepowered.api.entity.living.Humanoid;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
+import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -54,33 +56,18 @@ public final class HumanoidDropHeadHandler {
     }
 
     @Listener
-    public void onEvent(DestructEntityEvent.Death event) {
+    public void onEvent(DestructEntityEvent.Death event, @First Player killer) {
         if (!(event.getTargetEntity() instanceof Player)) {
             return;
         }
-        Player player = (Player) event.getTargetEntity();
+        Player dead = (Player) event.getTargetEntity();
         ItemStack itemStack = ItemStack.builder()
                 .itemType(ItemTypes.SKULL)
                 .quantity(1)
                 .add(Keys.SKULL_TYPE, SkullTypes.PLAYER)
-                .add(Keys.REPRESENTED_PLAYER, player.getProfile())
+                .add(Keys.REPRESENTED_PLAYER, dead.getProfile())
                 .build();
-        ItemStackSnapshot itemStackSnapshot = itemStack.createSnapshot();
-        EntitySnapshot snapshot = EntitySnapshot.builder()
-                .type(EntityTypes.ITEM)
-                .position(player.getTransform().getPosition())
-                .world(player.getWorld().getProperties())
-                .build();
-        Optional<Entity> optEntity = snapshot.restore();
-        if (!optEntity.isPresent()) {
-            throw new RuntimeException();
-        }
-        Entity entity = optEntity.get();
-        if (!(entity instanceof Item)) {
-            throw new RuntimeException();
-        }
-        Item item = (Item) entity;
-        item.offer(Keys.REPRESENTED_ITEM, itemStackSnapshot);
+        killer.getInventory().offer(itemStack);
     }
 
 }

@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * A Ghast tear handler.
  *
@@ -48,7 +50,7 @@ public final class GhastTearToGoldListener implements EventListener<DropItemEven
     }
 
     @Override
-    public void handle(DropItemEvent.Pre e) throws Exception {
+    public void handle(@Nonnull DropItemEvent.Pre e) throws Exception {
         List<ItemStackSnapshot> itemStackSnapshots = new ArrayList<>();
         Iterator<ItemStackSnapshot> itr = e.getDroppedItems().iterator();
         while (itr.hasNext()) {
