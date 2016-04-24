@@ -25,6 +25,7 @@
 
 package com.github.liachmodded.uhcreloaded.forge.rule;
 
+import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.init.Items;
@@ -36,6 +37,9 @@ public class EnforceNoGhastTear {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onGhastDropsTears(LivingDropsEvent event) {
+        if (!ScopeManager.handle(event)) {
+            return;
+        }
         if (event.getEntityLiving() instanceof EntityGhast) {
             for (EntityItem item : event.getDrops()) {
                 if (item.getEntityItem().getItem() == Items.GHAST_TEAR) {

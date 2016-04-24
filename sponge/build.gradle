@@ -1,6 +1,7 @@
 plugins {
     id "org.spongepowered.plugin" version "0.5.1"
     id "net.ellune.blossom" version "1.0.1"
+    id "com.qixalite.spongestart" version "1.4.3"
 }
 
 sourceCompatibility = '1.8'
@@ -26,10 +27,11 @@ configurations {
 
 dependencies {
     compile "org.spongepowered:spongeapi:${project.apiVersion}"
-    ship 'net.minecrell.mcstats:statslite-sponge:0.2.2'
+    compile 'net.minecrell.mcstats:statslite-sponge:0.2.2'
 }
 
 sponge.plugin.id = project.id
+spongestart.eula true
 //tasks.getByPath(':sponge:jar').enabled = false
 
 blossom {
@@ -42,16 +44,13 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 task pluginJar(type: ShadowJar) {
     classifier = 'plugin'
-    configurations = [configurations.ship]
-    from sourceSets.main.output
-}
-
-shadowJar {
-    configurations = [project.configurations.ship]
+    //configurations = [project.configurations.ship]
+    dependencies {
+        include(dependency('net.minecrell.mcstats:statslite-sponge:0.2.2'))
+    }
     from sourceSets.main.output
 }
 
 artifacts {
-    archives shadowJar
     archives pluginJar
 }

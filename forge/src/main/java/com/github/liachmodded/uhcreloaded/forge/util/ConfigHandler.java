@@ -40,9 +40,10 @@ public class ConfigHandler {
     public static boolean allowCraftingGoldenSkull;
     public static boolean harderGoldenCarrot;
     public static boolean harderGlisteringMelon;
-    public static boolean allowBrewingPotionLevelII;
+    public static int brewingPotionMaxLevel;
     public static boolean allowBrewingPotionRegen;
     public static boolean allowBrewingPotionSplash;
+    public static boolean allowBrewingPotionLingering;
     public static boolean allowEnchantedGoldenApple;
     public static boolean allowGhastTear;
     public static boolean allowGoldenAppleRegen;
@@ -71,12 +72,14 @@ public class ConfigHandler {
         uncraftingDifficulty = config.getInt("UncraftingGoldenItems", CRAFT, 1, 0, 3,
                 "Variable difficulty of uncrafting your golden tools or armors.");
 
-        allowBrewingPotionLevelII = config.getBoolean("AllowBrewingLevelIIPotion", CUSTOM_RULES, false,
-                "set true if you want level II potion.");
+        brewingPotionMaxLevel = config.getInt("BrewingPotionMaxLevel", CUSTOM_RULES, 1, 0, 128,
+                "set to the maximum level of potion allowed to brew.");
         allowBrewingPotionRegen = config.getBoolean("AllowBrewingRegenerationPotion", CUSTOM_RULES, false,
                 "set true if you want regeneration potion, maybe it's for special loot.");
         allowBrewingPotionSplash = config.getBoolean("AllowBrewingSplashPotion", CUSTOM_RULES, false,
                 "set true if you want splash potion.");
+        allowBrewingPotionLingering = config.getBoolean("AllowBrewingLingeringPotion", CUSTOM_RULES, false,
+                "set true if you want lingering potion.");
         allowEnchantedGoldenApple = config.getBoolean("AllowCraftingEnchantedGoldenApple", CUSTOM_RULES, false,
                 "set true if you want to allow player crafting enchanted golden apple.");
         allowGhastTear = config.getBoolean("AllowGhastDropGhastTear", CUSTOM_RULES, false,

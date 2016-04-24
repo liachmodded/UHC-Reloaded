@@ -26,36 +26,60 @@
 package com.github.liachmodded.uhcreloaded.forge.rule;
 
 import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
-import net.minecraft.init.Items;
+import com.github.liachmodded.uhcreloaded.forge.util.Misc;
+import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemLingeringPotion;
+import net.minecraft.item.ItemPotion;
+import net.minecraft.item.ItemSplashPotion;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionUtils;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.brewing.PotionBrewEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.List;
 
 /**
  * Will be replaced by the brewing registry system.
  */
 public class CancelPotionBrewing {
 
+    public static final CancelPotionBrewing INSTANCE = new CancelPotionBrewing();
+
+    private CancelPotionBrewing() {
+    }
+
     @SubscribeEvent
     public void cancelCertainPotionBrewing(PotionBrewEvent.Pre evt) {
+        ItemStack modifier = evt.getItem(3);
+        if (Misc.isValid(modifier)) {
+            return;
+        }
         for (int i = 0; i < evt.getLength(); i++) {
             ItemStack stack = evt.getItem(i);
-            if (stack != null) {
-                if (stack.getItem().equals(Items.GHAST_TEAR)) {
-                    if (!ConfigHandler.allowBrewingPotionRegen) {
+            if (Misc.isValid(stack)) {
+                ItemStack output = BrewingRecipeRegistry.getOutput(stack, modifier);
+                if (Misc.isValid(output) && output.getItem() instanceof ItemPotion) {
+                    if (!ConfigHandler.allowBrewingPotionSplash && output.getItem() instanceof ItemSplashPotion) {
                         evt.setCanceled(true);
+                        return;
                     }
-                }
-
-                if (stack.getItem().equals(Items.GUNPOWDER)) {
-                    if (!ConfigHandler.allowBrewingPotionSplash) {
+                    if (!ConfigHandler.allowBrewingPotionLingering && output.getItem() instanceof ItemLingeringPotion) {
                         evt.setCanceled(true);
+                        return;
                     }
-                }
-
-                if (stack.getItem().equals(Items.GLOWSTONE_DUST)) {
-                    if (!ConfigHandler.allowBrewingPotionLevelII) {
-                        evt.setCanceled(true);
+                    List<PotionEffect> potionEffects = PotionUtils.getEffectsFromStack(output);
+                    for (PotionEffect effect : potionEffects) {
+                        if (effect.getAmplifier() > ConfigHandler.brewingPotionMaxLevel) {
+                            evt.setCanceled(true);
+                            return;
+                        }
+                        if (!ConfigHandler.allowBrewingPotionRegen && effect.getPotion() == MobEffects.REGENERATION) {
+                            evt.setCanceled(true);
+                            return;
+                        }
                     }
                 }
             }

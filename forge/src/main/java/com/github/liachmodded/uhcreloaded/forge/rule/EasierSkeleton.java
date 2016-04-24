@@ -25,6 +25,7 @@
 
 package com.github.liachmodded.uhcreloaded.forge.rule;
 
+import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIAttackRangedBow;
 import net.minecraft.entity.ai.EntityAITasks;
@@ -43,6 +44,9 @@ public class EasierSkeleton {
 
     @SubscribeEvent
     public void onSkeletonUpdate(LivingEvent.LivingUpdateEvent event) {
+        if (!ScopeManager.handle(event)) {
+            return;
+        }
         if (!(event.getEntityLiving() instanceof EntitySkeleton)) {
             return;
         }

@@ -27,6 +27,7 @@ package com.github.liachmodded.uhcreloaded.forge.rule;
 
 import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
 import com.github.liachmodded.uhcreloaded.forge.util.Misc;
+import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -62,6 +63,9 @@ public class ModdedGoldenStuff {
     /** Make the player drop a skull. */
     @SubscribeEvent
     public void onPlayerDeath(PlayerDropsEvent e) {
+        if (!ScopeManager.handle(e)) {
+            return;
+        }
         e.getEntityPlayer().dropItem(
                 Misc.getSkullFromOwner(e.getEntityPlayer().getGameProfile()), true,
                 false);

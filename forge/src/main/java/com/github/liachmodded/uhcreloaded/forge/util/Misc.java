@@ -56,6 +56,10 @@ public class Misc {
         return I18n.translateToLocalFormatted(tag, format);
     }
 
+    public static boolean isValid(ItemStack stack) {
+        return stack != null && stack.getItem() != null;
+    }
+
     /**
      * The utility method to get the skull item stack from the player's name.
      *

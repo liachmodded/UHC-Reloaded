@@ -88,7 +88,7 @@ public class UhcReloaded {
         if (!openEnderPearlFallingDamage) {
             registerBus(new CancelEnderPearlDamage());
         }
-        registerBus(new CancelPotionBrewing());
+        registerBus(CancelPotionBrewing.INSTANCE);
 
         registerBus(GoldenSkull.INSTANCE);
         if (allowCraftingGoldenSkull) {

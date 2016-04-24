@@ -31,6 +31,7 @@ import static com.github.liachmodded.uhcreloaded.forge.util.Misc.translate;
 
 import com.github.liachmodded.uhcreloaded.forge.util.BasicRecipe;
 import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
+import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
@@ -62,6 +63,9 @@ public final class GoldenSkull {
 
     @SubscribeEvent
     public void eatApple(LivingEntityUseItemEvent.Start event) {
+        if (!ScopeManager.handle(event)) {
+            return;
+        }
         if (event.getItem().getItem() != Items.GOLDEN_APPLE || !(event.getEntityLiving() instanceof EntityPlayer)) {
             return;
         }
