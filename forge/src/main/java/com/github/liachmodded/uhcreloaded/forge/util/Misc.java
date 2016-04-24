@@ -152,4 +152,15 @@ public class Misc {
         MinecraftForge.EVENT_BUS.register(obj);
     }
 
+    @SuppressWarnings("unused")
+    public static String itemStackInfo(ItemStack stack) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Item: ");
+        sb.append(stack.getItem() == null ? "null" : stack.getItem().getRegistryName());
+        sb.append("; Amount: ");
+        sb.append(stack.stackSize);
+        sb.append(";");
+        return sb.toString();
+    }
+
 }

@@ -27,7 +27,7 @@ configurations {
 
 dependencies {
     compile "org.spongepowered:spongeapi:${project.apiVersion}"
-    compile 'net.minecrell.mcstats:statslite-sponge:0.2.2'
+    ship 'net.minecrell.mcstats:statslite-sponge:0.2.2'
 }
 
 sponge.plugin.id = project.id
@@ -44,13 +44,25 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 task pluginJar(type: ShadowJar) {
     classifier = 'plugin'
-    //configurations = [project.configurations.ship]
     dependencies {
         include(dependency('net.minecrell.mcstats:statslite-sponge:0.2.2'))
     }
     from sourceSets.main.output
 }
 
+task pluginJar2(type: ShadowJar) {
+    classifier = 'plugin2'
+    configurations = [project.configurations.ship]
+    from sourceSets.main.output
+}
+
+shadowJar {
+    configurations = [project.configurations.ship]
+    from sourceSets.main.output
+}
+
 artifacts {
     archives pluginJar
+    archives pluginJar2
+    archives shadowJar
 }
