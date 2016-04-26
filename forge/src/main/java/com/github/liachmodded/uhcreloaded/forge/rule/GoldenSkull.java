@@ -98,8 +98,9 @@ public final class GoldenSkull {
 
         private SkullRecipe() {
             this.sample = new ItemStack(Items.GOLDEN_APPLE);
-            NBTTagCompound tag = this.sample.getTagCompound();
+            NBTTagCompound tag = new NBTTagCompound();
             tag.setByte("golden_skull", (byte) 1);
+            this.sample.setTagCompound(tag);
         }
 
         /**
