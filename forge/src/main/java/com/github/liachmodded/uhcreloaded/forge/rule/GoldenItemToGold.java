@@ -92,7 +92,7 @@ public class GoldenItemToGold {
         regGoldenArmorsToGoldH();
         regClockToGoldH();
         regPressurePlateToGoldH();
-        if (Loader.isModLoaded("Railcraft")) {
+        if (Loader.isModLoaded("railcraft")) {
             regRailcraftPowerRailToGold();
         } else {
             regPowerRailToGoldH();

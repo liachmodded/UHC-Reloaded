@@ -34,19 +34,23 @@ import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
 import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -72,7 +76,7 @@ public final class GoldenSkull {
 
         EntityPlayer player = (EntityPlayer) event.getEntityLiving();
         if (ConfigHandler.antiCheatMode && event.getItem().getItemDamage() == 1) {
-            player.addChatMessage(new TextComponentString(translate("message.uhcreloaded.apple.enchanted")));
+            player.sendMessage(new TextComponentTranslation("message.uhcreloaded.apple.enchanted"));
             event.setCanceled(true);
             return;
         }
@@ -80,9 +84,9 @@ public final class GoldenSkull {
             return;
         }
         NBTTagCompound tag = event.getItem().getTagCompound();
-        if (tag.getByte("golden_skull") == 1) {
+        if (tag.getBoolean("golden_skull")) {
             player.addPotionEffect(new PotionEffect(
-                    Potion.getPotionById(6), 1, ConfigHandler.healAmountSkull - 4
+                    MobEffects.HEALTH_BOOST, 1, ConfigHandler.healAmountSkull - 4
             ));
         }
     }
@@ -110,28 +114,27 @@ public final class GoldenSkull {
          * @return The result of the recipe, or {@code null} if no matching.
          */
         @Override
-        @Nullable
-        public ItemStack getCraftingResult(InventoryCrafting grid) {
+        public ItemStack getCraftingResult(@Nonnull InventoryCrafting grid) {
             ItemStack outputHead = this.sample.copy();
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
-                    if (grid.getStackInRowAndColumn(i, j) == null) {
-                        return null;
+                    if (grid.getStackInRowAndColumn(i, j).isEmpty()) {
+                        return ItemStack.EMPTY;
                     }
                     ItemStack stack = grid.getStackInRowAndColumn(i, j);
                     if (i == 1 && j == 1) {
                         if (stack.getItem() != Items.SKULL || stack.getItemDamage() != 3) {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                         outputHead.setTagCompound(stack.getTagCompound());
                     } else {
                         if (!OreDictionary.itemMatches(stack, new ItemStack(Items.GOLD_INGOT), false)) {
-                            return null;
+                            return ItemStack.EMPTY;
                         }
                     }
                 }
             }
-            ArrayList<String> lore = new ArrayList<String>();
+            List<String> lore = new ArrayList<String>();
             lore.add(TextFormatting.ITALIC + translate("tooltip.uhcreloaded.skull"));
             outputHead = appendToolTip(outputHead, lore);
             if (!getOwnerFromSkull(outputHead).isEmpty()) {

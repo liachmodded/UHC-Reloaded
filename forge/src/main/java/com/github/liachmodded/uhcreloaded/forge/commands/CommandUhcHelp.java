@@ -39,7 +39,7 @@ public class CommandUhcHelp extends CommandBase {
     private static final String USAGE = "/uhchelp <banrule/banguideline>";
 
     @Override
-    public String getCommandName() {
+    public String getName() {
         return NAME;
     }
 
@@ -54,7 +54,7 @@ public class CommandUhcHelp extends CommandBase {
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return USAGE;
     }
 
@@ -64,11 +64,11 @@ public class CommandUhcHelp extends CommandBase {
         if (len == 1) {
             String arg = args[0];
             if (arg.equalsIgnoreCase("banrule") || arg.equalsIgnoreCase("banguideline")) {
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
-                sender.addChatMessage(new TextComponentString("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
+                sender.sendMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
+                sender.sendMessage(new TextComponentString("http://www.reddit.com/r/uhccourtroom/wiki/banguidelines"));
             } else {
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
-                sender.addChatMessage(new TextComponentString("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
+                sender.sendMessage(new TextComponentString(translate("commands.uhcreloaded.help1")));
+                sender.sendMessage(new TextComponentString("http://www.reddit.com/r/ultrahardcore/wiki/playerfaq"));
             }
         }
 

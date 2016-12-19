@@ -49,7 +49,7 @@ public final class CancelPotionBrewingListener implements EventListener<BrewingE
     }
 
     @Override
-    public void handle(@Nonnull BrewingEvent.Start event) throws Exception {
+    public void handle(BrewingEvent.Start event) {
         event.filter(stack -> {
             if (stack.supports(Keys.IS_SPLASH_POTION)) {
                 Optional<Boolean> splashPotion = stack.get(Keys.IS_SPLASH_POTION);

@@ -68,7 +68,7 @@ public class ScopeManager {
     }
 
     public boolean shouldHandle(EntityEvent event) {
-        return isGameWorld(event.getEntity().worldObj);
+        return isGameWorld(event.getEntity().world);
     }
 
     public boolean isGameWorld(World world) {

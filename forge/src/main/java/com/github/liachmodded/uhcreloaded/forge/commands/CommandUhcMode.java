@@ -41,7 +41,7 @@ public class CommandUhcMode extends CommandBase {
     private static final String USAGE = "/uhcmode <on/off>";
 
     @Override
-    public String getCommandName() {
+    public String getName() {
         return NAME;
     }
 
@@ -51,7 +51,7 @@ public class CommandUhcMode extends CommandBase {
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return USAGE;
     }
 
@@ -62,7 +62,7 @@ public class CommandUhcMode extends CommandBase {
         if (l == 1) {
             String mode = args[0];
             if (mode.equalsIgnoreCase("on")) {
-                for (int a = 0; a < mcServer.worldServers.length; a++) {
+                for (int a = 0; a < mcServer.worlds.length; a++) {
                     WorldInfo info = mcServer.worldServers[a].getWorldInfo();
                     GameRules gamerules = mcServer.worldServers[a].getGameRules();
                     info.setHardcore(true);

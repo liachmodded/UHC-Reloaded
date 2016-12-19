@@ -53,14 +53,11 @@ public class CancelPotionBrewing {
     @SubscribeEvent
     public void cancelCertainPotionBrewing(PotionBrewEvent.Pre evt) {
         ItemStack modifier = evt.getItem(3);
-        if (Misc.isValid(modifier)) {
-            return;
-        }
         for (int i = 0; i < evt.getLength(); i++) {
             ItemStack stack = evt.getItem(i);
-            if (Misc.isValid(stack)) {
+            if (!stack.isEmpty()) {
                 ItemStack output = BrewingRecipeRegistry.getOutput(stack, modifier);
-                if (Misc.isValid(output) && output.getItem() instanceof ItemPotion) {
+                if (output.getItem() instanceof ItemPotion) {
                     if (!ConfigHandler.allowBrewingPotionSplash && output.getItem() instanceof ItemSplashPotion) {
                         evt.setCanceled(true);
                         return;

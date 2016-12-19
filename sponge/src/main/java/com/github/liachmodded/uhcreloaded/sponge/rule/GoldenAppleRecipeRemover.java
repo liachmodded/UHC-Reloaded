@@ -26,9 +26,13 @@
 package com.github.liachmodded.uhcreloaded.sponge.rule;
 
 import org.spongepowered.api.item.ItemTypes;
+import org.spongepowered.api.item.recipe.Recipe;
 import org.spongepowered.api.item.recipe.RecipeRegistry;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * Created by liach on 4/11/2016.
@@ -44,11 +48,7 @@ public final class GoldenAppleRecipeRemover implements Consumer<RecipeRegistry> 
 
     @Override
     public void accept(RecipeRegistry recipeRegistry) {
-        recipeRegistry.getRecipes().forEach(recipe -> {
-            if (recipe.getResultTypes().contains(ItemTypes.GOLDEN_APPLE)) {
-                recipeRegistry.remove(recipe);
-            }
-        });
+        recipeRegistry.getRecipes().stream().filter(recipe -> recipe.getResultTypes().contains(ItemTypes.GOLDEN_APPLE)).forEach(recipeRegistry::remove);
     }
 
 }

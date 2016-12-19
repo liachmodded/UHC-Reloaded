@@ -26,6 +26,7 @@
 package com.github.liachmodded.uhcreloaded.forge.util;
 
 import com.mojang.authlib.GameProfile;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -36,28 +37,24 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class Misc {
 
-    public static final String MODID = "com.github.liachmodded.uhcreloaded.forge";
+    public static final String MODID = "uhcreloaded";
     public static final String NAME = "UltraHardcore:Reloaded";
     public static final String VERSION = "0.1-SNAPSHOT";
 
-    public static String translate(String tag) {
-        return I18n.translateToLocal(tag);
-    }
-
+    @SuppressWarnings("deprecation")
     public static String translate(String tag, Object... format) {
-        return I18n.translateToLocalFormatted(tag, format);
-    }
-
-    public static boolean isValid(ItemStack stack) {
-        return stack != null && stack.getItem() != null;
+        return net.minecraft.util.text.translation.I18n.translateToLocalFormatted(tag, format);
     }
 
     /**
@@ -69,10 +66,10 @@ public class Misc {
     public static ItemStack getSkullFromOwner(GameProfile owner) {
         ItemStack skull = new ItemStack(Items.SKULL, 1, 3);
 
-        NBTTagCompound tag = skull.getSubCompound("SkullOwner", true);
+        NBTTagCompound tag = skull.getOrCreateSubCompound("SkullOwner");
         NBTUtil.writeGameProfile(tag, owner);
 
-        return skull.copy();
+        return skull;
     }
 
     /**
@@ -107,7 +104,7 @@ public class Misc {
      * @param tooltip The list of tool tips to be added
      * @return The new item stack with these tool tip
      */
-    public static ItemStack appendToolTip(ItemStack stack, List<String> tooltip) {
+    public static ItemStack appendToolTip(ItemStack stack, Iterable<String> tooltip) {
         NBTTagCompound tag = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
         boolean needAppend = false;
         NBTTagCompound tag1;
@@ -138,14 +135,21 @@ public class Misc {
      * @param item The item whose recipe you want to remove
      */
     public static void removeRecipe(ItemStack item) {
-        for (int i = 0; i < CraftingManager.getInstance().getRecipeList().size(); i++) {
-            IRecipe recipe = CraftingManager.getInstance().getRecipeList().get(i);
-            if (recipe.getRecipeOutput() != null && recipe.getRecipeOutput().copy().equals(item.copy())) {
-                CraftingManager.getInstance().getRecipeList().remove(i--);
+        Iterator<IRecipe> recipeIterator = CraftingManager.getInstance().getRecipeList().iterator();
+        while (recipeIterator.hasNext()) {
+            IRecipe recipe = recipeIterator.next();
+            if (recipe.getRecipeOutput().isItemEqual(item)) {
+                recipeIterator.remove();
             }
         }
 
-        FurnaceRecipes.instance().getSmeltingList().remove(item);
+        Iterator<Map.Entry<ItemStack, ItemStack>> smeltingIterator = FurnaceRecipes.instance().getSmeltingList().entrySet().iterator();
+        while (smeltingIterator.hasNext()) {
+            Map.Entry<ItemStack, ItemStack> entry = smeltingIterator.next();
+            if (entry.getKey().isItemEqual(item)) {
+                smeltingIterator.remove();
+            }
+        }
     }
 
     public static void registerBus(Object obj) {
@@ -154,11 +158,13 @@ public class Misc {
 
     @SuppressWarnings("unused")
     public static String itemStackInfo(ItemStack stack) {
+        if (stack.isEmpty())
+            return "ItemStack.EMPTY";
         StringBuilder sb = new StringBuilder();
         sb.append("Item: ");
-        sb.append(stack.getItem() == null ? "null" : stack.getItem().getRegistryName());
+        sb.append(stack.getItem().getRegistryName());
         sb.append("; Amount: ");
-        sb.append(stack.stackSize);
+        sb.append(stack.getCount());
         sb.append(";");
         return sb.toString();
     }
