@@ -41,26 +41,26 @@ public class GoldenItemToGold {
         int mode = ConfigHandler.uncraftingDifficulty;
         switch (mode) {
             case (0):
-                UhcReloaded.LOG.info("[{}]Set uncrafting mode to off.", translate("mod.uhcreloaded.name"));
+                UhcReloaded.LOG.info("[{}] Set uncrafting mode to off.", translate("mod.uhcreloaded.name"));
                 break;
             case (1): {
                 regEasyUncraftingRecipe();
-                UhcReloaded.LOG.info("[{}]Set uncrafting mode to easy.", translate("mod.uhcreloaded.name"));
+                UhcReloaded.LOG.info("[{}] Set uncrafting mode to easy.", translate("mod.uhcreloaded.name"));
                 break;
             }
             case (2): {
                 regNormalUncraftingRecipe();
-                UhcReloaded.LOG.info("[{}]Set uncrafting mode to normal.", translate("mod.uhcreloaded.name"));
+                UhcReloaded.LOG.info("[{}] Set uncrafting mode to normal.", translate("mod.uhcreloaded.name"));
                 break;
             }
             case (3): {
                 regHardUncraftingRecipe();
-                UhcReloaded.LOG.info("[{}]Set uncrafting mode to hard.", translate("mod.uhcreloaded.name"));
+                UhcReloaded.LOG.info("[{}] Set uncrafting mode to hard.", translate("mod.uhcreloaded.name"));
                 break;
             }
             default:
-                UhcReloaded.LOG.warn("[{}]Invalid uncrafting difficlty, please check!", translate("mod.uhcreloaded.name"));
-                UhcReloaded.LOG.info("[{}]Set uncrafting mode to off.", translate("mod.uhcreloaded.name"));
+                UhcReloaded.LOG.warn("[{}] Invalid uncrafting difficulty, please check!", translate("mod.uhcreloaded.name"));
+                UhcReloaded.LOG.info("[{}] Set uncrafting mode to off.", translate("mod.uhcreloaded.name"));
                 break;
         }
     }
@@ -71,16 +71,12 @@ public class GoldenItemToGold {
      */
 
     public static void regEasyUncraftingRecipe() {
-        regGoldenToolsToGoldE();
-        regGoldenArmorsToGoldE();
         regClockToGoldE();
         regPressurePlateToGoldE();
         regPowerRailToGoldE();
     }
 
     public static void regNormalUncraftingRecipe() {
-        regGoldenToolsToGoldN();
-        regGoldenArmorsToGoldN();
         regClockToGoldN();
         regPressurePlateToGoldN();
         regPowerRailToGoldN();
@@ -88,8 +84,6 @@ public class GoldenItemToGold {
 
     // WIP.
     public static void regHardUncraftingRecipe() {
-        regGoldenToolsToGoldH();
-        regGoldenArmorsToGoldH();
         regClockToGoldH();
         regPressurePlateToGoldH();
         if (Loader.isModLoaded("railcraft")) {
@@ -99,48 +93,16 @@ public class GoldenItemToGold {
         }
     }
 
-    public static void regGoldenToolsToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 3), new Object[]{Items.GOLDEN_AXE});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 2), new Object[]{Items.GOLDEN_HOE});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 3), new Object[]{Items.GOLDEN_PICKAXE});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 1), new Object[]{Items.GOLDEN_SHOVEL});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 2), new Object[]{Items.GOLDEN_SWORD});
-    }
-
-    public static void regGoldenArmorsToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 5), new Object[]{Items.GOLDEN_HELMET});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 8), new Object[]{Items.GOLDEN_CHESTPLATE});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 7), new Object[]{Items.GOLDEN_LEGGINGS});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 4), new Object[]{Items.GOLDEN_BOOTS});
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 6), new Object[]{Items.GOLDEN_HORSE_ARMOR});
-    }
-
     public static void regClockToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 4), new Object[]{Items.CLOCK});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 4), Items.CLOCK);
     }
 
     public static void regPressurePlateToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 2), new Object[]{Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE});
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 2), Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE);
     }
 
     public static void regPowerRailToGoldE() {
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 1), new Object[]{Blocks.GOLDEN_RAIL});
-    }
-
-    public static void regGoldenToolsToGoldN() {
-        GameRegistry.addSmelting(Items.GOLDEN_AXE, new ItemStack(Items.GOLD_INGOT, 3), 3.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_HOE, new ItemStack(Items.GOLD_INGOT, 2), 2.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_PICKAXE, new ItemStack(Items.GOLD_INGOT, 3), 3.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_SHOVEL, new ItemStack(Items.GOLD_INGOT, 1), 1.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_SWORD, new ItemStack(Items.GOLD_INGOT, 2), 2.0F);
-    }
-
-    public static void regGoldenArmorsToGoldN() {
-        GameRegistry.addSmelting(Items.GOLDEN_HELMET, new ItemStack(Items.GOLD_INGOT, 5), 2.5F);
-        GameRegistry.addSmelting(Items.GOLDEN_CHESTPLATE, new ItemStack(Items.GOLD_INGOT, 8), 4.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_LEGGINGS, new ItemStack(Items.GOLD_INGOT, 7), 3.5F);
-        GameRegistry.addSmelting(Items.GOLDEN_BOOTS, new ItemStack(Items.GOLD_INGOT, 4), 2.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_HORSE_ARMOR, new ItemStack(Items.GOLD_INGOT, 6), 3.0F);
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.GOLD_INGOT, 1), Blocks.GOLDEN_RAIL);
     }
 
     public static void regClockToGoldN() {
@@ -153,22 +115,6 @@ public class GoldenItemToGold {
 
     public static void regPowerRailToGoldN() {
         GameRegistry.addSmelting(Blocks.GOLDEN_RAIL, new ItemStack(Items.GOLD_INGOT, 1), 0.15F);
-    }
-
-    public static void regGoldenToolsToGoldH() {
-        GameRegistry.addSmelting(Items.GOLDEN_AXE, new ItemStack(Items.GOLD_INGOT, 2), 3.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_HOE, new ItemStack(Items.GOLD_INGOT, 1), 2.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_PICKAXE, new ItemStack(Items.GOLD_INGOT, 2), 3.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_SHOVEL, new ItemStack(Items.GOLD_NUGGET, 5), 1.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_SWORD, new ItemStack(Items.GOLD_INGOT, 1), 2.0F);
-    }
-
-    public static void regGoldenArmorsToGoldH() {
-        GameRegistry.addSmelting(Items.GOLDEN_HELMET, new ItemStack(Items.GOLD_INGOT, 2), 2.5F);
-        GameRegistry.addSmelting(Items.GOLDEN_CHESTPLATE, new ItemStack(Items.GOLD_INGOT, 4), 4.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_LEGGINGS, new ItemStack(Items.GOLD_INGOT, 3), 3.5F);
-        GameRegistry.addSmelting(Items.GOLDEN_BOOTS, new ItemStack(Items.GOLD_INGOT, 2), 2.0F);
-        GameRegistry.addSmelting(Items.GOLDEN_HORSE_ARMOR, new ItemStack(Items.GOLD_INGOT, 3), 3.0F);
     }
 
     public static void regClockToGoldH() {
