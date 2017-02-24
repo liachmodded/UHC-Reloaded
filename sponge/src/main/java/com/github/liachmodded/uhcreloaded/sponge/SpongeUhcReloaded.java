@@ -40,6 +40,7 @@ import org.spongepowered.api.event.block.tileentity.BrewingEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
+import org.spongepowered.api.item.recipe.RecipeRegistry;
 import org.spongepowered.api.plugin.Plugin;
 
 @Plugin(id = References.PLUGIN_ID,
@@ -58,6 +59,8 @@ public final class SpongeUhcReloaded {
     private Game game;
     @Inject
     private EventManager eventManager;
+    @Inject
+    private RecipeRegistry recipeRegistry;
 
     @Inject
     private SpongeUhcReloaded() {
@@ -80,7 +83,7 @@ public final class SpongeUhcReloaded {
         this.eventManager.registerListeners(this, HumanoidDropHeadHandler.INSTANCE);
         this.eventManager.registerListeners(this, EnderPearlTeleportListener.INSTANCE);
         try {
-            GoldenAppleRecipeRemover.INSTANCE.accept(this.game.getRegistry().getRecipeRegistry());
+            GoldenAppleRecipeRemover.INSTANCE.accept(this.recipeRegistry);
         } catch (UnsupportedOperationException e) {
             // Default...
         }

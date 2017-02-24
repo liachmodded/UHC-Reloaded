@@ -31,16 +31,13 @@ import static com.github.liachmodded.uhcreloaded.forge.util.Misc.translate;
 
 import com.github.liachmodded.uhcreloaded.forge.util.BasicRecipe;
 import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
-import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -51,7 +48,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Skull.
@@ -67,9 +63,6 @@ public final class GoldenSkull {
 
     @SubscribeEvent
     public void eatApple(LivingEntityUseItemEvent.Start event) {
-        if (!ScopeManager.handle(event)) {
-            return;
-        }
         if (event.getItem().getItem() != Items.GOLDEN_APPLE || !(event.getEntityLiving() instanceof EntityPlayer)) {
             return;
         }
@@ -86,7 +79,7 @@ public final class GoldenSkull {
         NBTTagCompound tag = event.getItem().getTagCompound();
         if (tag.getBoolean("golden_skull")) {
             player.addPotionEffect(new PotionEffect(
-                    MobEffects.HEALTH_BOOST, 1, ConfigHandler.healAmountSkull - 4
+                MobEffects.HEALTH_BOOST, 1, ConfigHandler.healAmountSkull - 4
             ));
         }
     }
@@ -139,12 +132,12 @@ public final class GoldenSkull {
             outputHead = appendToolTip(outputHead, lore);
             if (!getOwnerFromSkull(outputHead).isEmpty()) {
                 outputHead.setStackDisplayName(translate(
-                        TextFormatting.GOLD + "item.uhcreloaded.ownedskull.name",
-                        getOwnerFromSkull(outputHead)
+                    TextFormatting.GOLD + "item.uhcreloaded.ownedskull.name",
+                    getOwnerFromSkull(outputHead)
                 ));
             } else {
                 outputHead.setStackDisplayName(translate(
-                        TextFormatting.GOLD + "item.uhcreloaded.skullapple.name"
+                    TextFormatting.GOLD + "item.uhcreloaded.skullapple.name"
                 ));
             }
             return outputHead;

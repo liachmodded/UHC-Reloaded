@@ -25,13 +25,6 @@
 
 package com.github.liachmodded.uhcreloaded.forge;
 
-/**
- * @author ThaumicTechTinker Urey.S.Knowledge (a.k.a. 3TUSK/3tusk)
- * This is a mod which brings the original UHC mode rule to 1.8 release
- * Forge Compatible, flexible configuration, and firing contribution :)
- * Sort of meaningless, but I will insist on it, since there used to be an era!
- */
-
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.allowCraftingGoldenSkull;
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.allowGhastTear;
 import static com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler.easierSkeleton;
@@ -64,6 +57,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
+/**
+ * The mod class.
+ *
+ * @author ThaumicTechTinker Urey.S.Knowledge (a.k.a. 3TUSK/3tusk)
+ * This is a mod which brings the original UHC mode rule to 1.8 release
+ * Forge Compatible, flexible configuration, and firing contribution :)
+ * Sort of meaningless, but I will insist on it, since there used to be an era!
+ */
 @Mod(modid = MODID, name = NAME, version = VERSION)
 public class UhcReloaded {
 
@@ -101,7 +102,7 @@ public class UhcReloaded {
 
         GoldenItemToGold.regUncraftingGoldenToolsAndArmor();
 
-        ModdedGoldenStuff.removeEnhancedGoldenApple();
+        ModdedGoldenStuff.modifyEnchantedGoldenApple();
         ModdedGoldenStuff.harderGoldenCarrot();
         ModdedGoldenStuff.harderGlisteringMelon();
     }

@@ -63,24 +63,24 @@ public class CommandUhcMode extends CommandBase {
             String mode = args[0];
             if (mode.equalsIgnoreCase("on")) {
                 for (int a = 0; a < mcServer.worlds.length; a++) {
-                    WorldInfo info = mcServer.worldServers[a].getWorldInfo();
-                    GameRules gamerules = mcServer.worldServers[a].getGameRules();
+                    WorldInfo info = mcServer.worlds[a].getWorldInfo();
+                    GameRules gamerules = mcServer.worlds[a].getGameRules();
                     info.setHardcore(true);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "false");
                 }
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.on")));
-                notifyCommandListener(sender, this, "[UHCReload]UltraHardcore mode: ON.", new Object[]{});
+                sender.sendMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.on")));
+                notifyCommandListener(sender, this, "[UHCReload]UltraHardcore mode: ON.");
             }
 
             if (mode.equalsIgnoreCase("off")) {
-                for (int a = 0; a < mcServer.worldServers.length; a++) {
-                    WorldInfo info = mcServer.worldServers[a].getWorldInfo();
-                    GameRules gamerules = mcServer.worldServers[a].getGameRules();
+                for (int a = 0; a < mcServer.worlds.length; a++) {
+                    WorldInfo info = mcServer.worlds[a].getWorldInfo();
+                    GameRules gamerules = mcServer.worlds[a].getGameRules();
                     info.setHardcore(false);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "true");
                 }
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.off")));
-                notifyCommandListener(sender, this, "[UHCReload]UltraHardcore mode: OFF.", new Object[]{});
+                sender.sendMessage(new TextComponentString(translate("commands.uhcreloaded.uhc.off")));
+                notifyCommandListener(sender, this, "[UHCReload]UltraHardcore mode: OFF.");
             }
         }
 

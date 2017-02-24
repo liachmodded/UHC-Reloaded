@@ -26,7 +26,6 @@
 package com.github.liachmodded.uhcreloaded.forge.util;
 
 import com.mojang.authlib.GameProfile;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -39,11 +38,8 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants.NBT;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class Misc {
@@ -158,8 +154,9 @@ public class Misc {
 
     @SuppressWarnings("unused")
     public static String itemStackInfo(ItemStack stack) {
-        if (stack.isEmpty())
+        if (stack.isEmpty()) {
             return "ItemStack.EMPTY";
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("Item: ");
         sb.append(stack.getItem().getRegistryName());

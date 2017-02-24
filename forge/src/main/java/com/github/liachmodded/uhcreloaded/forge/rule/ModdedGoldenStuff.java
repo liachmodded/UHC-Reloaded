@@ -27,7 +27,6 @@ package com.github.liachmodded.uhcreloaded.forge.rule;
 
 import com.github.liachmodded.uhcreloaded.forge.util.ConfigHandler;
 import com.github.liachmodded.uhcreloaded.forge.util.Misc;
-import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -37,9 +36,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModdedGoldenStuff {
 
-    public static void removeEnhancedGoldenApple() {
-        if (!ConfigHandler.allowEnchantedGoldenApple) {
-            Misc.removeRecipe(new ItemStack(Items.GOLDEN_APPLE, 1, 1));
+    public static void modifyEnchantedGoldenApple() {
+        if (ConfigHandler.allowEnchantedGoldenApple) {
+            GameRegistry.addShapedRecipe(new ItemStack(Items.GOLDEN_APPLE, 1, 1),
+                "GGG", "GCG", "GGG", 'G', Blocks.GOLD_BLOCK, 'C', Items.APPLE);
         }
     }
 
@@ -47,7 +47,7 @@ public class ModdedGoldenStuff {
         if (ConfigHandler.harderGoldenCarrot) {
             Misc.removeRecipe(new ItemStack(Items.GOLDEN_CARROT));
             GameRegistry.addShapedRecipe(new ItemStack(Items.GOLDEN_CARROT),
-                    "GGG", "GCG", "GGG", 'G', Items.GOLD_INGOT, 'C', Items.CARROT);
+                "GGG", "GCG", "GGG", 'G', Items.GOLD_INGOT, 'C', Items.CARROT);
         }
     }
 
@@ -55,20 +55,17 @@ public class ModdedGoldenStuff {
         if (ConfigHandler.harderGlisteringMelon) {
             Misc.removeRecipe(new ItemStack(Items.SPECKLED_MELON));
             GameRegistry.addShapelessRecipe(
-                    new ItemStack(Items.SPECKLED_MELON),
-                    Items.MELON, Blocks.GOLD_BLOCK);
+                new ItemStack(Items.SPECKLED_MELON),
+                Items.MELON, Blocks.GOLD_BLOCK);
         }
     }
 
     /** Make the player drop a skull. */
     @SubscribeEvent
     public void onPlayerDeath(PlayerDropsEvent e) {
-        if (!ScopeManager.handle(e)) {
-            return;
-        }
         e.getEntityPlayer().dropItem(
-                Misc.getSkullFromOwner(e.getEntityPlayer().getGameProfile()), true,
-                false);
+            Misc.getSkullFromOwner(e.getEntityPlayer().getGameProfile()), true,
+            false);
     }
 
 }

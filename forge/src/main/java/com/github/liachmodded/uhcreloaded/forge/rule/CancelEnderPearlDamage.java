@@ -25,7 +25,6 @@
 
 package com.github.liachmodded.uhcreloaded.forge.rule;
 
-import com.github.liachmodded.uhcreloaded.forge.worldly.ScopeManager;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -34,9 +33,6 @@ public class CancelEnderPearlDamage {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onPlayerUseEnderPearl(EnderTeleportEvent event) {
-        if (!ScopeManager.handle(event)) {
-            return;
-        }
         if (event.getAttackDamage() > 0.0F) {
             event.setAttackDamage(0.0F);
         }

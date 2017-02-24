@@ -60,7 +60,7 @@ public abstract class BasicRecipe implements IRecipe {
      */
     @Override
     public boolean matches(InventoryCrafting grid, World worldIn) {
-        return getCraftingResult(grid) != null;
+        return !getCraftingResult(grid).isEmpty();
     }
 
     /**

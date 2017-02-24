@@ -51,11 +51,11 @@ public final class CancelPotionBrewingListener implements EventListener<BrewingE
     @Override
     public void handle(BrewingEvent.Start event) {
         event.filter(stack -> {
-            if (stack.supports(Keys.IS_SPLASH_POTION)) {
-                Optional<Boolean> splashPotion = stack.get(Keys.IS_SPLASH_POTION);
-                if (splashPotion.isPresent() && splashPotion.get()) {
-                    return false;
-                }
+            if (stack.getItem() == ItemTypes.SPLASH_POTION) {
+                return false;
+            }
+            if (stack.getItem() == ItemTypes.LINGERING_POTION) {
+                return false;
             }
             if (stack.supports(Keys.POTION_EFFECTS)) {
                 Optional<List<PotionEffect>> optPotions = stack.get(Keys.POTION_EFFECTS);

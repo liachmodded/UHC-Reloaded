@@ -44,7 +44,7 @@ public class CommandUshcMode extends CommandBase {
     private static final long DAY_TIME = 0;
 
     @Override
-    public String getCommandName() {
+    public String getName() {
         return NAME;
     }
 
@@ -54,7 +54,7 @@ public class CommandUshcMode extends CommandBase {
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return USAGE;
     }
 
@@ -70,29 +70,29 @@ public class CommandUshcMode extends CommandBase {
             String mode = args[0];
 
             if (mode.equalsIgnoreCase("on")) {
-                for (int a = 0; a < server.worldServers.length; a++) {
-                    WorldInfo info = server.worldServers[a].getWorldInfo();
-                    GameRules gamerules = server.worldServers[a].getGameRules();
+                for (int a = 0; a < server.worlds.length; a++) {
+                    WorldInfo info = server.worlds[a].getWorldInfo();
+                    GameRules gamerules = server.worlds[a].getGameRules();
                     info.setHardcore(true);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "false");
                     gamerules.setOrCreateGameRule("doDaylightCycle", "false");
-                    server.worldServers[a].setWorldTime(NIGHT_TIME);
+                    server.worlds[a].setWorldTime(NIGHT_TIME);
                 }
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.on")));
-                notifyCommandListener(sender, this, "[UHCReload]UltraSuperHardcore mode: ON.", new Object[]{});
+                sender.sendMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.on")));
+                notifyCommandListener(sender, this, "[UHC Reloaded] UltraSuperHardcore mode: ON.");
             }
 
             if (mode.equalsIgnoreCase("off")) {
-                for (int a = 0; a < server.worldServers.length; a++) {
-                    WorldInfo info = server.worldServers[a].getWorldInfo();
-                    GameRules gamerules = server.worldServers[a].getGameRules();
+                for (int a = 0; a < server.worlds.length; a++) {
+                    WorldInfo info = server.worlds[a].getWorldInfo();
+                    GameRules gamerules = server.worlds[a].getGameRules();
                     info.setHardcore(false);
                     gamerules.setOrCreateGameRule("naturalRegeneration", "true");
                     gamerules.setOrCreateGameRule("doDaylightCycle", "true");
-                    server.worldServers[a].setWorldTime(DAY_TIME);
+                    server.worlds[a].setWorldTime(DAY_TIME);
                 }
-                sender.addChatMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.off")));
-                notifyCommandListener(sender, this, "[UHCReload]UltraSuperHardcore mode: OFF.", new Object[]{});
+                sender.sendMessage(new TextComponentString(translate("commands.uhcreloaded.ushc.off")));
+                notifyCommandListener(sender, this, "[UHC Reloaded] UltraSuperHardcore mode: OFF.");
             }
 
             throw new UhcCommandException(translate("commands.uhcreloaded.error.args"));

@@ -21,8 +21,6 @@ minecraft {
     makeObfSourceJar = false
 }
 
-build.dependsOn setupCiWorkspace
-
 processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
